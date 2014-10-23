@@ -17,12 +17,14 @@
 
 @implementation WonderUser
 
-- (instancetype)init {    
-    NSAssert(NO, @"Please do not initialize WonderUser directly. Use initWithUsername:(NSString *)username AndPassword:(NSString *)password instead.");
-    assert(NO);
+- (instancetype)init {
+    NSAssert(false, @"Please do not initialize WonderUser directly. Use initWithUsername:(NSString *)username password:(NSString *)password instead.");
+    assert(false);
+    
+    return nil;
 }
 
-- (WonderUser *)initWithUsername:(NSString *)username AndPassword:(NSString *)password {
+- (WonderUser *)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
         _userName = username;

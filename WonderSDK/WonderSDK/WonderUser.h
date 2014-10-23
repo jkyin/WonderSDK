@@ -13,5 +13,6 @@
 @property (strong, readonly, nonatomic) NSString *userName;
 @property (strong, readonly, nonatomic) NSString *passWord;
 
-- (WonderUser *)initWithUsername:(NSString *)username AndPassword:(NSString *)password;
+- (instancetype)init __attribute__((unavailable("Please do not initialize WonderUser directly. Use initWithUsername:password: instead.")));
+- (WonderUser *)initWithUsername:(NSString *)username password:(NSString *)password;
 @end

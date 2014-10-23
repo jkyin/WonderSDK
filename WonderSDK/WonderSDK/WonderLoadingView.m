@@ -20,12 +20,12 @@
         self.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
         self.layer.shadowRadius = 10.0f; // 阴影模糊半径
         
-        _wonderLabel = [[UILabel alloc] initWithFrame:CGRectMake(150, 30, 250, 50)];
+        _wonderLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.superview.frame.origin.x / 2.0f, 30, 250, 50)];
         _wonderLabel.backgroundColor = [UIColor clearColor];
         _wonderLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:_wonderLabel];
         
-        _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 120, 120, 50)];
+        _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.superview.frame.origin.x / 2.0f, 120, 120, 50)];
         _loadingLabel.font = [UIFont systemFontOfSize:20];
         _loadingLabel.text = @"正在登录......";
         _loadingLabel.backgroundColor = [UIColor clearColor];
