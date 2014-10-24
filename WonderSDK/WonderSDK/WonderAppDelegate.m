@@ -15,10 +15,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    _loginViewController = [[WonderLoginViewController alloc] init];
-    [self.window setRootViewController:_loginViewController];
+    WonderLoginViewController *loginViewController = [[WonderLoginViewController alloc] init];
+    [self.window setRootViewController:loginViewController];
     
-    [_loginViewController wonderLogin];
+//    [loginViewController wonderLogin];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

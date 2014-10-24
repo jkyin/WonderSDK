@@ -11,6 +11,5 @@
 @interface WonderLoadingView : UIView
 
 @property (strong, nonatomic) UILabel *wonderLabel;
-@property (strong, nonatomic) UILabel *loadingLabel;
 
 @end

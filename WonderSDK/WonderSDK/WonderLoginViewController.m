@@ -15,7 +15,8 @@
 #import "WebViewJavascriptBridge.h"
 
 #define isDevicePhone [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
-#define windowCenter CGPointMake(self.view.bounds.size.width / 2.0f, self.view.bounds.size.height / 2.0f)
+#define windowCenter CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
+
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 //NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
@@ -25,14 +26,11 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UIButton *switchAccountButton;
 @property (strong, nonatomic) WonderLoadingView *loadingView;
-@property (strong, nonatomic) NSHTTPURLResponse *httpResponse;
-@property (strong, nonatomic) NSURLRequest *loginRequest;
 
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) WonderUser *user;
 
-@property (strong, nonatomic) NSLayoutConstraint *centerYConstraint;
 @property (assign, nonatomic) int textFieldHeight;
 @property (assign, nonatomic) CGSize kbSize;
 @property (assign, nonatomic) CGFloat webViewHeight;
@@ -59,20 +57,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
     
-    // switchAccountButton setup
-    _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0+
-    _switchAccountButton.frame = CGRectMake(30, 30, 150, 60);
-    _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
-    _switchAccountButton.layer.cornerRadius = 5;
-    _switchAccountButton.tintColor = [UIColor whiteColor];
-    _switchAccountButton.titleLabel.font = [UIFont systemFontOfSize:20];
-//    _switchAccountButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-//    [_switchAccountButton sizeToFit];
-    [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
-    [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
-    
     // webView setup
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 500, 480)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 700, 480)];
     _webView.center = windowCenter;
     _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
                                  UIViewAutoresizingFlexibleLeftMargin |
@@ -82,7 +68,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     _webView.layer.masksToBounds = YES;
     _webView.layer.cornerRadius = 10;
     _webView.layer.shadowColor = [UIColor blackColor].CGColor;
-    _webView.layer.shadowOpacity = 0.3f; // 阴影不透明度
+    _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
     _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
     _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
     _webView.delegate = self;
@@ -102,9 +88,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     _activityIndicatorView.hidesWhenStopped = YES;
     [self.view addSubview:_activityIndicatorView];
     
-    // loadingView setup
-    _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 250)];
-    _loadingView.center = windowCenter;
     
     
     // receive JS messages
@@ -118,6 +101,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         
     }];
     
+    [self wonderLogin];
     //    [[[WonderUserStore sharedStore] allUsers] enumerateObjectsUsingBlock:^(WonderUser *obj, NSUInteger idx, BOOL *stop) {
     //        NSLog(@"%lu  %@", (unsigned long)idx, obj.userName);
     //    }];
@@ -156,13 +140,16 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)wonderLoginWithOutUI {
 //    [_webView stopLoading];
     [_webView removeFromSuperview];
-    NSString *urlString  = [NSString stringWithFormat:@"http://218.17.158.13:3337/wonderCenter/api/userLogin?username=%@&&password=%@",
+    NSString *urlString  = [NSString stringWithFormat:@"http://192.168.1.251:8008/api/userLogin?username=%@&&password=%@",
                             [[WonderUserStore sharedStore] lastUser].userName, [[WonderUserStore sharedStore] lastUser].passWord];
     NSURL *url = [NSURL URLWithString:urlString];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
+#pragma mark - Private method
+
 - (void)switchAccount {
+//    [_webView stopLoading];
     [self.view addSubview:_webView];
     [self.switchAccountButton removeFromSuperview];
     [self.loadingView removeFromSuperview];
@@ -173,13 +160,28 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)showLoadingProcess:(NSNotification *)notification {
     if ([notification.name isEqualToString:@"showLoadingProcess"]) {
         [_webView removeFromSuperview];
-        [self.view addSubview:_switchAccountButton];
+        
+        // loadingView setup
+        _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
+        _loadingView.center = windowCenter;
+        _loadingView.wonderLabel.text = [NSString stringWithFormat:@"Wonder帐号 %@", _username];
         [self.view addSubview:_loadingView];
+                
+        // switchAccountButton setup
+        _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0+
+        _switchAccountButton.frame = CGRectMake(30, 30, 150, 60);
+        _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
+        _switchAccountButton.layer.cornerRadius = 5;
+        _switchAccountButton.tintColor = [UIColor whiteColor];
+        _switchAccountButton.titleLabel.font = [UIFont systemFontOfSize:20];
+        //    _switchAccountButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+        //    [_switchAccountButton sizeToFit];
+        [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
+        [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_switchAccountButton];
         
     }
 }
-
-#pragma mark - Private method
 
 - (void)addObservers {
     [self addObserver:self forKeyPath:@"textFieldHeight" options:NSKeyValueObservingOptionNew context:nil];
@@ -286,9 +288,9 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // more robust here to account for differences in application needs
     if (!(([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled) ||
           ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102))) {
-        NSLog(@"\nerror.domain=%@", error.domain);
+        NSLog(@"\nerror.domain是%@", error.domain);
     }
-    NSLog(@"\nerror=%@", error);
+    NSLog(@"%ld", (long)error.code);
 }
 
 #pragma mark - NSKeyValueObserving Protocol
@@ -335,7 +337,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
     [self.view layoutIfNeeded];
-    _centerYConstraint.constant = 0;
     [UIView animateWithDuration:.3 animations:^{
         [self.view layoutIfNeeded];
     }];
