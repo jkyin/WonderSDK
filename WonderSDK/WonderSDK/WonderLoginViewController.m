@@ -32,7 +32,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @property (strong, nonatomic) WonderUser *user;
 
 @property (assign, nonatomic) int textFieldHeight;
-@property (assign, nonatomic) CGSize kbSize;
+@property (assign, nonatomic) CGRect kbRect;
 @property (assign, nonatomic) CGFloat webViewHeight;
 
 @property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
@@ -58,13 +58,16 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     self.view.backgroundColor = [UIColor grayColor];
     
     // webView setup
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 700, 480)];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
+    if (isDevicePhone) {
+        _webView.frame = CGRectMake(0, 0, 320, 240);
+    }
     _webView.center = windowCenter;
     _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
                                  UIViewAutoresizingFlexibleLeftMargin |
                                  UIViewAutoresizingFlexibleBottomMargin |
                                  UIViewAutoresizingFlexibleTopMargin);
-    _webView.scalesPageToFit = YES;
+//    _webView.scalesPageToFit = YES;
     _webView.layer.masksToBounds = YES;
     _webView.layer.cornerRadius = 10;
     _webView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -133,7 +136,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)wonderLoginWithUI {
 //    [_webView stopLoading];
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
-//    NSURL *url = [NSURL URLWithString:@"https://github.com/login/oauth/authorize?client_id=e97b03211595b394c4c4"];
+//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/test.html"];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
@@ -207,9 +210,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSLog(@"%@", request.URL);
-//    NSLog(@"%@", request.URL.resourceSpecifier);
-//    NSLog(@"%@", [request.URL.resourceSpecifier substringFromIndex:2]);
-//    NSLog(@"%@", request.URL.lastPathComponent);
     NSURL *url = request.URL;
     NSString *urlString = request.URL.absoluteString;
 
@@ -297,20 +297,20 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqual:@"textFieldHeight"]) {
-        CGFloat distanceTextFieldToTop = _webViewHeight + self.textFieldHeight + 80;
-        CGFloat offset = (([UIScreen mainScreen].bounds.size.height - distanceTextFieldToTop) - _kbSize.height);
-        if ([[UIDevice currentDevice].systemVersion floatValue] < 7) {
-            offset = (([UIScreen mainScreen].bounds.size.width - distanceTextFieldToTop) - _kbSize.height);
-        }
+        CGFloat distanceTextFieldToTop = CGRectGetMinY(_webView.frame) + self.textFieldHeight + 0;
+        CGFloat offset = CGRectGetMinY(_kbRect) - distanceTextFieldToTop;
+//        if ([[UIDevice currentDevice].systemVersion floatValue] < 7) {
+//            offset = CGRectGetMinY(_kbRect) - self.textFieldHeight;
+//        }
 
-        NSLog(@"offset:%f  C:%f  A:%f  B:%f", offset, [UIScreen mainScreen].bounds.size.height, distanceTextFieldToTop, _kbSize.height);
+        NSLog(@"offset:%.2f", offset);
         
-        [self.view layoutIfNeeded];
-        
-//        _centerYConstraint.constant = offset < 0 ? offset : -offset;
-//        [UIView animateWithDuration:.3 animations:^{
-//            [self.view layoutIfNeeded];
-//        }];
+        CGPoint webViewCenter = _webView.center;
+        webViewCenter.y +=  offset - 80;
+
+        [UIView animateWithDuration:.25 animations:^{
+            _webView.center = webViewCenter;
+        }];
     }
 }
 
@@ -323,25 +323,20 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)keyboardWillShow:(NSNotification *)notification {
     _webViewHeight = _webView.frame.origin.y;
     NSDictionary *info = [notification userInfo];
-//    _kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-//    CGFloat height = _kbSize.height;
-//    if (_kbSize.height > _kbSize.width) {
-//        _kbSize.height = _kbSize.width;
-//    }
-    
-    CGRect aRect = [self.view convertRect:[[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue] fromView:nil];
-    _kbSize = aRect.size;
+    _kbRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     NSLog(@"keyboardWillShow");
 }
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
-    [self.view layoutIfNeeded];
-    [UIView animateWithDuration:.3 animations:^{
-        [self.view layoutIfNeeded];
+    CGPoint webViewCenter = _webView.center;
+    webViewCenter.y = CGRectGetHeight(self.view.frame) / 2.0f;
+    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+
+    [UIView animateWithDuration:.25 animations:^{
+        _webView.center = webViewCenter;
     }];
-    
-    NSLog(@"keyboardWillBeHidden");
+
 }
 
 - (void)keyboardDidHide:(NSNotification *)notification {
@@ -365,3 +360,4 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 
 @end
+
