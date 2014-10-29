@@ -5,6 +5,9 @@
 //  Created by Wonder on 14-8-11.
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
+#if DEBUG
+#import "FLEXManager.h"
+#endif
 
 #import "WonderLoginViewController.h"
 #import "WonderURLParser.h"
@@ -13,9 +16,9 @@
 #import "WonderLoadingView.h"
 
 #import "WebViewJavascriptBridge.h"
+#import "MBProgressHUD.h"
 
 #define isDevicePhone [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
-#define windowCenter CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
 
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 //NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
@@ -23,7 +26,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @interface WonderLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
 @property (strong, nonatomic) UIButton *switchAccountButton;
 @property (strong, nonatomic) WonderLoadingView *loadingView;
 
@@ -43,55 +45,38 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 #pragma mark - UIViewController lifecycle
 
-//- (void)viewDidLayoutSubviews {
-//    NSLog(@"windowcenter:%@", NSStringFromCGPoint(windowCenter));
-//    NSLog(@"View frame: %@", NSStringFromCGRect(self.view.bounds));
-//    NSLog(@"av:%@", NSStringFromCGRect(_activityIndicatorView.frame));
-//    NSLog(@"av:%@", NSStringFromCGPoint(_activityIndicatorView.center));
-//
-//    NSLog(@"wv:%@", NSStringFromCGRect(_webView.frame));
-//
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
+    self.view.autoresizesSubviews = YES;
     
+#if DEBUG
+    [[FLEXManager sharedManager] showExplorer];
+#endif
+    
+    CGPoint windowCenter = CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+
     // webView setup
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
     if (isDevicePhone) {
-        _webView.frame = CGRectMake(0, 0, 320, 240);
+        _webView.frame = CGRectMake(0, 0, 320, 250);
     }
     _webView.center = windowCenter;
     _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
                                  UIViewAutoresizingFlexibleLeftMargin |
-                                 UIViewAutoresizingFlexibleBottomMargin |
-                                 UIViewAutoresizingFlexibleTopMargin);
-//    _webView.scalesPageToFit = YES;
+                                 UIViewAutoresizingFlexibleBottomMargin
+                                 );
     _webView.layer.masksToBounds = YES;
-    _webView.layer.cornerRadius = 10;
-    _webView.layer.shadowColor = [UIColor blackColor].CGColor;
-    _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
-    _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
-    _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
+    _webView.layer.cornerRadius = 15;
+//    _webView.layer.shadowColor = [UIColor blackColor].CGColor;
+//    _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
+//    _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
+//    _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
     _webView.delegate = self;
     _webView.scrollView.delegate = self;
     _webView.scrollView.scrollEnabled = NO; // 禁用滚动
     _webView.scrollView.bounces = NO; // 禁用回弹
     [self.view addSubview:_webView];
-    
-    // activityIndicatorView setup
-    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _activityIndicatorView.color = [UIColor blackColor];
-    _activityIndicatorView.center = windowCenter;
-    _activityIndicatorView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
-                                               UIViewAutoresizingFlexibleLeftMargin |
-                                               UIViewAutoresizingFlexibleBottomMargin |
-                                               UIViewAutoresizingFlexibleTopMargin);
-    _activityIndicatorView.hidesWhenStopped = YES;
-    [self.view addSubview:_activityIndicatorView];
-    
-    
     
     // receive JS messages
     _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -99,18 +84,11 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             [[WonderUserStore sharedStore] removeUser:data];
         } else if ([data isKindOfClass:[NSNumber class]]){
             self.textFieldHeight = [(NSNumber *)data intValue];
-            NSLog(@"%d", self.textFieldHeight);
         }
         
     }];
     
     [self wonderLogin];
-    //    [[[WonderUserStore sharedStore] allUsers] enumerateObjectsUsingBlock:^(WonderUser *obj, NSUInteger idx, BOOL *stop) {
-    //        NSLog(@"%lu  %@", (unsigned long)idx, obj.userName);
-    //    }];
-    //
-    //    NSLog(@"lastUser: %@", [[WonderUserStore sharedStore] lastUser].userName);
-    
 }
 
 // 注册通知
@@ -134,14 +112,12 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 - (void)wonderLoginWithUI {
-//    [_webView stopLoading];
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
-//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/test.html"];
+//    NSURL *url = [NSURL URLWithString:@"http://jkyin.me/ghost"];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 - (void)wonderLoginWithOutUI {
-//    [_webView stopLoading];
     [_webView removeFromSuperview];
     NSString *urlString  = [NSString stringWithFormat:@"http://192.168.1.251:8008/api/userLogin?username=%@&&password=%@",
                             [[WonderUserStore sharedStore] lastUser].userName, [[WonderUserStore sharedStore] lastUser].passWord];
@@ -152,7 +128,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 #pragma mark - Private method
 
 - (void)switchAccount {
-//    [_webView stopLoading];
     [self.view addSubview:_webView];
     [self.switchAccountButton removeFromSuperview];
     [self.loadingView removeFromSuperview];
@@ -163,9 +138,13 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)showLoadingProcess:(NSNotification *)notification {
     if ([notification.name isEqualToString:@"showLoadingProcess"]) {
         [_webView removeFromSuperview];
+        CGPoint windowCenter = CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
         // loadingView setup
         _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
+        if (isDevicePhone) {
+            _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
+        }
         _loadingView.center = windowCenter;
         _loadingView.wonderLabel.text = [NSString stringWithFormat:@"Wonder帐号 %@", _username];
         [self.view addSubview:_loadingView];
@@ -173,12 +152,14 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         // switchAccountButton setup
         _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0+
         _switchAccountButton.frame = CGRectMake(30, 30, 150, 60);
+        if (isDevicePhone) {
+            _switchAccountButton.frame = CGRectMake(15, 15, 100, 30);
+        }
         _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
+        _switchAccountButton.layer.masksToBounds = YES;
         _switchAccountButton.layer.cornerRadius = 5;
         _switchAccountButton.tintColor = [UIColor whiteColor];
         _switchAccountButton.titleLabel.font = [UIFont systemFontOfSize:20];
-        //    _switchAccountButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-        //    [_switchAccountButton sizeToFit];
         [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
         [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_switchAccountButton];
@@ -190,20 +171,16 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self addObserver:self forKeyPath:@"textFieldHeight" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoadingProcess:) name:@"showLoadingProcess" object:nil];
     // keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)removeObservers {
     [self removeObserver:self forKeyPath:@"textFieldHeight"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showLoadingProcess" object:nil];
     // keyboard notifications
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -237,8 +214,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                     [[WonderUserStore sharedStore] addUser:_user]; // save user account
                 }
                 
-                [_switchAccountButton removeFromSuperview];
-                [_loadingView removeFromSuperview];
+//                [_switchAccountButton removeFromSuperview];
+//                [_loadingView removeFromSuperview];
                 
                 //TODO: game start
             }
@@ -246,10 +223,13 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             // login failed or register failed,
             // so you should return login screen
             if ([@[@"login_return_fail", @"register_return_fail"] containsObject:value]) {
-                [_switchAccountButton removeFromSuperview];
-                [_loadingView removeFromSuperview];
+//                [_switchAccountButton removeFromSuperview];
+//                [_loadingView removeFromSuperview];
                 [self.view addSubview:_webView];
             }
+            
+            [_switchAccountButton removeFromSuperview];
+            [_loadingView removeFromSuperview];
         });
     }
     
@@ -257,11 +237,11 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [_activityIndicatorView startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [_activityIndicatorView stopAnimating];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *lastPathComponent = _webView.request.URL.lastPathComponent;
     if ([lastPathComponent isEqualToString: @"login.jsp"]) {
         NSString *jsFunction = [NSString stringWithFormat:@"addBox(\"%@\")", [[WonderUserStore sharedStore] stringWithJsonData]];
@@ -276,11 +256,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         [_webView stringByEvaluatingJavaScriptFromString:jsPassWord];
         }
     }
-//    NSLog(@"%@", NSStringFromCGPoint(self.webView.frame.origin));
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [_activityIndicatorView stopAnimating];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     // 102 == WebKitErrorFrameLoadInterruptedByPolicyChange
     // NSURLErrorCancelled == "Operation could not be completed", note NSURLErrorCancelled occurs when
     // the user clicks away before the page has completely loaded, if we find cases where we want this
@@ -290,23 +269,21 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
           ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102))) {
         NSLog(@"\nerror.domain是%@", error.domain);
     }
-    NSLog(@"%ld", (long)error.code);
+    NSLog(@"error.code: %ld", (long)error.code);
 }
 
 #pragma mark - NSKeyValueObserving Protocol
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqual:@"textFieldHeight"]) {
-        CGFloat distanceTextFieldToTop = CGRectGetMinY(_webView.frame) + self.textFieldHeight + 0;
-        CGFloat offset = CGRectGetMinY(_kbRect) - distanceTextFieldToTop;
+        CGFloat distanceTextFieldToTop = CGRectGetMinY(_webView.frame) + self.textFieldHeight + 30;
+        CGFloat offset = ([self currentScreenSize].height - CGRectGetHeight(_kbRect)) - distanceTextFieldToTop;
 //        if ([[UIDevice currentDevice].systemVersion floatValue] < 7) {
 //            offset = CGRectGetMinY(_kbRect) - self.textFieldHeight;
 //        }
-
-        NSLog(@"offset:%.2f", offset);
         
         CGPoint webViewCenter = _webView.center;
-        webViewCenter.y +=  offset - 80;
+        webViewCenter.y +=  offset - 40;
 
         [UIView animateWithDuration:.25 animations:^{
             _webView.center = webViewCenter;
@@ -314,33 +291,26 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     }
 }
 
+
 #pragma mark - UIKeyboardNotification
 
-- (void)keyboardDidChangeFrame:(NSNotification *)notification {
-    NSLog(@"keyboardDidChangeFrame");
-}
-
 - (void)keyboardWillShow:(NSNotification *)notification {
-    _webViewHeight = _webView.frame.origin.y;
-    NSDictionary *info = [notification userInfo];
-    _kbRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    _kbRect = [self.view convertRect:keyboardFrame fromView:self.view.window];
+    NSLog(@"%@", self.view.window);
     
-    NSLog(@"keyboardWillShow");
+    _webViewHeight = CGRectGetMinY(_webView.frame);
+
 }
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
     CGPoint webViewCenter = _webView.center;
-    webViewCenter.y = CGRectGetHeight(self.view.frame) / 2.0f;
-    NSLog(@"%@", NSStringFromCGRect(self.view.frame));
+    webViewCenter.y = [self currentScreenSize].height / 2.0f;
 
     [UIView animateWithDuration:.25 animations:^{
         _webView.center = webViewCenter;
     }];
 
-}
-
-- (void)keyboardDidHide:(NSNotification *)notification {
-    NSLog(@"keyboardDidHide");
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -355,9 +325,39 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self wonderLogin];
 }
 
+// for ios 5 earlier
+//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
+//}
+
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+//        <#statements#>
+//    }
+//}
+
+// for ios 6 later
+//- (NSUInteger)supportedInterfaceOrientations {
+//    return UIInterfaceOrientationMaskLandscape;
+//}
+
+//- (BOOL)shouldAutorotate {
+//    return YES;
+//}
 #pragma mark - Helper methods
 
-
+- (CGSize)currentScreenSize {
+    // iOS 8 simply adjusts the application frame to adapt to the current orientation and deprecated the concept of interface orientations
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            CGSize currentScrrenSize = CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));
+            return currentScrrenSize;
+        }
+    }
+    
+    return [UIScreen mainScreen].bounds.size;
+}
 
 @end
 

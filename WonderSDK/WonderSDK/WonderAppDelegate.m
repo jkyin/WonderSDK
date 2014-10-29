@@ -17,9 +17,7 @@
     
     WonderLoginViewController *loginViewController = [[WonderLoginViewController alloc] init];
     [self.window setRootViewController:loginViewController];
-    
-//    [loginViewController wonderLogin];
-    
+        
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -54,4 +52,5 @@
         NSLog(@"Cannot saved");
     }
 }
+
 @end
