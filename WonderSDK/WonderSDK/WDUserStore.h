@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "WonderUser.h"
 
-@interface WonderUserStore : NSObject
+typedef void(^WDSaveAccountCompletionHandler)(BOOL success);
+
+@interface WDUserStore : NSObject
 
 @property (strong, nonatomic) NSMutableArray *allUsers;
 @property (strong, nonatomic) WonderUser *currentUser;
@@ -20,7 +22,8 @@
 - (void)removeUser:(NSString *)userName;
 - (WonderUser *)lastUser;
 - (NSArray *)allUsers;
-- (BOOL)saveChanges;
+
+- (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler;
 
 - (NSString *)stringWithJsonData;
 

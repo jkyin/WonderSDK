@@ -6,15 +6,15 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
-#import "WonderURLParser.h"
+#import "WDURLParser.h"
 
-@interface WonderURLParser ()
+@interface WDURLParser ()
 
 @property (strong, nonatomic) NSArray *variables;
 
 @end
 
-@implementation WonderURLParser
+@implementation WDURLParser
 
 - (instancetype)initWithURLString:(NSString *)string {
     self = [super init];

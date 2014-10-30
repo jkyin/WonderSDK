@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WonderLoginViewController.h"
+#import "WDLoginViewController.h"
 
 @interface WonderAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
-#import "WonderUserStore.h"
+#import "WDUserStore.h"
 #import "WonderUser.h"
 
-@implementation WonderUserStore
+@implementation WDUserStore
 
 + (instancetype)sharedStore {
     static id sharedStore = nil;
@@ -60,10 +60,11 @@
     return [[self allUsers] lastObject];
 }
 
-- (BOOL)saveChanges {
+- (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler {
     NSString *path = [self userArchivePath];
+    BOOL success = [NSKeyedArchiver archiveRootObject:_allUsers toFile:path];
     
-    return [NSKeyedArchiver archiveRootObject:_allUsers toFile:path];
+    completionHandler(success);
 }
 
 - (NSString *)stringWithJsonData {
@@ -82,10 +83,10 @@
     NSString *base64EncodeString = [[NSString alloc] init];
     
     if ([json respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
-        // iOS 7+
+        // iOS 7 later
         base64EncodeString = [json base64EncodedStringWithOptions:kNilOptions];
     } else {
-        // pre iOS 7
+        // iOS 7 earlier
         base64EncodeString = [json base64Encoding];
     }
     

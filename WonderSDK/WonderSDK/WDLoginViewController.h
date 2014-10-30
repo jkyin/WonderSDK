@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WonderLoginViewController : UIViewController 
+@interface WDLoginViewController : UIViewController 
 
 - (void)wonderLogin;
 

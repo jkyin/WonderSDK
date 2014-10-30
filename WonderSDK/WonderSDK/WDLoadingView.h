@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WonderLoadingView : UIView
+@interface WDLoadingView : UIView
 
 @property (strong, nonatomic) UILabel *wonderLabel;
 
 @end
+ 

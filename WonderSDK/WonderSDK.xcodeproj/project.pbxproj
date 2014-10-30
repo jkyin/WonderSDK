@@ -58,8 +58,8 @@
 		AB0149541A00915D00A7BCC1 /* FLEXHierarchyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0149211A00915D00A7BCC1 /* FLEXHierarchyTableViewController.m */; };
 		AB0149551A00915D00A7BCC1 /* FLEXImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0149231A00915D00A7BCC1 /* FLEXImagePreviewViewController.m */; };
 		AB01495B1A00E14500A7BCC1 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AB01495A1A00E14500A7BCC1 /* MBProgressHUD.m */; };
-		AB17471F19D8E1B6009C0877 /* WonderUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17471E19D8E1B6009C0877 /* WonderUserStore.m */; };
-		AB17473219DA482F009C0877 /* WonderLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17473119DA482F009C0877 /* WonderLoadingView.m */; };
+		AB17471F19D8E1B6009C0877 /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17471E19D8E1B6009C0877 /* WDUserStore.m */; };
+		AB17473219DA482F009C0877 /* WDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17473119DA482F009C0877 /* WDLoadingView.m */; };
 		AB17473E19DA70B6009C0877 /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB17473C19DA70B6009C0877 /* WebViewJavascriptBridge.js.txt */; };
 		AB17473F19DA70B6009C0877 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB17473D19DA70B6009C0877 /* WebViewJavascriptBridge.m */; };
 		AB1FFB0F19D29DC4007050D3 /* WonderUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB1FFB0E19D29DC4007050D3 /* WonderUser.m */; };
@@ -75,8 +75,8 @@
 		AB3E5678199883E40041DF6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3E5660199883E40041DF6B /* UIKit.framework */; };
 		AB3E5680199883E40041DF6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3E567E199883E40041DF6B /* InfoPlist.strings */; };
 		AB3E5682199883E40041DF6B /* WonderSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E5681199883E40041DF6B /* WonderSDKTests.m */; };
-		AB3E568D199884B80041DF6B /* WonderLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E568C199884B80041DF6B /* WonderLoginViewController.m */; };
-		ABADF7411999A93F00EC35FA /* WonderURLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABADF7401999A93F00EC35FA /* WonderURLParser.m */; };
+		AB3E568D199884B80041DF6B /* WDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3E568C199884B80041DF6B /* WDLoginViewController.m */; };
+		ABADF7411999A93F00EC35FA /* WDURLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = ABADF7401999A93F00EC35FA /* WDURLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,10 +193,10 @@
 		AB0149231A00915D00A7BCC1 /* FLEXImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXImagePreviewViewController.m; sourceTree = "<group>"; };
 		AB0149591A00E14500A7BCC1 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		AB01495A1A00E14500A7BCC1 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		AB17471D19D8E1B6009C0877 /* WonderUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderUserStore.h; sourceTree = "<group>"; };
-		AB17471E19D8E1B6009C0877 /* WonderUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderUserStore.m; sourceTree = "<group>"; };
-		AB17473019DA482F009C0877 /* WonderLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderLoadingView.h; sourceTree = "<group>"; };
-		AB17473119DA482F009C0877 /* WonderLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderLoadingView.m; sourceTree = "<group>"; };
+		AB17471D19D8E1B6009C0877 /* WDUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUserStore.h; sourceTree = "<group>"; };
+		AB17471E19D8E1B6009C0877 /* WDUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUserStore.m; sourceTree = "<group>"; };
+		AB17473019DA482F009C0877 /* WDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoadingView.h; sourceTree = "<group>"; };
+		AB17473119DA482F009C0877 /* WDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoadingView.m; sourceTree = "<group>"; };
 		AB17473B19DA70B6009C0877 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		AB17473C19DA70B6009C0877 /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		AB17473D19DA70B6009C0877 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
@@ -218,10 +218,10 @@
 		AB3E567D199883E40041DF6B /* WonderSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKTests-Info.plist"; sourceTree = "<group>"; };
 		AB3E567F199883E40041DF6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB3E5681199883E40041DF6B /* WonderSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKTests.m; sourceTree = "<group>"; };
-		AB3E568B199884B80041DF6B /* WonderLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderLoginViewController.h; sourceTree = "<group>"; };
-		AB3E568C199884B80041DF6B /* WonderLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderLoginViewController.m; sourceTree = "<group>"; };
-		ABADF73F1999A93F00EC35FA /* WonderURLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderURLParser.h; sourceTree = "<group>"; };
-		ABADF7401999A93F00EC35FA /* WonderURLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderURLParser.m; sourceTree = "<group>"; };
+		AB3E568B199884B80041DF6B /* WDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoginViewController.h; sourceTree = "<group>"; };
+		AB3E568C199884B80041DF6B /* WDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoginViewController.m; sourceTree = "<group>"; };
+		ABADF73F1999A93F00EC35FA /* WDURLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDURLParser.h; sourceTree = "<group>"; };
+		ABADF7401999A93F00EC35FA /* WDURLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDURLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,11 +422,20 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		AB01495D1A01EF9F00A7BCC1 /* WDURLParser */ = {
+			isa = PBXGroup;
+			children = (
+				ABADF73F1999A93F00EC35FA /* WDURLParser.h */,
+				ABADF7401999A93F00EC35FA /* WDURLParser.m */,
+			);
+			name = WDURLParser;
+			sourceTree = "<group>";
+		};
 		AB17472019D90B21009C0877 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				AB17471D19D8E1B6009C0877 /* WonderUserStore.h */,
-				AB17471E19D8E1B6009C0877 /* WonderUserStore.m */,
+				AB17471D19D8E1B6009C0877 /* WDUserStore.h */,
+				AB17471E19D8E1B6009C0877 /* WDUserStore.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -443,8 +452,8 @@
 		AB17472219D90B99009C0877 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AB3E568B199884B80041DF6B /* WonderLoginViewController.h */,
-				AB3E568C199884B80041DF6B /* WonderLoginViewController.m */,
+				AB3E568B199884B80041DF6B /* WDLoginViewController.h */,
+				AB3E568C199884B80041DF6B /* WDLoginViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -454,8 +463,7 @@
 			children = (
 				AB0148B71A00915D00A7BCC1 /* FLEX */,
 				AB17473A19DA70B6009C0877 /* WebViewJavascriptBridge */,
-				ABADF73F1999A93F00EC35FA /* WonderURLParser.h */,
-				ABADF7401999A93F00EC35FA /* WonderURLParser.m */,
+				AB01495D1A01EF9F00A7BCC1 /* WDURLParser */,
 				AB01495C1A00F89A00A7BCC1 /* MBProgressHUD */,
 			);
 			name = Utilities;
@@ -549,8 +557,8 @@
 		ABD992FC19E39C26008552EE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AB17473019DA482F009C0877 /* WonderLoadingView.h */,
-				AB17473119DA482F009C0877 /* WonderLoadingView.m */,
+				AB17473019DA482F009C0877 /* WDLoadingView.h */,
+				AB17473119DA482F009C0877 /* WDLoadingView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -565,6 +573,7 @@
 				AB3E5655199883E40041DF6B /* Sources */,
 				AB3E5656199883E40041DF6B /* Frameworks */,
 				AB3E5657199883E40041DF6B /* Resources */,
+				AB01495F1A022C8300A7BCC1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -650,6 +659,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AB01495F1A022C8300A7BCC1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB3E5655199883E40041DF6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -667,11 +692,11 @@
 				AB01494C1A00915D00A7BCC1 /* FLEXSetExplorerViewController.m in Sources */,
 				AB0149421A00915D00A7BCC1 /* FLEXWebViewController.m in Sources */,
 				AB3E566D199883E40041DF6B /* WonderAppDelegate.m in Sources */,
-				AB3E568D199884B80041DF6B /* WonderLoginViewController.m in Sources */,
+				AB3E568D199884B80041DF6B /* WDLoginViewController.m in Sources */,
 				AB0149251A00915D00A7BCC1 /* FLEXArgumentInputFontsPickerView.m in Sources */,
 				AB0149511A00915D00A7BCC1 /* FLEXRuntimeUtility.m in Sources */,
 				AB0149301A00915D00A7BCC1 /* FLEXDefaultEditorViewController.m in Sources */,
-				AB17473219DA482F009C0877 /* WonderLoadingView.m in Sources */,
+				AB17473219DA482F009C0877 /* WDLoadingView.m in Sources */,
 				AB0149401A00915D00A7BCC1 /* FLEXLibrariesTableViewController.m in Sources */,
 				AB01494B1A00915D00A7BCC1 /* FLEXObjectExplorerViewController.m in Sources */,
 				AB01492D1A00915D00A7BCC1 /* FLEXArgumentInputTextView.m in Sources */,
@@ -694,7 +719,7 @@
 				AB01494F1A00915D00A7BCC1 /* FLEXHeapEnumerator.m in Sources */,
 				AB0149261A00915D00A7BCC1 /* FLEXArgumentInputFontView.m in Sources */,
 				AB0149471A00915D00A7BCC1 /* FLEXDictionaryExplorerViewController.m in Sources */,
-				AB17471F19D8E1B6009C0877 /* WonderUserStore.m in Sources */,
+				AB17471F19D8E1B6009C0877 /* WDUserStore.m in Sources */,
 				AB0149481A00915D00A7BCC1 /* FLEXGlobalsTableViewControllerEntry.m in Sources */,
 				AB0149411A00915D00A7BCC1 /* FLEXLiveObjectsTableViewController.m in Sources */,
 				AB1FFB0F19D29DC4007050D3 /* WonderUser.m in Sources */,
@@ -706,7 +731,7 @@
 				AB01494A1A00915D00A7BCC1 /* FLEXObjectExplorerFactory.m in Sources */,
 				AB0149531A00915D00A7BCC1 /* FLEXHierarchyTableViewCell.m in Sources */,
 				AB0149521A00915D00A7BCC1 /* FLEXUtility.m in Sources */,
-				ABADF7411999A93F00EC35FA /* WonderURLParser.m in Sources */,
+				ABADF7411999A93F00EC35FA /* WDURLParser.m in Sources */,
 				AB0149441A00915D00A7BCC1 /* FLEXClassExplorerViewController.m in Sources */,
 				AB0149541A00915D00A7BCC1 /* FLEXHierarchyTableViewController.m in Sources */,
 				AB01493E1A00915D00A7BCC1 /* FLEXGlobalsTableViewController.m in Sources */,
@@ -835,11 +860,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.8.3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				INFOPLIST_FILE = "WonderSDK/WonderSDK-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -850,11 +877,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.8.3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				INFOPLIST_FILE = "WonderSDK/WonderSDK-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

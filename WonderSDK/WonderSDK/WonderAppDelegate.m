@@ -7,50 +7,20 @@
 //
 
 #import "WonderAppDelegate.h"
-#import "WonderLoginViewController.h"
-#import "WonderUserStore.h"
+#import "WDLoginViewController.h"
+#import "WDUserStore.h"
 
 @implementation WonderAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    WonderLoginViewController *loginViewController = [[WonderLoginViewController alloc] init];
+    WDLoginViewController *loginViewController = [[WDLoginViewController alloc] init];
     [self.window setRootViewController:loginViewController];
         
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    BOOL success = [[WonderUserStore sharedStore] saveChanges];
-    
-    if (success) {
-        NSLog(@"Saved");
-    } else {
-        NSLog(@"Cannot saved");
-    }
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    BOOL success = [[WonderUserStore sharedStore] saveChanges];
-    
-    if (success) {
-        NSLog(@"Saved");
-    } else {
-        NSLog(@"Cannot saved");
-    }
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    BOOL success = [[WonderUserStore sharedStore] saveChanges];
-    
-    if (success) {
-        NSLog(@"Saved");
-    } else {
-        NSLog(@"Cannot saved");
-    }
 }
 
 @end

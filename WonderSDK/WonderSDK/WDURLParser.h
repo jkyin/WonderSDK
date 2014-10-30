@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WonderURLParser : NSObject
+@interface WDURLParser : NSObject
 
 /**
  *  This method is the designated initializer for the class.

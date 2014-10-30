@@ -9,25 +9,26 @@
 #import "FLEXManager.h"
 #endif
 
-#import "WonderLoginViewController.h"
-#import "WonderURLParser.h"
-#import "WonderUserStore.h"
+#import "WDLoginViewController.h"
+#import "WDURLParser.h"
+#import "WDUserStore.h"
 #import "WonderUser.h"
-#import "WonderLoadingView.h"
+#import "WDLoadingView.h"
 
 #import "WebViewJavascriptBridge.h"
 #import "MBProgressHUD.h"
 
-#define isDevicePhone [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
+#define IS_DEVICE_PHONE  [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
+#define IS_OS_8_0_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 //NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
-@interface WonderLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate, UITextFieldDelegate>
+@interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) UIButton *switchAccountButton;
-@property (strong, nonatomic) WonderLoadingView *loadingView;
+@property (strong, nonatomic) WDLoadingView *loadingView;
 
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
@@ -41,7 +42,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 @end
 
-@implementation WonderLoginViewController
+@implementation WDLoginViewController
 
 #pragma mark - UIViewController lifecycle
 
@@ -54,13 +55,11 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [[FLEXManager sharedManager] showExplorer];
 #endif
     
-    CGPoint windowCenter = CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+    CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
+                                           : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
 
     // webView setup
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
-    if (isDevicePhone) {
-        _webView.frame = CGRectMake(0, 0, 320, 250);
-    }
+    _webView = IS_DEVICE_PHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
     _webView.center = windowCenter;
     _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
                                  UIViewAutoresizingFlexibleLeftMargin |
@@ -81,7 +80,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // receive JS messages
     _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([data isKindOfClass:[NSString class]]) {
-            [[WonderUserStore sharedStore] removeUser:data];
+            [[WDUserStore sharedStore] removeUser:data];
         } else if ([data isKindOfClass:[NSNumber class]]){
             self.textFieldHeight = [(NSNumber *)data intValue];
         }
@@ -104,7 +103,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 #pragma mark - Public methods
 
 - (void)wonderLogin {
-    if ([[WonderUserStore sharedStore] lastUser]) {
+    if ([[WDUserStore sharedStore] lastUser]) {
         [self wonderLoginWithOutUI];
     } else {
         [self wonderLoginWithUI];
@@ -120,7 +119,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)wonderLoginWithOutUI {
     [_webView removeFromSuperview];
     NSString *urlString  = [NSString stringWithFormat:@"http://192.168.1.251:8008/api/userLogin?username=%@&&password=%@",
-                            [[WonderUserStore sharedStore] lastUser].userName, [[WonderUserStore sharedStore] lastUser].passWord];
+                            [[WDUserStore sharedStore] lastUser].userName, [[WDUserStore sharedStore] lastUser].passWord];
     NSURL *url = [NSURL URLWithString:urlString];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
@@ -134,27 +133,28 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self wonderLoginWithUI];
 }
 
+- (void)saveAccount {
+    [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
+        NSLog(@"save succeed");
+    }];
+}
+
 // handle loading process
 - (void)showLoadingProcess:(NSNotification *)notification {
     if ([notification.name isEqualToString:@"showLoadingProcess"]) {
         [_webView removeFromSuperview];
-        CGPoint windowCenter = CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+        CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
+                                               : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
         // loadingView setup
-        _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
-        if (isDevicePhone) {
-            _loadingView = [[WonderLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)];
-        }
+        _loadingView = IS_DEVICE_PHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
         _loadingView.center = windowCenter;
         _loadingView.wonderLabel.text = [NSString stringWithFormat:@"Wonder帐号 %@", _username];
         [self.view addSubview:_loadingView];
                 
         // switchAccountButton setup
-        _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0+
-        _switchAccountButton.frame = CGRectMake(30, 30, 150, 60);
-        if (isDevicePhone) {
-            _switchAccountButton.frame = CGRectMake(15, 15, 100, 30);
-        }
+        _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0 later
+        _switchAccountButton.frame = IS_DEVICE_PHONE ? CGRectMake(15, 15, 100, 30) : CGRectMake(30, 30, 150, 60);
         _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
         _switchAccountButton.layer.masksToBounds = YES;
         _switchAccountButton.layer.cornerRadius = 5;
@@ -173,6 +173,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    // UIApplication notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 - (void)removeObservers {
@@ -181,6 +185,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    // UIApplication notifications
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -191,7 +199,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     NSString *urlString = request.URL.absoluteString;
 
     if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
-        WonderURLParser *urlParser = [[WonderURLParser alloc] initWithURLString:urlString];
+        WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         _username = [urlParser valueForVariable:@"username"];
         _password = [urlParser valueForVariable:@"password"];
     
@@ -203,7 +211,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
 //        __weak WonderLoginViewController *weakSelf = self;
-        WonderURLParser *urlParser = [[WonderURLParser alloc] initWithURLString:urlString];
+        WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         NSString *value = [urlParser valueForVariable:@"command"];
         double delayInSeconds = 2.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -211,11 +219,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             // login succeed
             if ([value isEqualToString:@"login_return_success"]) {
                 if (_username && _password) {
-                    [[WonderUserStore sharedStore] addUser:_user]; // save user account
+                    [[WDUserStore sharedStore] addUser:_user]; // save user account
                 }
-                
-//                [_switchAccountButton removeFromSuperview];
-//                [_loadingView removeFromSuperview];
                 
                 //TODO: game start
             }
@@ -223,8 +228,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             // login failed or register failed,
             // so you should return login screen
             if ([@[@"login_return_fail", @"register_return_fail"] containsObject:value]) {
-//                [_switchAccountButton removeFromSuperview];
-//                [_loadingView removeFromSuperview];
                 [self.view addSubview:_webView];
             }
             
@@ -241,17 +244,17 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     NSString *lastPathComponent = _webView.request.URL.lastPathComponent;
     if ([lastPathComponent isEqualToString: @"login.jsp"]) {
-        NSString *jsFunction = [NSString stringWithFormat:@"addBox(\"%@\")", [[WonderUserStore sharedStore] stringWithJsonData]];
+        NSString *jsFunction = [NSString stringWithFormat:@"addBox(\"%@\")", [[WDUserStore sharedStore] stringWithJsonData]];
         [_webView stringByEvaluatingJavaScriptFromString:jsFunction];
     }
     
     if ([lastPathComponent isEqualToString:@"bindEmail.jsp"]) {
-        if ([[WonderUserStore sharedStore] lastUser]) {
-        NSString *jsUserName = [NSString stringWithFormat:@"document.getElementById('username').value = '%@'", [[WonderUserStore sharedStore] lastUser].userName];
-        NSString *jsPassWord = [NSString stringWithFormat:@"document.getElementById('password').value = '%@'", [[WonderUserStore sharedStore] lastUser].passWord];
+        if ([[WDUserStore sharedStore] lastUser]) {
+        NSString *jsUserName = [NSString stringWithFormat:@"document.getElementById('username').value = '%@'", [[WDUserStore sharedStore] lastUser].userName];
+        NSString *jsPassWord = [NSString stringWithFormat:@"document.getElementById('password').value = '%@'", [[WDUserStore sharedStore] lastUser].passWord];
         [_webView stringByEvaluatingJavaScriptFromString:jsUserName];
         [_webView stringByEvaluatingJavaScriptFromString:jsPassWord];
         }
@@ -278,10 +281,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     if ([keyPath isEqual:@"textFieldHeight"]) {
         CGFloat distanceTextFieldToTop = CGRectGetMinY(_webView.frame) + self.textFieldHeight + 30;
         CGFloat offset = ([self currentScreenSize].height - CGRectGetHeight(_kbRect)) - distanceTextFieldToTop;
-//        if ([[UIDevice currentDevice].systemVersion floatValue] < 7) {
-//            offset = CGRectGetMinY(_kbRect) - self.textFieldHeight;
-//        }
-        
+        NSLog(@"offset:%f", offset);
         CGPoint webViewCenter = _webView.center;
         webViewCenter.y +=  offset - 40;
 
@@ -348,7 +348,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (CGSize)currentScreenSize {
     // iOS 8 simply adjusts the application frame to adapt to the current orientation and deprecated the concept of interface orientations
-    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+    if (!IS_OS_8_0_LATER) {
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if (UIInterfaceOrientationIsLandscape(orientation)) {
             CGSize currentScrrenSize = CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));

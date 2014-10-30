@@ -6,17 +6,17 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
-#import "WonderLoadingView.h"
+#import "WDLoadingView.h"
 
 static const CGFloat WDLoadingViewLabelPadding = 30;
 
-@interface WonderLoadingView ()
+@interface WDLoadingView ()
 
 @property (strong, nonatomic) UILabel *loadingLabel;
 
 @end
 
-@implementation WonderLoadingView
+@implementation WDLoadingView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
