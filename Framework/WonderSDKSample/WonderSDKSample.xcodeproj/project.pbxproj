@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB6A81271A0C659300D08E7F /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB6A81261A0C657400D08E7F /* WonderSDK.bundle */; };
+		AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */; };
+		AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */; };
+		AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */; };
+		AB8CB6DD1A0B5B4600EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6DB1A0B5B4600EE91EE /* InfoPlist.strings */; };
+		AB8CB6DF1A0B5B4600EE91EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6DE1A0B5B4600EE91EE /* main.m */; };
+		AB8CB6E31A0B5B4600EE91EE /* WonderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6E21A0B5B4600EE91EE /* WonderAppDelegate.m */; };
+		AB8CB6E51A0B5B4600EE91EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6E41A0B5B4600EE91EE /* Images.xcassets */; };
+		AB8CB6EC1A0B5B4600EE91EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6EB1A0B5B4600EE91EE /* XCTest.framework */; };
+		AB8CB6ED1A0B5B4600EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */; };
+		AB8CB6EE1A0B5B4600EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */; };
+		AB8CB6F61A0B5B4600EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6F41A0B5B4600EE91EE /* InfoPlist.strings */; };
+		AB8CB6F81A0B5B4600EE91EE /* WonderSDKSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */; };
+		AB8CB70C1A0B5B8800EE91EE /* libwonder-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AB6A81201A0C657400D08E7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AB6A81161A0C646100D08E7F;
+			remoteInfo = WonderSDKResources;
+		};
+		AB6A81251A0C657400D08E7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB6A81171A0C646100D08E7F;
+			remoteInfo = WonderSDKResources;
+		};
+		AB8CB6EF1A0B5B4600EE91EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB6C71A0B5B4600EE91EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB8CB6CE1A0B5B4600EE91EE;
+			remoteInfo = WonderSDKSample;
+		};
+		AB8CB7061A0B5B5D00EE91EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB8CB59F1A0B57AC00EE91EE;
+			remoteInfo = "wonder-ios-sdk";
+		};
+		AB8CB7081A0B5B5D00EE91EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB8CB5AF1A0B57AC00EE91EE;
+			remoteInfo = "wonder-ios-sdkTests";
+		};
+		AB8CB70A1A0B5B7F00EE91EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AB8CB59E1A0B57AB00EE91EE;
+			remoteInfo = "wonder-ios-sdk";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WonderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		AB8CB6DA1A0B5B4600EE91EE /* WonderSDKSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKSample-Info.plist"; sourceTree = "<group>"; };
+		AB8CB6DC1A0B5B4600EE91EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB8CB6DE1A0B5B4600EE91EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AB8CB6E01A0B5B4600EE91EE /* WonderSDKSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WonderSDKSample-Prefix.pch"; sourceTree = "<group>"; };
+		AB8CB6E11A0B5B4600EE91EE /* WonderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WonderAppDelegate.h; sourceTree = "<group>"; };
+		AB8CB6E21A0B5B4600EE91EE /* WonderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderAppDelegate.m; sourceTree = "<group>"; };
+		AB8CB6E41A0B5B4600EE91EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AB8CB6EA1A0B5B4600EE91EE /* WonderSDKSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderSDKSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8CB6EB1A0B5B4600EE91EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AB8CB6F31A0B5B4600EE91EE /* WonderSDKSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKSampleTests-Info.plist"; sourceTree = "<group>"; };
+		AB8CB6F51A0B5B4600EE91EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKSampleTests.m; sourceTree = "<group>"; };
+		AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "wonder-ios-sdk.xcodeproj"; path = "../../../framework/WonderSDK/wonder-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB8CB6CC1A0B5B4600EE91EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB70C1A0B5B8800EE91EE /* libwonder-ios-sdk.a in Frameworks */,
+				AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */,
+				AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */,
+				AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB8CB6E71A0B5B4600EE91EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB6EC1A0B5B4600EE91EE /* XCTest.framework in Frameworks */,
+				AB8CB6EE1A0B5B4600EE91EE /* UIKit.framework in Frameworks */,
+				AB8CB6ED1A0B5B4600EE91EE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB8CB6C61A0B5B4600EE91EE = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */,
+				AB8CB6F11A0B5B4600EE91EE /* WonderSDKSampleTests */,
+				AB8CB6D11A0B5B4600EE91EE /* Frameworks */,
+				AB8CB6D01A0B5B4600EE91EE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AB8CB6D01A0B5B4600EE91EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */,
+				AB8CB6EA1A0B5B4600EE91EE /* WonderSDKSampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB8CB6D11A0B5B4600EE91EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */,
+				AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */,
+				AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */,
+				AB8CB6EB1A0B5B4600EE91EE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */,
+				AB8CB6E11A0B5B4600EE91EE /* WonderAppDelegate.h */,
+				AB8CB6E21A0B5B4600EE91EE /* WonderAppDelegate.m */,
+				AB8CB6E41A0B5B4600EE91EE /* Images.xcassets */,
+				AB8CB6D91A0B5B4600EE91EE /* Supporting Files */,
+			);
+			path = WonderSDKSample;
+			sourceTree = "<group>";
+		};
+		AB8CB6D91A0B5B4600EE91EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6DA1A0B5B4600EE91EE /* WonderSDKSample-Info.plist */,
+				AB8CB6DB1A0B5B4600EE91EE /* InfoPlist.strings */,
+				AB8CB6DE1A0B5B4600EE91EE /* main.m */,
+				AB8CB6E01A0B5B4600EE91EE /* WonderSDKSample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB8CB6F11A0B5B4600EE91EE /* WonderSDKSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */,
+				AB8CB6F21A0B5B4600EE91EE /* Supporting Files */,
+			);
+			path = WonderSDKSampleTests;
+			sourceTree = "<group>";
+		};
+		AB8CB6F21A0B5B4600EE91EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB6F31A0B5B4600EE91EE /* WonderSDKSampleTests-Info.plist */,
+				AB8CB6F41A0B5B4600EE91EE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB8CB7021A0B5B5D00EE91EE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */,
+				AB8CB7091A0B5B5D00EE91EE /* wonder-ios-sdkTests.xctest */,
+				AB6A81261A0C657400D08E7F /* WonderSDK.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB8CB6CE1A0B5B4600EE91EE /* WonderSDKSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB8CB6FB1A0B5B4600EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKSample" */;
+			buildPhases = (
+				AB8CB6CB1A0B5B4600EE91EE /* Sources */,
+				AB8CB6CC1A0B5B4600EE91EE /* Frameworks */,
+				AB8CB6CD1A0B5B4600EE91EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB6A81211A0C657400D08E7F /* PBXTargetDependency */,
+				AB8CB70B1A0B5B7F00EE91EE /* PBXTargetDependency */,
+			);
+			name = WonderSDKSample;
+			productName = WonderSDKSample;
+			productReference = AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AB8CB6E91A0B5B4600EE91EE /* WonderSDKSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB8CB6FE1A0B5B4600EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKSampleTests" */;
+			buildPhases = (
+				AB8CB6E61A0B5B4600EE91EE /* Sources */,
+				AB8CB6E71A0B5B4600EE91EE /* Frameworks */,
+				AB8CB6E81A0B5B4600EE91EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB8CB6F01A0B5B4600EE91EE /* PBXTargetDependency */,
+			);
+			name = WonderSDKSampleTests;
+			productName = WonderSDKSampleTests;
+			productReference = AB8CB6EA1A0B5B4600EE91EE /* WonderSDKSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB8CB6C71A0B5B4600EE91EE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Wonder;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Yin Xiaoyu";
+				TargetAttributes = {
+					AB8CB6E91A0B5B4600EE91EE = {
+						TestTargetID = AB8CB6CE1A0B5B4600EE91EE;
+					};
+				};
+			};
+			buildConfigurationList = AB8CB6CA1A0B5B4600EE91EE /* Build configuration list for PBXProject "WonderSDKSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AB8CB6C61A0B5B4600EE91EE;
+			productRefGroup = AB8CB6D01A0B5B4600EE91EE /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AB8CB7021A0B5B5D00EE91EE /* Products */;
+					ProjectRef = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				AB8CB6CE1A0B5B4600EE91EE /* WonderSDKSample */,
+				AB8CB6E91A0B5B4600EE91EE /* WonderSDKSampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AB6A81261A0C657400D08E7F /* WonderSDK.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = WonderSDK.bundle;
+			remoteRef = AB6A81251A0C657400D08E7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libwonder-ios-sdk.a";
+			remoteRef = AB8CB7061A0B5B5D00EE91EE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB8CB7091A0B5B5D00EE91EE /* wonder-ios-sdkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "wonder-ios-sdkTests.xctest";
+			remoteRef = AB8CB7081A0B5B5D00EE91EE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB8CB6CD1A0B5B4600EE91EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB6DD1A0B5B4600EE91EE /* InfoPlist.strings in Resources */,
+				AB8CB6E51A0B5B4600EE91EE /* Images.xcassets in Resources */,
+				AB6A81271A0C659300D08E7F /* WonderSDK.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB8CB6E81A0B5B4600EE91EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB6F61A0B5B4600EE91EE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB8CB6CB1A0B5B4600EE91EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB6DF1A0B5B4600EE91EE /* main.m in Sources */,
+				AB8CB6E31A0B5B4600EE91EE /* WonderAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB8CB6E61A0B5B4600EE91EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB8CB6F81A0B5B4600EE91EE /* WonderSDKSampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB6A81211A0C657400D08E7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WonderSDKResources;
+			targetProxy = AB6A81201A0C657400D08E7F /* PBXContainerItemProxy */;
+		};
+		AB8CB6F01A0B5B4600EE91EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AB8CB6CE1A0B5B4600EE91EE /* WonderSDKSample */;
+			targetProxy = AB8CB6EF1A0B5B4600EE91EE /* PBXContainerItemProxy */;
+		};
+		AB8CB70B1A0B5B7F00EE91EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "wonder-ios-sdk";
+			targetProxy = AB8CB70A1A0B5B7F00EE91EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AB8CB6DB1A0B5B4600EE91EE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB8CB6DC1A0B5B4600EE91EE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AB8CB6F41A0B5B4600EE91EE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AB8CB6F51A0B5B4600EE91EE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AB8CB6F91A0B5B4600EE91EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB8CB6FA1A0B5B4600EE91EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AB8CB6FC1A0B5B4600EE91EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
+				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AB8CB6FD1A0B5B4600EE91EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
+				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		AB8CB6FF1A0B5B4600EE91EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WonderSDKSample.app/WonderSDKSample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WonderSDKSampleTests/WonderSDKSampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AB8CB7001A0B5B4600EE91EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WonderSDKSample.app/WonderSDKSample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
+				INFOPLIST_FILE = "WonderSDKSampleTests/WonderSDKSampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB8CB6CA1A0B5B4600EE91EE /* Build configuration list for PBXProject "WonderSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB8CB6F91A0B5B4600EE91EE /* Debug */,
+				AB8CB6FA1A0B5B4600EE91EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB8CB6FB1A0B5B4600EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB8CB6FC1A0B5B4600EE91EE /* Debug */,
+				AB8CB6FD1A0B5B4600EE91EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB8CB6FE1A0B5B4600EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB8CB6FF1A0B5B4600EE91EE /* Debug */,
+				AB8CB7001A0B5B4600EE91EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB8CB6C71A0B5B4600EE91EE /* Project object */;
+}
