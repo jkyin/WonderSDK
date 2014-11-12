@@ -7,20 +7,23 @@
 //
 
 #import "WonderAppDelegate.h"
-#import <WonderSDK/WonderSDK.h>
 
-@implementation WonderAppDelegate
+@implementation WonderAppDelegate 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self.window setRootViewController:[WDLoginViewController sharedInstance]];
-    
+    [WDLoginViewController sharedInstance].delegate = self;
     [[WDLoginViewController sharedInstance] showLogin];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)dialogDidSucceedWithToken:(NSString *)token {
+    NSLog(@"token: %@", token);
 }
 
 @end

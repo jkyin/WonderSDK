@@ -21,23 +21,38 @@
 #define IS_DEVICE_PHONE  [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
 #define IS_OS_8_0_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
+typedef void(^WDStartLoadingProcedure)(NSString *);
+
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 //NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
-@interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate, UITextFieldDelegate>
+@interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
+
+/**
+ *  Loading progress views.
+ */
 @property (strong, nonatomic) UIButton *switchAccountButton;
 @property (strong, nonatomic) WDLoadingView *loadingView;
 
+/**
+ *  Wonder account
+ */
+@property (strong, nonatomic) WonderUser *user;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
-@property (strong, nonatomic) WonderUser *user;
 
+/**
+ *  These are stuff for scrolling the webView, when the keyboard appear.
+ */
 @property (assign, nonatomic) int textFieldHeight;
 @property (assign, nonatomic) CGRect kbRect;
 @property (assign, nonatomic) CGFloat webViewHeight;
 
+/**
+ *  Communication with JavaScript.
+ */
 @property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
 
 @end
@@ -55,19 +70,19 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     return sharedInstance;
 }
 
-#pragma mark - UIViewController lifecycle
+#pragma mark - Lifecycle
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor grayColor];
+        self.view.backgroundColor = [UIColor clearColor];
         self.view.autoresizesSubviews = YES;
         
 #if DEBUG
         [[FLEXManager sharedManager] showExplorer];
 #endif
         CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
-        : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+                                               : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
         // webView setup
         _webView = IS_DEVICE_PHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
@@ -76,17 +91,26 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                                      UIViewAutoresizingFlexibleLeftMargin |
                                      UIViewAutoresizingFlexibleBottomMargin
                                      );
-        _webView.layer.masksToBounds = YES;
-        _webView.layer.cornerRadius = 15;
-        //    _webView.layer.shadowColor = [UIColor blackColor].CGColor;
-        //    _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
-        //    _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
-        //    _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
+//        _webView.layer.masksToBounds = YES;
+//        _webView.layer.cornerRadius = 15;
+//        _webView.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
+//        _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
+//        _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
         _webView.delegate = self;
         _webView.scrollView.delegate = self;
         _webView.scrollView.scrollEnabled = NO; // 禁用滚动
         _webView.scrollView.bounces = NO; // 禁用回弹
+        _webView.backgroundColor = [UIColor clearColor];
+        _webView.opaque = NO;
         [self.view addSubview:_webView];
+        
+//        CALayer *layer = _webView.layer;
+//        layer.shadowOffset = CGSizeMake(1, 1);
+//        layer.shadowColor = [[UIColor blackColor] CGColor];
+//        layer.shadowRadius = 15.0f;
+//        layer.shadowOpacity = 0.80f;
+//        layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
         
         [WebViewJavascriptBridge enableLogging];
         
@@ -115,7 +139,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self removeObservers];
 }
 
-#pragma mark - Public methods
+#pragma mark - Public
 
 - (void)showLogin {
     if ([[WDUserStore sharedStore] lastUser]) {
@@ -127,7 +151,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (void)wonderLoginWithUI {
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
-    //    NSURL *url = [NSURL URLWithString:@"http://jkyin.me/ghost"];
+//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/index.html"];
+//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.12:19999/index.html"];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
@@ -139,7 +164,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
-#pragma mark - Private method
+#pragma mark - Private
 
 - (void)switchAccount {
     [self.view addSubview:_webView];
@@ -225,9 +250,12 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     }
     
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
-        //        __weak WonderLoginViewController *weakSelf = self;
+        __weak WDLoginViewController *weakSelf = self;
         WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         NSString *value = [urlParser valueForVariable:@"command"];
+        NSString *token = [urlParser valueForVariable:@"token"];
+        
+        // delay 2 seconds for loading view
         double delayInSeconds = 2.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(time, dispatch_get_main_queue(), ^{
@@ -237,7 +265,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                     [[WDUserStore sharedStore] addUser:_user]; // save user account
                 }
                 
-                //TODO: game start
+                //TODO: get token
+                [weakSelf.delegate dialogDidSucceedWithToken:token];
             }
             
             // login failed or register failed,
@@ -283,14 +312,27 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // the user clicks away before the page has completely loaded, if we find cases where we want this
     // to result in dialog failure (usually this just means quick-user), then we should add something
     // more robust here to account for differences in application needs
-    if (!(([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled) ||
-          ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102))) {
-        NSLog(@"\nerror.domain是%@", error.domain);
+    if (!(([error.domain isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled) || ([error.domain isEqualToString:@"WebKitErrorDomain"] && error.code == 102))) {
+        NSLog(@"error.domain 是 %@", error.domain);
     }
+    
+    switch (error.code) {
+        case NSURLErrorCannotConnectToHost: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法连接服务器" delegate:nil cancelButtonTitle:@"请稍后重试" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+        case NSURLErrorTimedOut: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"连接超时" delegate:self cancelButtonTitle:@"重新连接" otherButtonTitles:nil];
+            [alert show];
+            break;
+        }
+    }
+    
     NSLog(@"error.code: %ld", (long)error.code);
 }
 
-#pragma mark - NSKeyValueObserving Protocol
+#pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqual:@"textFieldHeight"]) {
@@ -305,7 +347,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         }];
     }
 }
-
 
 #pragma mark - UIKeyboardNotification
 
@@ -336,6 +377,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)theAlert clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"The %@ button was tapped.", [theAlert buttonTitleAtIndex:buttonIndex]);
     [self showLogin];
 }
 
@@ -358,7 +400,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 //- (BOOL)shouldAutorotate {
 //    return YES;
 //}
-#pragma mark - Helper methods
+#pragma mark - Helper
 
 - (CGSize)currentScreenSize {
     // iOS 8 simply adjusts the application frame to adapt to the current orientation and deprecated the concept of interface orientations

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
+@import QuartzCore;
+
 #import "WDLoadingView.h"
 
 static const CGFloat WDLoadingViewLabelPadding = 30;
@@ -22,8 +24,8 @@ static const CGFloat WDLoadingViewLabelPadding = 30;
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithWhite:0.800 alpha:1.000];
-        self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = 8;
+//        self.layer.masksToBounds = YES;
+//        self.layer.cornerRadius = 8;
 //        self.layer.shadowColor = [UIColor blackColor].CGColor;
 //        self.layer.shadowOpacity = 0.3f; // 阴影不透明度
 //        self.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量

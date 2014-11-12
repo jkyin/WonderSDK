@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB6A81271A0C659300D08E7F /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB6A81261A0C657400D08E7F /* WonderSDK.bundle */; };
 		AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */; };
 		AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */; };
 		AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */; };
@@ -20,23 +19,38 @@
 		AB8CB6EE1A0B5B4600EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */; };
 		AB8CB6F61A0B5B4600EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6F41A0B5B4600EE91EE /* InfoPlist.strings */; };
 		AB8CB6F81A0B5B4600EE91EE /* WonderSDKSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */; };
-		AB8CB70C1A0B5B8800EE91EE /* libwonder-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */; };
+		ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5ACE231A13558C009041E6 /* libWonderSDK.a */; };
+		ABBB0EFE1A1358040010CB1E /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB5ACE271A13558C009041E6 /* WonderSDK.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB6A81201A0C657400D08E7F /* PBXContainerItemProxy */ = {
+		AB5ACE221A13558C009041E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AB6A81161A0C646100D08E7F;
-			remoteInfo = WonderSDKResources;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB8CB59F1A0B57AC00EE91EE;
+			remoteInfo = WonderSDK;
 		};
-		AB6A81251A0C657400D08E7F /* PBXContainerItemProxy */ = {
+		AB5ACE241A13558C009041E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = AB8CB5AF1A0B57AC00EE91EE;
+			remoteInfo = WonderSDKTests;
+		};
+		AB5ACE261A13558C009041E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = AB6A81171A0C646100D08E7F;
 			remoteInfo = WonderSDKResources;
+		};
+		AB5ACE281A1355B1009041E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AB8CB59E1A0B57AB00EE91EE;
+			remoteInfo = WonderSDK;
 		};
 		AB8CB6EF1A0B5B4600EE91EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -45,30 +59,17 @@
 			remoteGlobalIDString = AB8CB6CE1A0B5B4600EE91EE;
 			remoteInfo = WonderSDKSample;
 		};
-		AB8CB7061A0B5B5D00EE91EE /* PBXContainerItemProxy */ = {
+		ABBB0EFC1A1357E10010CB1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB8CB59F1A0B57AC00EE91EE;
-			remoteInfo = "wonder-ios-sdk";
-		};
-		AB8CB7081A0B5B5D00EE91EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = AB8CB5AF1A0B57AC00EE91EE;
-			remoteInfo = "wonder-ios-sdkTests";
-		};
-		AB8CB70A1A0B5B7F00EE91EE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = AB8CB59E1A0B57AB00EE91EE;
-			remoteInfo = "wonder-ios-sdk";
+			remoteGlobalIDString = AB6A81161A0C646100D08E7F;
+			remoteInfo = WonderSDKResources;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WonderSDK.xcodeproj; path = ../../../framework/WonderSDK/WonderSDK.xcodeproj; sourceTree = "<group>"; };
 		AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WonderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,7 +86,6 @@
 		AB8CB6F31A0B5B4600EE91EE /* WonderSDKSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKSampleTests-Info.plist"; sourceTree = "<group>"; };
 		AB8CB6F51A0B5B4600EE91EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKSampleTests.m; sourceTree = "<group>"; };
-		AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "wonder-ios-sdk.xcodeproj"; path = "../../../framework/WonderSDK/wonder-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8CB70C1A0B5B8800EE91EE /* libwonder-ios-sdk.a in Frameworks */,
+				ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */,
 				AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */,
 				AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */,
 				AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */,
@@ -113,6 +113,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB5ACE1C1A13558C009041E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB5ACE231A13558C009041E6 /* libWonderSDK.a */,
+				AB5ACE251A13558C009041E6 /* WonderSDKTests.xctest */,
+				AB5ACE271A13558C009041E6 /* WonderSDK.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AB8CB6C61A0B5B4600EE91EE = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +156,7 @@
 		AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */,
+				AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */,
 				AB8CB6E11A0B5B4600EE91EE /* WonderAppDelegate.h */,
 				AB8CB6E21A0B5B4600EE91EE /* WonderAppDelegate.m */,
 				AB8CB6E41A0B5B4600EE91EE /* Images.xcassets */,
@@ -184,16 +194,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB8CB7021A0B5B5D00EE91EE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */,
-				AB8CB7091A0B5B5D00EE91EE /* wonder-ios-sdkTests.xctest */,
-				AB6A81261A0C657400D08E7F /* WonderSDK.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,8 +208,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				AB6A81211A0C657400D08E7F /* PBXTargetDependency */,
-				AB8CB70B1A0B5B7F00EE91EE /* PBXTargetDependency */,
+				ABBB0EFD1A1357E10010CB1E /* PBXTargetDependency */,
+				AB5ACE291A1355B1009041E6 /* PBXTargetDependency */,
 			);
 			name = WonderSDKSample;
 			productName = WonderSDKSample;
@@ -261,8 +261,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = AB8CB7021A0B5B5D00EE91EE /* Products */;
-					ProjectRef = AB8CB7011A0B5B5D00EE91EE /* wonder-ios-sdk.xcodeproj */;
+					ProductGroup = AB5ACE1C1A13558C009041E6 /* Products */;
+					ProjectRef = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -274,25 +274,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		AB6A81261A0C657400D08E7F /* WonderSDK.bundle */ = {
+		AB5ACE231A13558C009041E6 /* libWonderSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libWonderSDK.a;
+			remoteRef = AB5ACE221A13558C009041E6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB5ACE251A13558C009041E6 /* WonderSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = WonderSDKTests.xctest;
+			remoteRef = AB5ACE241A13558C009041E6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AB5ACE271A13558C009041E6 /* WonderSDK.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = WonderSDK.bundle;
-			remoteRef = AB6A81251A0C657400D08E7F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AB8CB7071A0B5B5D00EE91EE /* libwonder-ios-sdk.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libwonder-ios-sdk.a";
-			remoteRef = AB8CB7061A0B5B5D00EE91EE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		AB8CB7091A0B5B5D00EE91EE /* wonder-ios-sdkTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "wonder-ios-sdkTests.xctest";
-			remoteRef = AB8CB7081A0B5B5D00EE91EE /* PBXContainerItemProxy */;
+			remoteRef = AB5ACE261A13558C009041E6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -304,7 +304,7 @@
 			files = (
 				AB8CB6DD1A0B5B4600EE91EE /* InfoPlist.strings in Resources */,
 				AB8CB6E51A0B5B4600EE91EE /* Images.xcassets in Resources */,
-				AB6A81271A0C659300D08E7F /* WonderSDK.bundle in Resources */,
+				ABBB0EFE1A1358040010CB1E /* WonderSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,20 +339,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AB6A81211A0C657400D08E7F /* PBXTargetDependency */ = {
+		AB5ACE291A1355B1009041E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = WonderSDKResources;
-			targetProxy = AB6A81201A0C657400D08E7F /* PBXContainerItemProxy */;
+			name = WonderSDK;
+			targetProxy = AB5ACE281A1355B1009041E6 /* PBXContainerItemProxy */;
 		};
 		AB8CB6F01A0B5B4600EE91EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AB8CB6CE1A0B5B4600EE91EE /* WonderSDKSample */;
 			targetProxy = AB8CB6EF1A0B5B4600EE91EE /* PBXContainerItemProxy */;
 		};
-		AB8CB70B1A0B5B7F00EE91EE /* PBXTargetDependency */ = {
+		ABBB0EFD1A1357E10010CB1E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "wonder-ios-sdk";
-			targetProxy = AB8CB70A1A0B5B7F00EE91EE /* PBXContainerItemProxy */;
+			name = WonderSDKResources;
+			targetProxy = ABBB0EFC1A1357E10010CB1E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -23,15 +23,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AB5ACDD71A11CA1A009041E6 /* WDBasicFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5ACDD61A11CA1A009041E6 /* WDBasicFoundationTests.m */; };
 		AB6A81281A0C663A00D08E7F /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6491A0B59FD00EE91EE /* WebViewJavascriptBridge.js.txt */; };
 		AB8CB5A31A0B57AC00EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */; };
 		AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; };
 		AB8CB5B11A0B57AC00EE91EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */; };
 		AB8CB5B21A0B57AC00EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */; };
 		AB8CB5B41A0B57AC00EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5B31A0B57AC00EE91EE /* UIKit.framework */; };
-		AB8CB5B71A0B57AC00EE91EE /* libwonder-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB59F1A0B57AC00EE91EE /* libwonder-ios-sdk.a */; };
+		AB8CB5B71A0B57AC00EE91EE /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */; };
 		AB8CB5BD1A0B57AC00EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB5BB1A0B57AC00EE91EE /* InfoPlist.strings */; };
-		AB8CB5BF1A0B57AC00EE91EE /* WonderSDKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB5BE1A0B57AC00EE91EE /* WonderSDKTests.m */; };
 		AB8CB5CC1A0B585A00EE91EE /* WonderSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB8CB6531A0B59FD00EE91EE /* FLEXArgumentInputColorView.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB5D71A0B59FD00EE91EE /* FLEXArgumentInputColorView.h */; };
 		AB8CB6541A0B59FD00EE91EE /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB5D81A0B59FD00EE91EE /* FLEXArgumentInputColorView.m */; };
@@ -188,18 +188,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB5ACDD61A11CA1A009041E6 /* WDBasicFoundationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDBasicFoundationTests.m; path = ../../../Framework/WonderSDK/WonderSDKTests/WDBasicFoundationTests.m; sourceTree = "<group>"; };
 		AB6A81171A0C646100D08E7F /* WonderSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6A811A1A0C646100D08E7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB8CB59F1A0B57AC00EE91EE /* libwonder-ios-sdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libwonder-ios-sdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWonderSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AB8CB5A61A0B57AC00EE91EE /* wonder-ios-sdk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wonder-ios-sdk-Prefix.pch"; sourceTree = "<group>"; };
+		AB8CB5A61A0B57AC00EE91EE /* WonderSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WonderSDK-Prefix.pch"; sourceTree = "<group>"; };
 		AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WonderSDK.h; sourceTree = "<group>"; };
-		AB8CB5AF1A0B57AC00EE91EE /* wonder-ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "wonder-ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB8CB5AF1A0B57AC00EE91EE /* WonderSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		AB8CB5B31A0B57AC00EE91EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		AB8CB5BA1A0B57AC00EE91EE /* wonder-ios-sdkTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "wonder-ios-sdkTests-Info.plist"; sourceTree = "<group>"; };
+		AB8CB5BA1A0B57AC00EE91EE /* WonderSDKTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKTests-Info.plist"; sourceTree = "<group>"; };
 		AB8CB5BC1A0B57AC00EE91EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB8CB5BE1A0B57AC00EE91EE /* WonderSDKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKTests.m; sourceTree = "<group>"; };
 		AB8CB5D71A0B59FD00EE91EE /* FLEXArgumentInputColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputColorView.h; sourceTree = "<group>"; };
 		AB8CB5D81A0B59FD00EE91EE /* FLEXArgumentInputColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXArgumentInputColorView.m; sourceTree = "<group>"; };
 		AB8CB5D91A0B59FD00EE91EE /* FLEXArgumentInputFontsPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXArgumentInputFontsPickerView.h; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB8CB5B11A0B57AC00EE91EE /* XCTest.framework in Frameworks */,
-				AB8CB5B71A0B57AC00EE91EE /* libwonder-ios-sdk.a in Frameworks */,
+				AB8CB5B71A0B57AC00EE91EE /* libWonderSDK.a in Frameworks */,
 				AB8CB5B41A0B57AC00EE91EE /* UIKit.framework in Frameworks */,
 				AB8CB5B21A0B57AC00EE91EE /* Foundation.framework in Frameworks */,
 			);
@@ -378,8 +378,8 @@
 		AB8CB5A01A0B57AC00EE91EE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB59F1A0B57AC00EE91EE /* libwonder-ios-sdk.a */,
-				AB8CB5AF1A0B57AC00EE91EE /* wonder-ios-sdkTests.xctest */,
+				AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */,
+				AB8CB5AF1A0B57AC00EE91EE /* WonderSDKTests.xctest */,
 				AB6A81171A0C646100D08E7F /* WonderSDK.bundle */,
 			);
 			name = Products;
@@ -399,10 +399,10 @@
 			isa = PBXGroup;
 			children = (
 				AB8CB5D31A0B59FD00EE91EE /* Utilities */,
-				AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */,
-				AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */,
 				AB8CB64D1A0B59FD00EE91EE /* WDLoginViewController.h */,
 				AB8CB64E1A0B59FD00EE91EE /* WDLoginViewController.m */,
+				AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */,
+				AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */,
 				AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */,
 				AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */,
 				AB8CB6511A0B59FD00EE91EE /* WonderUser.h */,
@@ -416,7 +416,7 @@
 		AB8CB5A51A0B57AC00EE91EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB5A61A0B57AC00EE91EE /* wonder-ios-sdk-Prefix.pch */,
+				AB8CB5A61A0B57AC00EE91EE /* WonderSDK-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -424,7 +424,7 @@
 		AB8CB5B81A0B57AC00EE91EE /* WonderSDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB5BE1A0B57AC00EE91EE /* WonderSDKTests.m */,
+				AB5ACDD61A11CA1A009041E6 /* WDBasicFoundationTests.m */,
 				AB8CB5B91A0B57AC00EE91EE /* Supporting Files */,
 			);
 			path = WonderSDKTests;
@@ -433,7 +433,7 @@
 		AB8CB5B91A0B57AC00EE91EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB5BA1A0B57AC00EE91EE /* wonder-ios-sdkTests-Info.plist */,
+				AB8CB5BA1A0B57AC00EE91EE /* WonderSDKTests-Info.plist */,
 				AB8CB5BB1A0B57AC00EE91EE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -732,9 +732,9 @@
 			productReference = AB6A81171A0C646100D08E7F /* WonderSDK.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
-		AB8CB59E1A0B57AB00EE91EE /* wonder-ios-sdk */ = {
+		AB8CB59E1A0B57AB00EE91EE /* WonderSDK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB8CB5C21A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "wonder-ios-sdk" */;
+			buildConfigurationList = AB8CB5C21A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "WonderSDK" */;
 			buildPhases = (
 				AB8CB59B1A0B57AB00EE91EE /* Sources */,
 				AB8CB59C1A0B57AB00EE91EE /* Frameworks */,
@@ -746,14 +746,14 @@
 			);
 			dependencies = (
 			);
-			name = "wonder-ios-sdk";
+			name = WonderSDK;
 			productName = WonderSDK;
-			productReference = AB8CB59F1A0B57AC00EE91EE /* libwonder-ios-sdk.a */;
+			productReference = AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		AB8CB5AE1A0B57AC00EE91EE /* wonder-ios-sdkTests */ = {
+		AB8CB5AE1A0B57AC00EE91EE /* WonderSDKTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB8CB5C51A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "wonder-ios-sdkTests" */;
+			buildConfigurationList = AB8CB5C51A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKTests" */;
 			buildPhases = (
 				AB8CB5AB1A0B57AC00EE91EE /* Sources */,
 				AB8CB5AC1A0B57AC00EE91EE /* Frameworks */,
@@ -764,9 +764,9 @@
 			dependencies = (
 				AB8CB5B61A0B57AC00EE91EE /* PBXTargetDependency */,
 			);
-			name = "wonder-ios-sdkTests";
+			name = WonderSDKTests;
 			productName = WonderSDKTests;
-			productReference = AB8CB5AF1A0B57AC00EE91EE /* wonder-ios-sdkTests.xctest */;
+			productReference = AB8CB5AF1A0B57AC00EE91EE /* WonderSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -786,7 +786,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AB8CB59A1A0B57AB00EE91EE /* Build configuration list for PBXProject "wonder-ios-sdk" */;
+			buildConfigurationList = AB8CB59A1A0B57AB00EE91EE /* Build configuration list for PBXProject "WonderSDK" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -798,8 +798,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB8CB59E1A0B57AB00EE91EE /* wonder-ios-sdk */,
-				AB8CB5AE1A0B57AC00EE91EE /* wonder-ios-sdkTests */,
+				AB8CB59E1A0B57AB00EE91EE /* WonderSDK */,
+				AB8CB5AE1A0B57AC00EE91EE /* WonderSDKTests */,
 				AB6A810C1A0C60B600D08E7F /* Framework */,
 				AB6A81161A0C646100D08E7F /* WonderSDKResources */,
 			);
@@ -838,7 +838,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/WonderSDK.framework\"\n\n# Create the path to the real Headers die\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Create the required symlinks\n/bin/ln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\n/bin/ln -sfh \"Versions/Current/WonderSDK\" \\\n\"${FRAMEWORK_LOCN}/WonderSDK\"\n\n# Copy the public headers into the framework\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"";
+			shellScript = "set -e\n\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework\"\n\n# Create the path to the real Headers die\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Create the required symlinks\n/bin/ln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \\\n\"${FRAMEWORK_LOCN}/${PRODUCT_NAME}\"\n\n# Copy the public headers into the framework\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"";
 		};
 		AB6A81121A0C60DD00D08E7F /* MultiPlatform Build */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -852,7 +852,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=WonderSDK\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"\n\n# Copy the resources bundle to the user's desktop\nditto \"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.bundle\" \\\n\"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.bundle";
+			shellScript = "# 确保如果脚本的某部分失败了那就让整个脚本都失败。避免生成不完全的 framework。\nset -e\n\n# 是否脚本有被递归的调用。如果有，那就退出执行。\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"\n\n# Copy the resources bundle to the user's desktop\nditto \"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.bundle\" \\\n\"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.bundle\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -932,7 +932,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB8CB5BF1A0B57AC00EE91EE /* WonderSDKTests.m in Sources */,
+				AB5ACDD71A11CA1A009041E6 /* WDBasicFoundationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,7 +941,7 @@
 /* Begin PBXTargetDependency section */
 		AB6A81111A0C60C500D08E7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AB8CB59E1A0B57AB00EE91EE /* wonder-ios-sdk */;
+			target = AB8CB59E1A0B57AB00EE91EE /* WonderSDK */;
 			targetProxy = AB6A81101A0C60C500D08E7F /* PBXContainerItemProxy */;
 		};
 		AB6A811F1A0C651B00D08E7F /* PBXTargetDependency */ = {
@@ -951,7 +951,7 @@
 		};
 		AB8CB5B61A0B57AC00EE91EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AB8CB59E1A0B57AB00EE91EE /* wonder-ios-sdk */;
+			target = AB8CB59E1A0B57AB00EE91EE /* WonderSDK */;
 			targetProxy = AB8CB5B51A0B57AC00EE91EE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -971,6 +971,7 @@
 		AB6A810E1A0C60B600D08E7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -978,6 +979,7 @@
 		AB6A810F1A0C60B600D08E7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1052,7 +1054,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1083,7 +1085,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1096,10 +1098,11 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
+				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "wonder-ios-sdk";
-				PUBLIC_HEADERS_FOLDER_PATH = include/WonderSDK;
+				PRODUCT_NAME = WonderSDK;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
@@ -1112,10 +1115,11 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
+				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "wonder-ios-sdk";
-				PUBLIC_HEADERS_FOLDER_PATH = include/WonderSDK;
+				PRODUCT_NAME = WonderSDK;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
 			};
@@ -1130,13 +1134,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
+				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "WonderSDKTests/wonder-ios-sdkTests-Info.plist";
-				PRODUCT_NAME = "wonder-ios-sdkTests";
+				INFOPLIST_FILE = "WonderSDKTests/WonderSDKTests-Info.plist";
+				PRODUCT_NAME = WonderSDKTests;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1150,9 +1154,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
-				INFOPLIST_FILE = "WonderSDKTests/wonder-ios-sdkTests-Info.plist";
-				PRODUCT_NAME = "wonder-ios-sdkTests";
+				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
+				INFOPLIST_FILE = "WonderSDKTests/WonderSDKTests-Info.plist";
+				PRODUCT_NAME = WonderSDKTests;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -1167,6 +1171,7 @@
 				AB6A810F1A0C60B600D08E7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB6A811B1A0C646100D08E7F /* Build configuration list for PBXNativeTarget "WonderSDKResources" */ = {
 			isa = XCConfigurationList;
@@ -1175,8 +1180,9 @@
 				AB6A811D1A0C646100D08E7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		AB8CB59A1A0B57AB00EE91EE /* Build configuration list for PBXProject "wonder-ios-sdk" */ = {
+		AB8CB59A1A0B57AB00EE91EE /* Build configuration list for PBXProject "WonderSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB8CB5C01A0B57AC00EE91EE /* Debug */,
@@ -1185,7 +1191,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB8CB5C21A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "wonder-ios-sdk" */ = {
+		AB8CB5C21A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "WonderSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB8CB5C31A0B57AC00EE91EE /* Debug */,
@@ -1194,7 +1200,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB8CB5C51A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "wonder-ios-sdkTests" */ = {
+		AB8CB5C51A0B57AC00EE91EE /* Build configuration list for PBXNativeTarget "WonderSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AB8CB5C61A0B57AC00EE91EE /* Debug */,

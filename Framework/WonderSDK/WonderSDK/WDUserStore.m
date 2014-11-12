@@ -86,9 +86,9 @@
         // iOS 7 later
         base64EncodeString = [json base64EncodedStringWithOptions:kNilOptions];
     } else {
-        // iOS 7 earlier
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        // iOS 7 earlier
         base64EncodeString = [json base64Encoding];
 #pragma clang diagnostic pop
     }

@@ -8,9 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WDLoginViewController : UIViewController 
+@protocol WDLoginViewControllerDelegate <NSObject>
 
+/**
+ *  The delegate method, Successfully getting the token.
+ */
+- (void)dialogDidSucceedWithToken:(NSString *)token;
+
+@end
+
+@interface WDLoginViewController : UIViewController
+
+/**
+ *  The delegate.
+ */
+@property (nonatomic, weak) id<WDLoginViewControllerDelegate> delegate;
+
+/**
+ *  The singleton.
+ */
 + (instancetype)sharedInstance;
+
+/**
+ *  The method for loginning game.
+ */
 - (void)showLogin;
 
 @end
