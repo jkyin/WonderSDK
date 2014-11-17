@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    NSLog(@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
     [self.window setRootViewController:[WDLoginViewController sharedInstance]];
     [WDLoginViewController sharedInstance].delegate = self;
     [[WDLoginViewController sharedInstance] showLogin];

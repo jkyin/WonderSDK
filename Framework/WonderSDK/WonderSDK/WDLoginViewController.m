@@ -23,8 +23,8 @@
 
 typedef void(^WDStartLoadingProcedure)(NSString *);
 
-NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
-//NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
+//NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
+NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 @interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
@@ -91,12 +91,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                                      UIViewAutoresizingFlexibleLeftMargin |
                                      UIViewAutoresizingFlexibleBottomMargin
                                      );
-//        _webView.layer.masksToBounds = YES;
-//        _webView.layer.cornerRadius = 15;
-//        _webView.layer.shadowColor = [UIColor blackColor].CGColor;
-//        _webView.layer.shadowOpacity = 0.5f; // 阴影不透明度
-//        _webView.layer.shadowOffset = CGSizeMake(0, 5); // 阴影偏移量
-//        _webView.layer.shadowRadius = 10.0f; // 阴影模糊半径
         _webView.delegate = self;
         _webView.scrollView.delegate = self;
         _webView.scrollView.scrollEnabled = NO; // 禁用滚动
@@ -104,16 +98,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         _webView.backgroundColor = [UIColor clearColor];
         _webView.opaque = NO;
         [self.view addSubview:_webView];
-        
-//        CALayer *layer = _webView.layer;
-//        layer.shadowOffset = CGSizeMake(1, 1);
-//        layer.shadowColor = [[UIColor blackColor] CGColor];
-//        layer.shadowRadius = 15.0f;
-//        layer.shadowOpacity = 0.80f;
-//        layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
-        
+
+#if DEBUG
         [WebViewJavascriptBridge enableLogging];
-        
+#endif
         // receive JS messages
         _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
             if ([data isKindOfClass:[NSString class]]) {
@@ -152,7 +140,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (void)wonderLoginWithUI {
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
 //    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/index.html"];
-//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.12:19999/index.html"];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
@@ -167,6 +154,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 #pragma mark - Private
 
 - (void)switchAccount {
+    if ([_webView isLoading]) {
+        [_webView stopLoading];
+    }
+    
     [self.view addSubview:_webView];
     [self.switchAccountButton removeFromSuperview];
     [self.loadingView removeFromSuperview];
@@ -381,25 +372,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self showLogin];
 }
 
-// for ios 5 earlier
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-//    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
-//}
-
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-//        <#statements#>
-//    }
-//}
-
-// for ios 6 later
-//- (NSUInteger)supportedInterfaceOrientations {
-//    return UIInterfaceOrientationMaskLandscape;
-//}
-
-//- (BOOL)shouldAutorotate {
-//    return YES;
-//}
 #pragma mark - Helper
 
 - (CGSize)currentScreenSize {
