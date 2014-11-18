@@ -78,9 +78,9 @@ NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
         self.view.backgroundColor = [UIColor clearColor];
         self.view.autoresizesSubviews = YES;
         
-#if DEBUG
-        [[FLEXManager sharedManager] showExplorer];
-#endif
+//#if DEBUG
+//        [[FLEXManager sharedManager] showExplorer];
+//#endif
         CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
                                                : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
@@ -145,7 +145,7 @@ NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 - (void)wonderLoginWithOutUI {
     [_webView removeFromSuperview];
-    NSString *urlString  = [NSString stringWithFormat:@"http://192.168.1.251:8008/api/userLogin?username=%@&&password=%@",
+    NSString *urlString  = [NSString stringWithFormat:@"http://218.17.158.13:3337/wonderCenter/api/userLogin?username=%@&&password=%@",
                             [[WDUserStore sharedStore] lastUser].userName, [[WDUserStore sharedStore] lastUser].passWord];
     NSURL *url = [NSURL URLWithString:urlString];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
@@ -158,9 +158,9 @@ NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
         [_webView stopLoading];
     }
     
-    [self.view addSubview:_webView];
     [self.switchAccountButton removeFromSuperview];
     [self.loadingView removeFromSuperview];
+    [self.view addSubview:_webView];
     [self wonderLoginWithUI];
 }
 
@@ -288,8 +288,8 @@ NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
     
     if ([lastPathComponent isEqualToString:@"bindEmail.jsp"]) {
         if ([[WDUserStore sharedStore] lastUser]) {
-            NSString *jsUserName = [NSString stringWithFormat:@"document.getElementById('username').value = '%@'", [[WDUserStore sharedStore] lastUser].userName];
-            NSString *jsPassWord = [NSString stringWithFormat:@"document.getElementById('password').value = '%@'", [[WDUserStore sharedStore] lastUser].passWord];
+            NSString *jsUserName = [NSString stringWithFormat:@"document.getElementById('nmid').value = '%@'", [[WDUserStore sharedStore] lastUser].userName];
+            NSString *jsPassWord = [NSString stringWithFormat:@"document.getElementById('pwdid').value = '%@'", [[WDUserStore sharedStore] lastUser].passWord];
             [_webView stringByEvaluatingJavaScriptFromString:jsUserName];
             [_webView stringByEvaluatingJavaScriptFromString:jsPassWord];
         }
