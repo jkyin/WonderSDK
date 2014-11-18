@@ -21,6 +21,8 @@
 		AB8CB6F81A0B5B4600EE91EE /* WonderSDKSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */; };
 		ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5ACE231A13558C009041E6 /* libWonderSDK.a */; };
 		ABBB0EFE1A1358040010CB1E /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB5ACE271A13558C009041E6 /* WonderSDK.bundle */; };
+		ABC19DBB1A1B170200D94561 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC19DBA1A1B170200D94561 /* Crashlytics.framework */; };
+		ABC19DBD1A1B186E00D94561 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC19DBC1A1B186E00D94561 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		AB8CB6F31A0B5B4600EE91EE /* WonderSDKSampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WonderSDKSampleTests-Info.plist"; sourceTree = "<group>"; };
 		AB8CB6F51A0B5B4600EE91EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKSampleTests.m; sourceTree = "<group>"; };
+		ABC19DBA1A1B170200D94561 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		ABC19DBC1A1B186E00D94561 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +98,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */,
+				ABC19DBB1A1B170200D94561 /* Crashlytics.framework in Frameworks */,
 				AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */,
 				AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */,
 				AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */,
+				ABC19DBD1A1B186E00D94561 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +151,8 @@
 		AB8CB6D11A0B5B4600EE91EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABC19DBC1A1B186E00D94561 /* Fabric.framework */,
+				ABC19DBA1A1B170200D94561 /* Crashlytics.framework */,
 				AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */,
 				AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */,
 				AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */,
@@ -204,6 +212,8 @@
 				AB8CB6CB1A0B5B4600EE91EE /* Sources */,
 				AB8CB6CC1A0B5B4600EE91EE /* Frameworks */,
 				AB8CB6CD1A0B5B4600EE91EE /* Resources */,
+				ABC19DB71A1B104F00D94561 /* Fabric */,
+				AB6C05B91A1B1E61005B5C32 /* Building Number */,
 			);
 			buildRules = (
 			);
@@ -317,6 +327,37 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AB6C05B91A1B1E61005B5C32 /* Building Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Building Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		ABC19DB71A1B104F00D94561 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 3802684f41c23d2d3de92eb3139263c196ebf21a e6d8783002035ca899dd4e435cf5e994e41a8cbcd73b4a887f539fec575ecad4";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB8CB6CB1A0B5B4600EE91EE /* Sources */ = {
@@ -453,11 +494,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -467,11 +514,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
 				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
