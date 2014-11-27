@@ -7,6 +7,8 @@
 //
 
 #import "WonderAppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation WonderAppDelegate 
 
@@ -20,6 +22,8 @@
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [Fabric with:@[CrashlyticsKit]];
     return YES;
 }
 

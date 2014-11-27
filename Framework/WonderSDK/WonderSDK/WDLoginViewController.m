@@ -23,8 +23,8 @@
 
 typedef void(^WDStartLoadingProcedure)(NSString *);
 
-//NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
-NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
+NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
+//NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 @interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
