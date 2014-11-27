@@ -35,6 +35,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
  */
 @property (strong, nonatomic) UIButton *switchAccountButton;
 @property (strong, nonatomic) WDLoadingView *loadingView;
+@property (assign, nonatomic) BOOL isClickedSwitchAccount;
 
 /**
  *  Wonder account
@@ -44,7 +45,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @property (strong, nonatomic) NSString *password;
 
 /**
- *  These are stuff for scrolling the webView, when the keyboard appear.
+ *  These are stuff for scrolling the webView when the keyboard appear.
  */
 @property (assign, nonatomic) int textFieldHeight;
 @property (assign, nonatomic) CGRect kbRect;
@@ -77,10 +78,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     if (self) {
         self.view.backgroundColor = [UIColor clearColor];
         self.view.autoresizesSubviews = YES;
+        _isClickedSwitchAccount = NO;
         
-//#if DEBUG
-//        [[FLEXManager sharedManager] showExplorer];
-//#endif
         CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
                                                : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
@@ -101,7 +100,9 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 #if DEBUG
         [WebViewJavascriptBridge enableLogging];
+        [[FLEXManager sharedManager] showExplorer];
 #endif
+        
         // receive JS messages
         _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
             if ([data isKindOfClass:[NSString class]]) {
@@ -127,37 +128,36 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [self removeObservers];
 }
 
-#pragma mark - Public
+#pragma mark - Public Methods
 
 - (void)showLogin {
     if ([[WDUserStore sharedStore] lastUser]) {
-        [self wonderLoginWithOutUI];
+        [self wonderLoginWithoutUI];
     } else {
         [self wonderLoginWithUI];
     }
 }
 
+#pragma mark - Private Methods
+
 - (void)wonderLoginWithUI {
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
-//    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/index.html"];
+    //    NSURL *url = [NSURL URLWithString:@"http://218.17.158.13:19999/index.html"];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
-- (void)wonderLoginWithOutUI {
+- (void)wonderLoginWithoutUI {
     [_webView removeFromSuperview];
-    NSString *urlString  = [NSString stringWithFormat:@"http://218.17.158.13:3337/wonderCenter/api/userLogin?username=%@&&password=%@",
+    NSString *urlString  = [NSString stringWithFormat:@"http://192.168.1.251:8008/api/userLogin?username=%@&password=%@",
                             [[WDUserStore sharedStore] lastUser].userName, [[WDUserStore sharedStore] lastUser].passWord];
+    //    NSString *urlString  = [NSString stringWithFormat:@"http://218.17.158.13:3337/wonderCenter/api/userLogin?username=%@&password=%@",
+    //                            [[WDUserStore sharedStore] lastUser].userName, [[WDUserStore sharedStore] lastUser].passWord];
     NSURL *url = [NSURL URLWithString:urlString];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
-#pragma mark - Private
-
 - (void)switchAccount {
-    if ([_webView isLoading]) {
-        [_webView stopLoading];
-    }
-    
+    _isClickedSwitchAccount = YES;
     [self.switchAccountButton removeFromSuperview];
     [self.loadingView removeFromSuperview];
     [self.view addSubview:_webView];
@@ -195,6 +195,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_switchAccountButton];
         
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
     }
 }
 
@@ -229,6 +231,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     NSURL *url = request.URL;
     NSString *urlString = request.URL.absoluteString;
     
+    // Direct Logins, Auto Register or Normal Register,
+    // here startting load switch button and the login information.
     if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
         WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         _username = [urlParser valueForVariable:@"username"];
@@ -240,13 +244,15 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         }
     }
     
+    // Login Redirect, Tips Redirect or Register Redirect,
+    // the Tips Redirect contains login result.
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
         __weak WDLoginViewController *weakSelf = self;
         WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         NSString *value = [urlParser valueForVariable:@"command"];
         NSString *token = [urlParser valueForVariable:@"token"];
         
-        // delay 2 seconds for loading view
+        // 2 seconds delay to handle login result mission.
         double delayInSeconds = 2.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(time, dispatch_get_main_queue(), ^{
@@ -257,17 +263,22 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                 }
                 
                 //TODO: get token
-                [weakSelf.delegate dialogDidSucceedWithToken:token];
+                if (token && !_isClickedSwitchAccount) {
+                    [weakSelf.delegate dialogDidSucceedWithToken:token];
+                }
             }
             
             // login failed or register failed,
-            // so you should return login screen
+            // so you should return login screen.
             if ([@[@"login_return_fail", @"register_return_fail"] containsObject:value]) {
                 [self.view addSubview:_webView];
             }
             
+            // Tasks whatever whether login succeed or failed.
+            _isClickedSwitchAccount = NO;
             [_switchAccountButton removeFromSuperview];
             [_loadingView removeFromSuperview];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         });
     }
     
