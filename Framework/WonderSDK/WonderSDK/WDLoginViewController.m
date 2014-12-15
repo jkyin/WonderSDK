@@ -12,8 +12,9 @@
 #import "WDLoginViewController.h"
 #import "WDURLParser.h"
 #import "WDUserStore.h"
-#import "WonderUser.h"
+#import "WDUser.h"
 #import "WDLoadingView.h"
+#import "UIView+WDGeometryLayout.h"
 
 #import "WebViewJavascriptBridge.h"
 #import "MBProgressHUD.h"
@@ -38,13 +39,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @property (assign, nonatomic) BOOL isClickedSwitchAccount;
 
 /**
- *  Wonder account
- */
-@property (strong, nonatomic) WonderUser *user;
-@property (strong, nonatomic) NSString *username;
-@property (strong, nonatomic) NSString *password;
-
-/**
  *  These are stuff for scrolling the webView when the keyboard appear.
  */
 @property (assign, nonatomic) int textFieldHeight;
@@ -59,17 +53,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 @end
 
 @implementation WDLoginViewController
-
-+ (instancetype)sharedInstance {
-    static id sharedInstance = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    
-    return sharedInstance;
-}
 
 #pragma mark - Lifecycle
 
@@ -103,13 +86,15 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         [[FLEXManager sharedManager] showExplorer];
 #endif
         
+        __weak UIWebView *weakWebView = _webView;
+        __weak WDLoginViewController *weakSelf = self;
         // receive JS messages
-        _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
+        _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:weakWebView webViewDelegate:weakSelf handler:^(id data, WVJBResponseCallback responseCallback) {
             if ([data isKindOfClass:[NSString class]]) {
                 [[WDUserStore sharedStore] removeUser:data];
             } else if ([data isKindOfClass:[NSNumber class]]){
-                self.textFieldHeight = [(NSNumber *)data intValue];
-                NSLog(@"%d", self.textFieldHeight);
+                weakSelf.textFieldHeight = [(NSNumber *)data intValue];
+                NSLog(@"%d", weakSelf.textFieldHeight);
             }
             
         }];
@@ -118,14 +103,22 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     return self;
 }
 
-// 注册通知
-- (void)viewWillAppear:(BOOL)animated {
-    [self addObservers];
+- (void)dealloc {
+    // remove KVO&Notification
+    [self removeObserver:self forKeyPath:@"textFieldHeight"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // remove delegate
+    _webView.delegate = nil;
+    _webView.scrollView.delegate = nil;
+    // UIButton target
+    [_switchAccountButton removeTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
-// 注销通知
-- (void)viewWillDisappear:(BOOL)animated {
-    [self removeObservers];
+// 注册通知
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addObservers];
 }
 
 #pragma mark - Public Methods
@@ -158,8 +151,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 - (void)switchAccount {
     _isClickedSwitchAccount = YES;
-    [self.switchAccountButton removeFromSuperview];
-    [self.loadingView removeFromSuperview];
+    [_switchAccountButton removeFromSuperview];
+    [_loadingView removeFromSuperview];
     [self.view addSubview:_webView];
     [self wonderLoginWithUI];
 }
@@ -171,16 +164,14 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 // handle loading process
-- (void)showLoadingProcess:(NSNotification *)notification {
-    if ([notification.name isEqualToString:@"showLoadingProcess"]) {
+- (void)showLoadingProcess {
         [_webView removeFromSuperview];
         CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
-        : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+                                : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
         // loadingView setup
         _loadingView = IS_DEVICE_PHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
         _loadingView.center = windowCenter;
-        _loadingView.wonderLabel.text = [NSString stringWithFormat:@"Wonder帐号 %@", _username];
         [self.view addSubview:_loadingView];
         
         // switchAccountButton setup
@@ -194,15 +185,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
         [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_switchAccountButton];
-        
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-    }
 }
 
 - (void)addObservers {
     [self addObserver:self forKeyPath:@"textFieldHeight" options:NSKeyValueObservingOptionNew context:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoadingProcess:) name:@"showLoadingProcess" object:nil];
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -210,18 +196,6 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationDidEnterBackgroundNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationWillTerminateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:UIApplicationWillResignActiveNotification object:nil];
-}
-
-- (void)removeObservers {
-    [self removeObserver:self forKeyPath:@"textFieldHeight"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showLoadingProcess" object:nil];
-    // keyboard notifications
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    // UIApplication notifications
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -235,12 +209,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     // here startting load switch button and the login information.
     if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
         WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
-        _username = [urlParser valueForVariable:@"username"];
-        _password = [urlParser valueForVariable:@"password"];
-        
-        if (_username && _password) {
-            _user = [[WonderUser alloc] initWithUsername:_username password:_password];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"showLoadingProcess" object:nil userInfo:@{@"username" : _username}];
+        [[WDUserStore sharedStore] setCurrentUserWithUsername:[urlParser valueForVariable:@"username"] andPassword:[urlParser valueForVariable:@"password"]];
+
+        if ([WDUserStore sharedStore].currentUser) {
+            [self showLoadingProcess];
         }
     }
     
@@ -258,8 +230,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         dispatch_after(time, dispatch_get_main_queue(), ^{
             // login succeed
             if ([value isEqualToString:@"login_return_success"]) {
-                if (_username && _password) {
-                    [[WDUserStore sharedStore] addUser:_user]; // save user account
+                if ([WDUserStore sharedStore].currentUser) {
+                    [[WDUserStore sharedStore] addUser:[WDUserStore sharedStore].currentUser]; // save user account
                 }
                 
                 //TODO: get token
@@ -271,14 +243,14 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             // login failed or register failed,
             // so you should return login screen.
             if ([@[@"login_return_fail", @"register_return_fail"] containsObject:value]) {
-                [self.view addSubview:_webView];
+                [weakSelf.view addSubview:_webView];
             }
             
             // Tasks whatever whether login succeed or failed.
-            _isClickedSwitchAccount = NO;
             [_switchAccountButton removeFromSuperview];
+            [_loadingView stopAnimating];
             [_loadingView removeFromSuperview];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            _isClickedSwitchAccount = NO;
         });
     }
     

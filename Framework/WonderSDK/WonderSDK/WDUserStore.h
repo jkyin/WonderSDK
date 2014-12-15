@@ -7,22 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WonderUser.h"
+#import "WDUser.h"
 
 typedef void(^WDSaveAccountCompletionHandler)(BOOL success);
 
 @interface WDUserStore : NSObject
 
 @property (strong, nonatomic) NSMutableArray *allUsers;
-@property (strong, nonatomic) WonderUser *currentUser;
+@property (strong, nonatomic) WDUser *currentUser;
 
 + (instancetype)sharedStore;
 
-- (void)addUser:(WonderUser *)user;
-- (void)removeUser:(NSString *)userName;
-- (WonderUser *)lastUser;
+- (void)addUser:(WDUser *)user;
+- (void)removeUser:(NSString *)username;
+- (WDUser *)lastUser;
 - (NSArray *)allUsers;
 
+- (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password;
 - (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler;
 
 - (NSString *)stringWithJsonData;

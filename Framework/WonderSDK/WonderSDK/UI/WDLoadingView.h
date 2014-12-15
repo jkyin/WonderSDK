@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WDDotsProgressIndicator.h"
 
 @interface WDLoadingView : UIView
-
-@property (strong, nonatomic) UILabel *wonderLabel;
-
+- (void)stopAnimating;
 @end
  
