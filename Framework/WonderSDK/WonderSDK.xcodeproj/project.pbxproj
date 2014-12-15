@@ -23,8 +23,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AB2F50A81A3E88000082AB07 /* WDLoadingViewBackground~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50A61A3E88000082AB07 /* WDLoadingViewBackground~ipad.png */; };
+		AB2F50A91A3E88000082AB07 /* WDLoadingViewBackground~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50A61A3E88000082AB07 /* WDLoadingViewBackground~ipad.png */; };
+		AB2F50AA1A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50A71A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png */; };
+		AB2F50AB1A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50A71A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png */; };
+		AB2F50AD1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50AC1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png */; };
+		AB2F50AE1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50AC1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png */; };
+		AB2F50B01A3E886D0082AB07 /* WDAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50AF1A3E886D0082AB07 /* WDAccount@2x.png */; };
+		AB2F50B11A3E886D0082AB07 /* WDAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB2F50AF1A3E886D0082AB07 /* WDAccount@2x.png */; };
+		AB47D8CF1A2850C70086AD8B /* UIView+WDGeometryLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = AB47D8CD1A2850C70086AD8B /* UIView+WDGeometryLayout.h */; };
+		AB47D8D01A2850C70086AD8B /* UIView+WDGeometryLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AB47D8CE1A2850C70086AD8B /* UIView+WDGeometryLayout.m */; };
+		AB4CCBF41A3EB87B0003C75C /* WDAccount.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4CCBF31A3EB87B0003C75C /* WDAccount.png */; };
+		AB4CCBF51A3EB87B0003C75C /* WDAccount.png in Resources */ = {isa = PBXBuildFile; fileRef = AB4CCBF31A3EB87B0003C75C /* WDAccount.png */; };
 		AB5ACDD71A11CA1A009041E6 /* WDBasicFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5ACDD61A11CA1A009041E6 /* WDBasicFoundationTests.m */; };
 		AB6A81281A0C663A00D08E7F /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6491A0B59FD00EE91EE /* WebViewJavascriptBridge.js.txt */; };
+		AB77BB381A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BB371A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png */; };
+		AB77BB3A1A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BB391A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png */; };
 		AB8CB5A31A0B57AC00EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */; };
 		AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; };
 		AB8CB5B11A0B57AC00EE91EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */; };
@@ -146,8 +160,10 @@
 		AB8CB6C11A0B59FE00EE91EE /* WDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB64E1A0B59FD00EE91EE /* WDLoginViewController.m */; };
 		AB8CB6C21A0B59FE00EE91EE /* WDUserStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */; };
 		AB8CB6C31A0B59FE00EE91EE /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */; };
-		AB8CB6C41A0B59FE00EE91EE /* WonderUser.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB6511A0B59FD00EE91EE /* WonderUser.h */; };
-		AB8CB6C51A0B59FE00EE91EE /* WonderUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6521A0B59FD00EE91EE /* WonderUser.m */; };
+		AB8CB6C41A0B59FE00EE91EE /* WDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB6511A0B59FD00EE91EE /* WDUser.h */; };
+		AB8CB6C51A0B59FE00EE91EE /* WDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6521A0B59FD00EE91EE /* WDUser.m */; };
+		ABE97CBC1A3157B90027650B /* WDDotsProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */; };
+		ABE97CBD1A3157B90027650B /* WDDotsProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,9 +204,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB2F50A61A3E88000082AB07 /* WDLoadingViewBackground~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground~ipad.png"; sourceTree = "<group>"; };
+		AB2F50A71A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground ~iphone.png"; sourceTree = "<group>"; };
+		AB2F50AC1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@2x~ipad.png"; sourceTree = "<group>"; };
+		AB2F50AF1A3E886D0082AB07 /* WDAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDAccount@2x.png"; sourceTree = "<group>"; };
+		AB47D8CD1A2850C70086AD8B /* UIView+WDGeometryLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WDGeometryLayout.h"; path = "../../../Framework/WonderSDK/WonderSDK/UIView+WDGeometryLayout.h"; sourceTree = "<group>"; };
+		AB47D8CE1A2850C70086AD8B /* UIView+WDGeometryLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WDGeometryLayout.m"; path = "../../../Framework/WonderSDK/WonderSDK/UIView+WDGeometryLayout.m"; sourceTree = "<group>"; };
+		AB4CCBF31A3EB87B0003C75C /* WDAccount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WDAccount.png; sourceTree = "<group>"; };
 		AB5ACDD61A11CA1A009041E6 /* WDBasicFoundationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDBasicFoundationTests.m; path = ../../../Framework/WonderSDK/WonderSDKTests/WDBasicFoundationTests.m; sourceTree = "<group>"; };
 		AB6A81171A0C646100D08E7F /* WonderSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6A811A1A0C646100D08E7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB77BB371A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@3x~iphone.png"; sourceTree = "<group>"; };
+		AB77BB391A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@2x~iphone.png"; sourceTree = "<group>"; };
 		AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWonderSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB8CB5A61A0B57AC00EE91EE /* WonderSDK-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WonderSDK-Prefix.pch"; sourceTree = "<group>"; };
@@ -308,14 +333,16 @@
 		AB8CB6481A0B59FD00EE91EE /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		AB8CB6491A0B59FD00EE91EE /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		AB8CB64A1A0B59FD00EE91EE /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDLoadingView.h; path = ../../../framework/WonderSDK/WonderSDK/WDLoadingView.h; sourceTree = "<group>"; };
-		AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDLoadingView.m; path = ../../../framework/WonderSDK/WonderSDK/WDLoadingView.m; sourceTree = "<group>"; };
+		AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoadingView.h; sourceTree = "<group>"; };
+		AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoadingView.m; sourceTree = "<group>"; };
 		AB8CB64D1A0B59FD00EE91EE /* WDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDLoginViewController.h; path = ../../../framework/WonderSDK/WonderSDK/WDLoginViewController.h; sourceTree = "<group>"; };
 		AB8CB64E1A0B59FD00EE91EE /* WDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDLoginViewController.m; path = ../../../framework/WonderSDK/WonderSDK/WDLoginViewController.m; sourceTree = "<group>"; };
 		AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDUserStore.h; path = ../../../framework/WonderSDK/WonderSDK/WDUserStore.h; sourceTree = "<group>"; };
 		AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDUserStore.m; path = ../../../framework/WonderSDK/WonderSDK/WDUserStore.m; sourceTree = "<group>"; };
-		AB8CB6511A0B59FD00EE91EE /* WonderUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WonderUser.h; path = ../../../framework/WonderSDK/WonderSDK/WonderUser.h; sourceTree = "<group>"; };
-		AB8CB6521A0B59FD00EE91EE /* WonderUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WonderUser.m; path = ../../../framework/WonderSDK/WonderSDK/WonderUser.m; sourceTree = "<group>"; };
+		AB8CB6511A0B59FD00EE91EE /* WDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDUser.h; path = ../../../framework/WonderSDK/WonderSDK/WDUser.h; sourceTree = "<group>"; };
+		AB8CB6521A0B59FD00EE91EE /* WDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDUser.m; path = ../../../framework/WonderSDK/WonderSDK/WDUser.m; sourceTree = "<group>"; };
+		ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDotsProgressIndicator.h; sourceTree = "<group>"; };
+		ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDotsProgressIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +375,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB3C86181A270FB80062D6F5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				AB4CCBFE1A3EC0280003C75C /* WDLoadingView */,
+				AB4CCC021A3EC0820003C75C /* WDAccount */,
+			);
+			name = Images;
+			path = ../../../Framework/WonderSDK/WonderSDK/image;
+			sourceTree = "<group>";
+		};
+		AB4CCBFE1A3EC0280003C75C /* WDLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				AB2F50A61A3E88000082AB07 /* WDLoadingViewBackground~ipad.png */,
+				AB2F50AC1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png */,
+				AB2F50A71A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png */,
+				AB77BB391A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png */,
+				AB77BB371A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png */,
+			);
+			path = WDLoadingView;
+			sourceTree = "<group>";
+		};
+		AB4CCC021A3EC0820003C75C /* WDAccount */ = {
+			isa = PBXGroup;
+			children = (
+				AB4CCBF31A3EB87B0003C75C /* WDAccount.png */,
+				AB2F50AF1A3E886D0082AB07 /* WDAccount@2x.png */,
+			);
+			path = WDAccount;
+			sourceTree = "<group>";
+		};
 		AB6A81181A0C646100D08E7F /* WonderSDKResources */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,15 +456,17 @@
 		AB8CB5A41A0B57AC00EE91EE /* WonderSDK */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CB5D31A0B59FD00EE91EE /* Utilities */,
+				AB3C86181A270FB80062D6F5 /* Images */,
+				AB8CB5D31A0B59FD00EE91EE /* Vendors */,
+				ABE97CB91A31565F0027650B /* UI */,
 				AB8CB64D1A0B59FD00EE91EE /* WDLoginViewController.h */,
 				AB8CB64E1A0B59FD00EE91EE /* WDLoginViewController.m */,
-				AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */,
-				AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */,
+				AB47D8CD1A2850C70086AD8B /* UIView+WDGeometryLayout.h */,
+				AB47D8CE1A2850C70086AD8B /* UIView+WDGeometryLayout.m */,
 				AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */,
 				AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */,
-				AB8CB6511A0B59FD00EE91EE /* WonderUser.h */,
-				AB8CB6521A0B59FD00EE91EE /* WonderUser.m */,
+				AB8CB6511A0B59FD00EE91EE /* WDUser.h */,
+				AB8CB6521A0B59FD00EE91EE /* WDUser.m */,
 				AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */,
 				AB8CB5A51A0B57AC00EE91EE /* Supporting Files */,
 			);
@@ -439,7 +499,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB8CB5D31A0B59FD00EE91EE /* Utilities */ = {
+		AB8CB5D31A0B59FD00EE91EE /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
 				AB8CB5D41A0B59FD00EE91EE /* FLEX */,
@@ -447,8 +507,8 @@
 				AB8CB6441A0B59FD00EE91EE /* WDURLParser */,
 				AB8CB6471A0B59FD00EE91EE /* WebViewJavascriptBridge */,
 			);
-			name = Utilities;
-			path = ../../../framework/WonderSDK/WonderSDK/Utilities;
+			name = Vendors;
+			path = ../../../Framework/WonderSDK/WonderSDK/Vendors;
 			sourceTree = "<group>";
 		};
 		AB8CB5D41A0B59FD00EE91EE /* FLEX */ = {
@@ -643,6 +703,18 @@
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
+		ABE97CB91A31565F0027650B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */,
+				ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */,
+				AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */,
+				AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */,
+			);
+			name = UI;
+			path = ../../../Framework/WonderSDK/WonderSDK/UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -657,6 +729,7 @@
 				AB8CB6C21A0B59FE00EE91EE /* WDUserStore.h in Headers */,
 				AB8CB6841A0B59FD00EE91EE /* FLEXFileBrowserSearchOperation.h in Headers */,
 				AB8CB6881A0B59FD00EE91EE /* FLEXGlobalsTableViewController.h in Headers */,
+				AB47D8CF1A2850C70086AD8B /* UIView+WDGeometryLayout.h in Headers */,
 				AB8CB6691A0B59FD00EE91EE /* FLEXArgumentInputViewFactory.h in Headers */,
 				AB8CB6591A0B59FD00EE91EE /* FLEXArgumentInputJSONObjectView.h in Headers */,
 				AB8CB6711A0B59FD00EE91EE /* FLEXIvarEditorViewController.h in Headers */,
@@ -683,7 +756,7 @@
 				AB8CB6731A0B59FD00EE91EE /* FLEXMethodCallingViewController.h in Headers */,
 				AB8CB6AA1A0B59FD00EE91EE /* FLEXHeapEnumerator.h in Headers */,
 				AB8CB6A81A0B59FD00EE91EE /* FLEXViewExplorerViewController.h in Headers */,
-				AB8CB6C41A0B59FE00EE91EE /* WonderUser.h in Headers */,
+				AB8CB6C41A0B59FE00EE91EE /* WDUser.h in Headers */,
 				AB8CB68A1A0B59FD00EE91EE /* FLEXInstancesTableViewController.h in Headers */,
 				AB8CB69A1A0B59FD00EE91EE /* FLEXDictionaryExplorerViewController.h in Headers */,
 				AB8CB6B61A0B59FE00EE91EE /* FLEXImagePreviewViewController.h in Headers */,
@@ -693,6 +766,7 @@
 				AB8CB65B1A0B59FD00EE91EE /* FLEXArgumentInputNotSupportedView.h in Headers */,
 				AB8CB6941A0B59FD00EE91EE /* FLEXClassExplorerViewController.h in Headers */,
 				AB8CB6A61A0B59FD00EE91EE /* FLEXViewControllerExplorerViewController.h in Headers */,
+				ABE97CBC1A3157B90027650B /* WDDotsProgressIndicator.h in Headers */,
 				AB8CB6861A0B59FD00EE91EE /* FLEXFileBrowserTableViewController.h in Headers */,
 				AB8CB6531A0B59FD00EE91EE /* FLEXArgumentInputColorView.h in Headers */,
 				AB8CB6651A0B59FD00EE91EE /* FLEXArgumentInputTextView.h in Headers */,
@@ -811,7 +885,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2F50AB1A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png in Resources */,
+				AB4CCBF51A3EB87B0003C75C /* WDAccount.png in Resources */,
 				AB6A81281A0C663A00D08E7F /* WebViewJavascriptBridge.js.txt in Resources */,
+				AB2F50AE1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png in Resources */,
+				AB2F50A91A3E88000082AB07 /* WDLoadingViewBackground~ipad.png in Resources */,
+				AB77BB3A1A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png in Resources */,
+				AB2F50B11A3E886D0082AB07 /* WDAccount@2x.png in Resources */,
+				AB77BB381A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,6 +900,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2F50AA1A3E88000082AB07 /* WDLoadingViewBackground ~iphone.png in Resources */,
+				AB2F50B01A3E886D0082AB07 /* WDAccount@2x.png in Resources */,
+				AB2F50A81A3E88000082AB07 /* WDLoadingViewBackground~ipad.png in Resources */,
+				AB2F50AD1A3E88340082AB07 /* WDLoadingViewBackground@2x~ipad.png in Resources */,
+				AB4CCBF41A3EB87B0003C75C /* WDAccount.png in Resources */,
 				AB8CB5BD1A0B57AC00EE91EE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,7 +938,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# 确保如果脚本的某部分失败了那就让整个脚本都失败。避免生成不完全的 framework。\nset -e\n\n# 是否脚本有被递归的调用。如果有，那就退出执行。\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"\n\n# Copy the resources bundle to the user's desktop\nditto \"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.bundle\" \\\n\"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.bundle\"";
+			shellScript = "# 确保如果脚本的某部分失败了那就让整个脚本都执行失败。避免生成不完全的 framework。\nset -e\n\n# 是否脚本被递归调用。如果有，那就退出执行。\nif [ -n \"$RW_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport RW_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nRW_FRAMEWORK_NAME=${PROJECT_NAME}\nRW_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nRW_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nRW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nRW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$RW_SDK_PLATFORM\" == \"iphoneos\" ]; then\nRW_OTHER_PLATFORM=iphonesimulator\nelse\nRW_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$RW_SDK_PLATFORM$ ]]; then\nRW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${RW_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${RW_OTHER_PLATFORM}${RW_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$RW_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_INPUT_STATIC_LIB}\" \\\n\"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${RW_FRAMEWORK_LOCATION}/Versions/A/${RW_FRAMEWORK_NAME}\" \\\n\"${RW_OTHER_BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.framework/Versions/A/${RW_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${RW_FRAMEWORK_LOCATION}\" \"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.framework\"\n\n# Copy the resources bundle to the user's desktop\nditto \"${BUILT_PRODUCTS_DIR}/${RW_FRAMEWORK_NAME}.bundle\" \\\n\"${HOME}/Desktop/${RW_FRAMEWORK_NAME}.bundle\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -869,6 +955,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB8CB6721A0B59FD00EE91EE /* FLEXIvarEditorViewController.m in Sources */,
+				ABE97CBD1A3157B90027650B /* WDDotsProgressIndicator.m in Sources */,
 				AB8CB65C1A0B59FD00EE91EE /* FLEXArgumentInputNotSupportedView.m in Sources */,
 				AB8CB68D1A0B59FD00EE91EE /* FLEXLibrariesTableViewController.m in Sources */,
 				AB8CB6641A0B59FD00EE91EE /* FLEXArgumentInputSwitchView.m in Sources */,
@@ -901,6 +988,7 @@
 				AB8CB6561A0B59FD00EE91EE /* FLEXArgumentInputFontsPickerView.m in Sources */,
 				AB8CB65A1A0B59FD00EE91EE /* FLEXArgumentInputJSONObjectView.m in Sources */,
 				AB8CB6681A0B59FD00EE91EE /* FLEXArgumentInputView.m in Sources */,
+				AB47D8D01A2850C70086AD8B /* UIView+WDGeometryLayout.m in Sources */,
 				AB8CB6B51A0B59FE00EE91EE /* FLEXHierarchyTableViewController.m in Sources */,
 				AB8CB6BF1A0B59FE00EE91EE /* WDLoadingView.m in Sources */,
 				AB8CB6851A0B59FD00EE91EE /* FLEXFileBrowserSearchOperation.m in Sources */,
@@ -916,7 +1004,7 @@
 				AB8CB6A51A0B59FD00EE91EE /* FLEXSetExplorerViewController.m in Sources */,
 				AB8CB65E1A0B59FD00EE91EE /* FLEXArgumentInputNumberView.m in Sources */,
 				AB8CB67F1A0B59FD00EE91EE /* FLEXToolbarItem.m in Sources */,
-				AB8CB6C51A0B59FE00EE91EE /* WonderUser.m in Sources */,
+				AB8CB6C51A0B59FE00EE91EE /* WDUser.m in Sources */,
 				AB8CB6B31A0B59FE00EE91EE /* FLEXHierarchyTableViewCell.m in Sources */,
 				AB8CB6541A0B59FD00EE91EE /* FLEXArgumentInputColorView.m in Sources */,
 				AB8CB6601A0B59FD00EE91EE /* FLEXArgumentInputStringView.m in Sources */,
@@ -972,7 +1060,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -980,7 +1070,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
@@ -1056,7 +1148,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -1086,8 +1180,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
@@ -1100,11 +1196,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = WonderSDK;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -1117,11 +1214,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = WonderSDK;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};

@@ -6,9 +6,10 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
-@protocol WDLoginViewControllerDelegate <NSObject>
+@protocol WDLoginViewControllerDelegate
 
 /**
  *  The delegate method, Successfully getting the token.
@@ -23,11 +24,6 @@
  *  The delegate.
  */
 @property (nonatomic, weak) id<WDLoginViewControllerDelegate> delegate;
-
-/**
- *  The singleton.
- */
-+ (instancetype)sharedInstance;
 
 /**
  *  The method for loginning game.

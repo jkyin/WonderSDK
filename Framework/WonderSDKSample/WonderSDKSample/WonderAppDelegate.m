@@ -10,15 +10,21 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
-@implementation WonderAppDelegate 
+@interface WonderAppDelegate () <WDLoginViewControllerDelegate>
+
+@end
+
+@implementation WonderAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     NSLog(@"%d", __IPHONE_OS_VERSION_MIN_REQUIRED);
-    [self.window setRootViewController:[WDLoginViewController sharedInstance]];
-    [WDLoginViewController sharedInstance].delegate = self;
-    [[WDLoginViewController sharedInstance] showLogin];
+    
+    WDLoginViewController *loginViewController = [[WDLoginViewController alloc] init];
+    [self.window setRootViewController:loginViewController];
+    loginViewController.delegate = self;
+    [loginViewController showLogin];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

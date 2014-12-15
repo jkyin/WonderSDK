@@ -6,16 +6,16 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
-#import "WonderUser.h"
+#import "WDUser.h"
 
-@interface WonderUser ()
+@interface WDUser ()
 
 @property (strong, readwrite, nonatomic) NSString *userName;
 @property (strong, readwrite, nonatomic) NSString *passWord;
 
 @end
 
-@implementation WonderUser
+@implementation WDUser
 
 - (instancetype)init {
     NSAssert(false, @"Please do not initialize WonderUser directly. Use initWithUsername:(NSString *)username password:(NSString *)password instead.");
@@ -24,7 +24,7 @@
     return nil;
 }
 
-- (WonderUser *)initWithUsername:(NSString *)username password:(NSString *)password {
+- (WDUser *)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
         _userName = username;

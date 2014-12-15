@@ -7,7 +7,7 @@
 //
 
 #import "WDUserStore.h"
-#import "WonderUser.h"
+#import "WDUser.h"
 
 @implementation WDUserStore
 
@@ -39,14 +39,14 @@
 
 #pragma mark - Pulibc method
 
-- (void)addUser:(WonderUser *)user {
+- (void)addUser:(WDUser *)user {
     [self removeTheSameUser:user];
     [_allUsers addObject:user];
 }
 
-- (void)removeUser:(NSString *)userName {
-    [_allUsers enumerateObjectsUsingBlock:^(WonderUser *obj, NSUInteger idx, BOOL *stop) {
-        if ([userName isEqualToString:obj.userName]) {
+- (void)removeUser:(NSString *)username {
+    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
+        if ([username isEqualToString:obj.userName]) {
             [_allUsers removeObject:obj];
         }
     }];
@@ -56,8 +56,13 @@
     return _allUsers;
 }
 
-- (WonderUser *)lastUser {
+- (WDUser *)lastUser {
     return [[self allUsers] lastObject];
+}
+
+- (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password {
+    WDUser *user = [[WDUser alloc] initWithUsername:username password:password];
+    self.currentUser = user;
 }
 
 - (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler {
@@ -70,7 +75,7 @@
 - (NSString *)stringWithJsonData {
     __block NSMutableArray *userNameArray = [[NSMutableArray alloc] init];
     __block NSMutableArray *passWordArray = [[NSMutableArray alloc] init];
-    [_allUsers enumerateObjectsUsingBlock:^(WonderUser *obj, NSUInteger idx, BOOL *stop) {
+    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
         [userNameArray addObject:obj.userName];
         [passWordArray addObject:obj.passWord];
     }];
@@ -80,7 +85,7 @@
                                      };
     NSError *error;
     NSData *json = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *base64EncodeString = [[NSString alloc] init];
+    NSString *base64EncodeString;
     
     if ([json respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
         // iOS 7 later
@@ -98,8 +103,8 @@
 
 #pragma mark - Helper methods
 
-- (void)removeTheSameUser:(WonderUser *)user {
-    [_allUsers enumerateObjectsUsingBlock:^(WonderUser *obj, NSUInteger idx, BOOL *stop) {
+- (void)removeTheSameUser:(WDUser *)user {
+    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
         if ([user.userName isEqualToString:obj.userName]) {
             [_allUsers removeObject:obj];
         }
