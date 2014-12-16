@@ -5,9 +5,6 @@
 //  Created by Wonder on 14-8-11.
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
-#if DEBUG
-#import "FLEXManager.h"
-#endif
 
 #import "WDLoginViewController.h"
 #import "WDURLParser.h"
@@ -16,8 +13,12 @@
 #import "WDLoadingView.h"
 #import "UIView+WDGeometryLayout.h"
 
+// Vendors
 #import "WebViewJavascriptBridge.h"
 #import "MBProgressHUD.h"
+#if DEBUG
+#import "FLEXManager.h"
+#endif
 
 #define IS_DEVICE_PHONE  [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
 #define IS_OS_8_0_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -25,29 +26,23 @@
 typedef void(^WDStartLoadingProcedure)(NSString *);
 
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
-//NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
+// NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 @interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 
-/**
- *  Loading progress views.
- */
-@property (strong, nonatomic) UIButton *switchAccountButton;
+// 登录中
 @property (strong, nonatomic) WDLoadingView *loadingView;
+@property (strong, nonatomic) UIButton *switchAccountButton;
 @property (assign, nonatomic) BOOL isClickedSwitchAccount;
 
-/**
- *  These are stuff for scrolling the webView when the keyboard appear.
- */
+// 自适应键盘
 @property (assign, nonatomic) int textFieldHeight;
 @property (assign, nonatomic) CGRect kbRect;
 @property (assign, nonatomic) CGFloat webViewHeight;
 
-/**
- *  Communication with JavaScript.
- */
+// JS 通信
 @property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
 
 @end
@@ -66,7 +61,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
                                                : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
         
-        // webView setup
+        /* webView 设置 */
         _webView = IS_DEVICE_PHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
         _webView.center = windowCenter;
         _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
@@ -86,17 +81,15 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
         [[FLEXManager sharedManager] showExplorer];
 #endif
         
+        /* 接收 JS 消息 */
         __weak UIWebView *weakWebView = _webView;
         __weak WDLoginViewController *weakSelf = self;
-        // receive JS messages
         _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:weakWebView webViewDelegate:weakSelf handler:^(id data, WVJBResponseCallback responseCallback) {
             if ([data isKindOfClass:[NSString class]]) {
                 [[WDUserStore sharedStore] removeUser:data];
             } else if ([data isKindOfClass:[NSNumber class]]){
                 weakSelf.textFieldHeight = [(NSNumber *)data intValue];
-                NSLog(@"%d", weakSelf.textFieldHeight);
             }
-            
         }];
     }
     
@@ -104,13 +97,13 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 - (void)dealloc {
-    // remove KVO&Notification
+    // 移除 KVO 和通知
     [self removeObserver:self forKeyPath:@"textFieldHeight"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // remove delegate
+    // 移除 delegate
     _webView.delegate = nil;
     _webView.scrollView.delegate = nil;
-    // UIButton target
+    // 移除 UIButton Target
     [_switchAccountButton removeTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
     
 }
@@ -163,28 +156,28 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     }];
 }
 
-// handle loading process
+/* 正在登录 */
 - (void)showLoadingProcess {
-        [_webView removeFromSuperview];
-        CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
-                                : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
-        
-        // loadingView setup
-        _loadingView = IS_DEVICE_PHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
-        _loadingView.center = windowCenter;
-        [self.view addSubview:_loadingView];
-        
-        // switchAccountButton setup
-        _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0 later
-        _switchAccountButton.frame = IS_DEVICE_PHONE ? CGRectMake(15, 15, 100, 30) : CGRectMake(30, 30, 150, 60);
-        _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
-        _switchAccountButton.layer.masksToBounds = YES;
-        _switchAccountButton.layer.cornerRadius = 5;
-        _switchAccountButton.tintColor = [UIColor whiteColor];
-        _switchAccountButton.titleLabel.font = [UIFont systemFontOfSize:20];
-        [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
-        [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_switchAccountButton];
+    [_webView removeFromSuperview];
+    CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
+                            : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+    
+    // loadingView setup
+    _loadingView = IS_DEVICE_PHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
+    _loadingView.center = windowCenter;
+    [self.view addSubview:_loadingView];
+    
+    // switchAccountButton setup
+    _switchAccountButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0 later
+    _switchAccountButton.frame = IS_DEVICE_PHONE ? CGRectMake(15, 15, 100, 30) : CGRectMake(30, 30, 150, 60);
+    _switchAccountButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
+    _switchAccountButton.layer.masksToBounds = YES;
+    _switchAccountButton.layer.cornerRadius = 5;
+    _switchAccountButton.tintColor = [UIColor whiteColor];
+    _switchAccountButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [_switchAccountButton setTitle:@"切换帐号" forState:UIControlStateNormal];
+    [_switchAccountButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_switchAccountButton];
 }
 
 - (void)addObservers {
