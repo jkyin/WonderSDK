@@ -1,5 +1,5 @@
 //
-//  WonderUserStore.h
+//  WDUserStore.h
 //  WonderSDK
 //
 //  Created by Wonder on 14-9-29.
@@ -21,7 +21,7 @@ typedef void(^WDSaveAccountCompletionHandler)(BOOL success);
 - (void)addUser:(WDUser *)user;
 - (void)removeUser:(NSString *)username;
 - (WDUser *)lastUser;
-- (NSArray *)allUsers;
+- (NSMutableArray *)allUsers;
 
 - (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password;
 - (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler;

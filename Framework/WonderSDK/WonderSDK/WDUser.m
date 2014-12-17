@@ -1,5 +1,5 @@
 //
-//  WonderUser.m
+//  WDUser.m
 //  WonderSDK
 //
 //  Created by Wonder on 14-9-24.
@@ -15,10 +15,15 @@
 
 @end
 
+//----------------------------------------------------------------------------------------------------//
+// 不要更改这个类的类名，否则会在读取本地 user.archive 文件时会发生以下错误：                                   //
+// *** Terminating app due to uncaught exception 'NSInvalidUnarchiveOperationException', reason: '*** //
+// -[NSKeyedUnarchiver decodeObjectForKey:]: cannot decode object of class (WDUser)'                  //
+//----------------------------------------------------------------------------------------------------//
 @implementation WDUser
 
 - (instancetype)init {
-    NSAssert(false, @"Please do not initialize WonderUser directly. Use initWithUsername:(NSString *)username password:(NSString *)password instead.");
+    NSAssert(false, @"Please do not initialize WDUser directly. Use initWithUsername:(NSString *)username password:(NSString *)password instead.");
     assert(false);
     
     return nil;

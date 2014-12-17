@@ -1,5 +1,5 @@
 //
-//  WonderUserStore.m
+//  WDUserStore.m
 //  WonderSDK
 //
 //  Created by Wonder on 14-9-29.
@@ -16,7 +16,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedStore = [[self alloc] init];
+        sharedStore = [[self alloc] initPrivate];
     });
     
     return sharedStore;
@@ -24,7 +24,17 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
+// If a programmer calls [[WDUserStore alloc] init], let him
+// know the error of his ways
+- (instancetype)init
+{
+    @throw [NSException exceptionWithName:@"Singleton"
+                                   reason:@"Use +[WDUserStore sharedStore]"
+                                 userInfo:nil];
+    return nil;
+}
+
+- (instancetype)initPrivate {
     self = [super init];
     if (self) {
         NSString *path = [self userArchivePath];
@@ -52,7 +62,7 @@
     }];
 }
 
-- (NSArray *)allUsers {
+- (NSMutableArray *)allUsers {
     return _allUsers;
 }
 
@@ -114,7 +124,7 @@
 // Document 路径
 - (NSString *)userArchivePath {
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString *documentDirectory = documentDirectories[0];
     
     return [documentDirectory stringByAppendingPathComponent:@"user.archive"];
 }

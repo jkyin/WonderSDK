@@ -1,5 +1,5 @@
 //
-//  WonderUser.h
+//  WDUser.h
 //  WonderSDK
 //
 //  Created by Wonder on 14-9-24.
@@ -13,7 +13,7 @@
 @property (strong, readonly, nonatomic) NSString *userName;
 @property (strong, readonly, nonatomic) NSString *passWord;
 
-- (instancetype)init __attribute__((unavailable("Please do not initialize WonderUser directly. Use initWithUsername:password: instead.")));
+- (instancetype)init __attribute__((unavailable("Please do not initialize WDUser directly. Use initWithUsername:password: instead.")));
 - (WDUser *)initWithUsername:(NSString *)username password:(NSString *)password;
 
 @end
