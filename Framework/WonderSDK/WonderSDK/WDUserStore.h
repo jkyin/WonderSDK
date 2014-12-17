@@ -1,5 +1,5 @@
 //
-//  WonderUserStore.h
+//  WDUserStore.h
 //  WonderSDK
 //
 //  Created by Wonder on 14-9-29.

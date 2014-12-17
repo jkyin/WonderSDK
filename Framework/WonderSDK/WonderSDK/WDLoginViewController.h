@@ -1,5 +1,5 @@
 //
-//  WonderLoginViewController.h
+//  WDLoginViewController.h
 //  WonderSDK
 //
 //  Created by Wonder on 14-8-11.
@@ -29,5 +29,6 @@
  *  The method for loginning game.
  */
 - (void)showLogin;
+- (void)dismissWithSuccess:(BOOL)success;
 
 @end

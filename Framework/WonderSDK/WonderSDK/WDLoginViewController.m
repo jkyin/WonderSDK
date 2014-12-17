@@ -1,5 +1,5 @@
 //
-//  WonderLoginViewController.m
+//  WDLoginViewController.m
 //  WonderSDK
 //
 //  Created by Wonder on 14-8-11.
@@ -9,42 +9,29 @@
 #import "WDLoginViewController.h"
 #import "WDURLParser.h"
 #import "WDUserStore.h"
-#import "WDUser.h"
 #import "WDLoadingView.h"
-#import "UIView+WDGeometryLayout.h"
+#import "WDConstants.h"
 
 // Vendors
 #import "WebViewJavascriptBridge.h"
 #import "MBProgressHUD.h"
-#if DEBUG
-#import "FLEXManager.h"
-#endif
 
 #define IS_DEVICE_PHONE  [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone
 #define IS_OS_8_0_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-
-typedef void(^WDStartLoadingProcedure)(NSString *);
 
 NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 // NSString * const baseURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 @interface WDLoginViewController () <UIWebViewDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, UIScrollViewDelegate>
-
 @property (strong, nonatomic) UIWebView *webView;
-
 // 登录中
 @property (strong, nonatomic) WDLoadingView *loadingView;
 @property (strong, nonatomic) UIButton *switchAccountButton;
 @property (assign, nonatomic) BOOL isClickedSwitchAccount;
-
 // 自适应键盘
 @property (assign, nonatomic) int textFieldHeight;
 @property (assign, nonatomic) CGRect kbRect;
-@property (assign, nonatomic) CGFloat webViewHeight;
-
-// JS 通信
 @property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
-
 @end
 
 @implementation WDLoginViewController
@@ -54,7 +41,21 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.view.backgroundColor = [UIColor clearColor];
+        CGFloat landscapeWidth = IS_OS_8_OR_LATER ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
+        if (landscapeWidth == 480) {
+            // 3.5 inch
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_480w"]];
+            [self.view addSubview:background];
+        } else if (landscapeWidth == 1024) {
+            // iPad
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_1024w"]];
+            [self.view addSubview:background];
+        } else {
+            // default 4' screen
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_568w"]];
+            [self.view addSubview:background];
+        }
+        
         self.view.autoresizesSubviews = YES;
         _isClickedSwitchAccount = NO;
         
@@ -68,7 +69,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                                      UIViewAutoresizingFlexibleLeftMargin |
                                      UIViewAutoresizingFlexibleBottomMargin
                                      );
-        _webView.delegate = self;
+//        _webView.delegate = self;
         _webView.scrollView.delegate = self;
         _webView.scrollView.scrollEnabled = NO; // 禁用滚动
         _webView.scrollView.bounces = NO; // 禁用回弹
@@ -78,13 +79,11 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 
 #if DEBUG
         [WebViewJavascriptBridge enableLogging];
-        [[FLEXManager sharedManager] showExplorer];
 #endif
         
         /* 接收 JS 消息 */
-        __weak UIWebView *weakWebView = _webView;
         __weak WDLoginViewController *weakSelf = self;
-        _javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:weakWebView webViewDelegate:weakSelf handler:^(id data, WVJBResponseCallback responseCallback) {
+        self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
             if ([data isKindOfClass:[NSString class]]) {
                 [[WDUserStore sharedStore] removeUser:data];
             } else if ([data isKindOfClass:[NSNumber class]]){
@@ -318,10 +317,10 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 #pragma mark - UIKeyboardNotification
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect keyboardFrame = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     _kbRect = [self.view convertRect:keyboardFrame fromView:self.view.window];
     
-    _webViewHeight = CGRectGetMinY(_webView.frame);
+    CGRectGetMinY(_webView.frame);
     
 }
 
@@ -355,8 +354,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     if (!IS_OS_8_0_LATER) {
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if (UIInterfaceOrientationIsLandscape(orientation)) {
-            CGSize currentScrrenSize = CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));
-            return currentScrrenSize;
+            CGSize currentScreenSize = CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));
+            return currentScreenSize;
         }
     }
     
