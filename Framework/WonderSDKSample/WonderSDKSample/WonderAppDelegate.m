@@ -35,6 +35,9 @@
 
 - (void)dialogDidSucceedWithToken:(NSString *)token {
     NSLog(@"token: %@", token);
+}
+
+- (void)dealloc {
 
 }
 

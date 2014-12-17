@@ -41,76 +41,19 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        CGFloat landscapeWidth = IS_OS_8_OR_LATER ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
-        if (landscapeWidth == 480) {
-            // 3.5 inch
-            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_480w"]];
-            [self.view addSubview:background];
-        } else if (landscapeWidth == 1024) {
-            // iPad
-            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_1024w"]];
-            [self.view addSubview:background];
-        } else {
-            // default 4' screen
-            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_568w"]];
-            [self.view addSubview:background];
-        }
-        
+        self.isClickedSwitchAccount = NO;
         self.view.autoresizesSubviews = YES;
-        _isClickedSwitchAccount = NO;
-        
-        CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
-                                               : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
-        
-        /* webView 设置 */
-        _webView = IS_DEVICE_PHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
-        _webView.center = windowCenter;
-        _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
-                                     UIViewAutoresizingFlexibleLeftMargin |
-                                     UIViewAutoresizingFlexibleBottomMargin
-                                     );
-//        _webView.delegate = self;
-        _webView.scrollView.delegate = self;
-        _webView.scrollView.scrollEnabled = NO; // 禁用滚动
-        _webView.scrollView.bounces = NO; // 禁用回弹
-        _webView.backgroundColor = [UIColor clearColor];
-        _webView.opaque = NO;
-        [self.view addSubview:_webView];
 
+        [self showBackgroundImage];
+        [self showWebView];
+        [self addObservers];
+        [self addJavascriptBridge];
 #if DEBUG
         [WebViewJavascriptBridge enableLogging];
 #endif
-        
-        /* 接收 JS 消息 */
-        __weak WDLoginViewController *weakSelf = self;
-        self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
-            if ([data isKindOfClass:[NSString class]]) {
-                [[WDUserStore sharedStore] removeUser:data];
-            } else if ([data isKindOfClass:[NSNumber class]]){
-                weakSelf.textFieldHeight = [(NSNumber *)data intValue];
-            }
-        }];
     }
-    
+
     return self;
-}
-
-- (void)dealloc {
-    // 移除 KVO 和通知
-    [self removeObserver:self forKeyPath:@"textFieldHeight"];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // 移除 delegate
-    _webView.delegate = nil;
-    _webView.scrollView.delegate = nil;
-    // 移除 UIButton Target
-    [_switchAccountButton removeTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
-    
-}
-
-// 注册通知
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self addObservers];
 }
 
 #pragma mark - Public Methods
@@ -124,6 +67,67 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 #pragma mark - Private Methods
+
+- (void)dealloc {
+    // 移除 KVO 和通知
+    [self removeObserver:self forKeyPath:@"textFieldHeight"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // 移除 delegate
+    _webView.delegate = nil;
+    _webView.scrollView.delegate = nil;
+    // 移除 UIButton Target
+    [_switchAccountButton removeTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
+
+}
+
+- (void)showBackgroundImage {
+    CGFloat landscapeWidth = IS_OS_8_OR_LATER ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height;
+    if (landscapeWidth == 480) {
+            // 3.5 inch
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_480w"]];
+            [self.view addSubview:background];
+        } else if (landscapeWidth == 1024) {
+            // iPad
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_1024w"]];
+            [self.view addSubview:background];
+        } else {
+            // default 4' screen
+            UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WonderSDK.bundle/WDLoginBackground_568w"]];
+            [self.view addSubview:background];
+        }
+}
+
+- (void)showWebView {
+    CGPoint windowCenter = IS_OS_8_0_LATER ? CGPointMake(self.view.frame.size.width / 2.0f, self.view.frame.size.height / 2.0f)
+                                               : CGPointMake(self.view.frame.size.height / 2.0f, self.view.frame.size.width / 2.0f);
+
+    /* webView 设置 */
+    _webView = IS_DEVICE_PHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
+    _webView.center = windowCenter;
+    _webView.autoresizingMask = (UIViewAutoresizingFlexibleRightMargin |
+                                     UIViewAutoresizingFlexibleLeftMargin |
+                                     UIViewAutoresizingFlexibleBottomMargin
+                                     );
+//        _webView.delegate = self;
+    _webView.scrollView.delegate = self;
+    _webView.scrollView.scrollEnabled = NO; // 禁用滚动
+    _webView.scrollView.bounces = NO; // 禁用回弹
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
+    [self.view addSubview:_webView];
+}
+
+- (void)addJavascriptBridge {
+    /* 接收 JS 消息 */
+    __weak WDLoginViewController *weakSelf = self;
+    self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
+        if ([data isKindOfClass:[NSString class]]) {
+            [[WDUserStore sharedStore] removeUser:data];
+        } else if ([data isKindOfClass:[NSNumber class]]) {
+            weakSelf.textFieldHeight = [(NSNumber *) data intValue];
+        }
+    }];
+}
 
 - (void)wonderLoginWithUI {
     NSURL *url = [NSURL URLWithString:@"login.jsp" relativeToURL:[NSURL URLWithString:baseURL]];
@@ -142,7 +146,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
 }
 
 - (void)switchAccount {
-    _isClickedSwitchAccount = YES;
+    self.isClickedSwitchAccount = YES;
     [_switchAccountButton removeFromSuperview];
     [_loadingView removeFromSuperview];
     [self.view addSubview:_webView];
@@ -197,8 +201,8 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
     NSURL *url = request.URL;
     NSString *urlString = request.URL.absoluteString;
     
-    // Direct Logins, Auto Register or Normal Register,
-    // here startting load switch button and the login information.
+    // Direct Login, Auto Register or Normal Register,
+    // here starting load switch button and the login information.
     if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
         WDURLParser *urlParser = [[WDURLParser alloc] initWithURLString:urlString];
         [[WDUserStore sharedStore] setCurrentUserWithUsername:[urlParser valueForVariable:@"username"] andPassword:[urlParser valueForVariable:@"password"]];
@@ -227,7 +231,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
                 }
                 
                 //TODO: get token
-                if (token && !_isClickedSwitchAccount) {
+                if (token && !self.isClickedSwitchAccount) {
                     [weakSelf.delegate dialogDidSucceedWithToken:token];
                 }
             }
@@ -242,7 +246,7 @@ NSString * const baseURL = @"http://192.168.1.251:8008/jsp/";
             [_switchAccountButton removeFromSuperview];
             [_loadingView stopAnimating];
             [_loadingView removeFromSuperview];
-            _isClickedSwitchAccount = NO;
+            self.isClickedSwitchAccount = NO;
         });
     }
     

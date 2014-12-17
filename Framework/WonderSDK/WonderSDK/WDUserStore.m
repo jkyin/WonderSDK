@@ -62,7 +62,7 @@
     }];
 }
 
-- (NSArray *)allUsers {
+- (NSMutableArray *)allUsers {
     return _allUsers;
 }
 
@@ -124,7 +124,7 @@
 // Document 路径
 - (NSString *)userArchivePath {
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString *documentDirectory = documentDirectories[0];
     
     return [documentDirectory stringByAppendingPathComponent:@"user.archive"];
 }

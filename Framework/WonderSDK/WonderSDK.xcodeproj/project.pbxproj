@@ -467,6 +467,7 @@
 		AB8CB5971A0B57AB00EE91EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WD;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Yin Xiaoyu";
 				TargetAttributes = {
