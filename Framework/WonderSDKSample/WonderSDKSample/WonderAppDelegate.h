@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WonderSDK/WonderSDK.h>
 
 @interface WonderAppDelegate : UIResponder <UIApplicationDelegate>
 

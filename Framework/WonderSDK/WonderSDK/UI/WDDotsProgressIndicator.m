@@ -27,7 +27,7 @@
 }
 
 - (void)dealloc {
-    _timer = nil;
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

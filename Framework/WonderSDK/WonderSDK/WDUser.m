@@ -29,6 +29,10 @@
     return nil;
 }
 
+- (void)dealloc {
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
+}
+
 - (WDUser *)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {

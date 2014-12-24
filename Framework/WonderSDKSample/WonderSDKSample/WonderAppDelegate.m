@@ -10,8 +10,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "FLEXManager.h"
+#import "WonderViewController.h"
 
-@interface WonderAppDelegate () <WDLoginViewControllerDelegate>
+@interface WonderAppDelegate ()
 
 @end
 
@@ -19,26 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [[FLEXManager sharedManager] showExplorer];
+//    [[FLEXManager sharedManager] showExplorer];
     
-    WDLoginViewController *loginViewController = [[WDLoginViewController alloc] init];
-    loginViewController.delegate = self;
-    [loginViewController showLogin];
     
-    [self.window setRootViewController:loginViewController];
-    self.window.backgroundColor = [UIColor whiteColor];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    UIViewController *vc = [storyboard instantiateInitialViewController];
+    
+    [self.window setRootViewController:vc];
+    self.window.backgroundColor = [UIColor greenColor];
     [self.window makeKeyAndVisible];
     
     [Fabric with:@[CrashlyticsKit]];
     return YES;
-}
-
-- (void)dialogDidSucceedWithToken:(NSString *)token {
-    NSLog(@"token: %@", token);
-}
-
-- (void)dealloc {
-
 }
 
 @end

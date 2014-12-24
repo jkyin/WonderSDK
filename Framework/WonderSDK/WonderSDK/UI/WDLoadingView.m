@@ -9,7 +9,6 @@
 @import QuartzCore;
 
 #import "WDLoadingView.h"
-
 #import "UIView+WDGeometryLayout.h"
 #import "WDUserStore.h"
 
@@ -59,23 +58,23 @@ static const CGFloat WDLoadingViewLabelPadding = 58;
         [self addSubview:accountImageView];
         
         // 「登录指示器」设置
-        _dotsProgressIndicator = [[WDDotsProgressIndicator alloc] initWithFrame:CGRectMake(0, 0, 130, 30)];
-        _dotsProgressIndicator.backgroundColor = [UIColor clearColor];
-        _dotsProgressIndicator.center = CGPointMake(CGRectGetMidX(self.frame), (CGRectGetHeight(self.frame) - WDLoadingViewLabelPadding));
-        _dotsProgressIndicator.font = [UIFont fontWithName:@"STHeitiTC-Light" size:20];
-        [_dotsProgressIndicator startAnimating];
-        [self addSubview:_dotsProgressIndicator];
+        self.dotsProgressIndicator = [[WDDotsProgressIndicator alloc] initWithFrame:CGRectMake(0, 0, 130, 30)];
+        self.dotsProgressIndicator.backgroundColor = [UIColor clearColor];
+        self.dotsProgressIndicator.center = CGPointMake(CGRectGetMidX(self.frame), (CGRectGetHeight(self.frame) - WDLoadingViewLabelPadding));
+        self.dotsProgressIndicator.font = [UIFont fontWithName:@"STHeitiTC-Light" size:20];
+        [self.dotsProgressIndicator startAnimating];
+        [self addSubview:self.dotsProgressIndicator];
     }
     
     return self;
 }
 
 - (void)stopAnimating {
-    [_dotsProgressIndicator stopAnimating];
+    [self.dotsProgressIndicator stopAnimating];
 }
 
 - (void)dealloc {
-    
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
 }
 
 @end

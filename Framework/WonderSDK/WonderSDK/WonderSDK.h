@@ -7,4 +7,4 @@
 //
 
 
-#import "WonderSDK/WDLoginViewController.h"
+#import "WonderSDK/WDDialog.h"
