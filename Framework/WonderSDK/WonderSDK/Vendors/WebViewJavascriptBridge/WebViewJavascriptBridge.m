@@ -99,6 +99,8 @@ static bool logging = false;
     _responseCallbacks = nil;
     _messageHandlers = nil;
     _messageHandler = nil;
+    
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
 }
 
 - (void)_sendData:(id)data responseCallback:(WVJBResponseCallback)responseCallback handlerName:(NSString*)handlerName {

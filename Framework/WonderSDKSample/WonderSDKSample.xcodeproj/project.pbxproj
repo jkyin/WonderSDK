@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0E6F841A445B1200539292 /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB0E6F751A4452D900539292 /* WonderSDK.bundle */; };
+		AB0E6F871A445C6A00539292 /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0E6F711A4452D900539292 /* libWonderSDK.a */; };
 		AB200C961A415E4D0072878B /* FLEXArgumentInputColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB200C2D1A415E4C0072878B /* FLEXArgumentInputColorView.m */; };
 		AB200C971A415E4D0072878B /* FLEXArgumentInputFontsPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB200C2F1A415E4C0072878B /* FLEXArgumentInputFontsPickerView.m */; };
 		AB200C981A415E4D0072878B /* FLEXArgumentInputFontView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB200C311A415E4C0072878B /* FLEXArgumentInputFontView.m */; };
@@ -69,35 +71,42 @@
 		AB8CB6EE1A0B5B4600EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D61A0B5B4600EE91EE /* UIKit.framework */; };
 		AB8CB6F61A0B5B4600EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB6F41A0B5B4600EE91EE /* InfoPlist.strings */; };
 		AB8CB6F81A0B5B4600EE91EE /* WonderSDKSampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */; };
-		ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5ACE231A13558C009041E6 /* libWonderSDK.a */; };
-		ABBB0EFE1A1358040010CB1E /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB5ACE271A13558C009041E6 /* WonderSDK.bundle */; };
 		ABC19DBB1A1B170200D94561 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC19DBA1A1B170200D94561 /* Crashlytics.framework */; };
 		ABC19DBD1A1B186E00D94561 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC19DBC1A1B186E00D94561 /* Fabric.framework */; };
+		ABE554C91A43D7C100F27AE4 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABE554C81A43D7C100F27AE4 /* Storyboard.storyboard */; };
+		ABE554CE1A43D9EF00F27AE4 /* WonderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE554CD1A43D9EF00F27AE4 /* WonderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB5ACE221A13558C009041E6 /* PBXContainerItemProxy */ = {
+		AB0E6F701A4452D900539292 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = AB8CB59F1A0B57AC00EE91EE;
 			remoteInfo = WonderSDK;
 		};
-		AB5ACE241A13558C009041E6 /* PBXContainerItemProxy */ = {
+		AB0E6F721A4452D900539292 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = AB8CB5AF1A0B57AC00EE91EE;
 			remoteInfo = WonderSDKTests;
 		};
-		AB5ACE261A13558C009041E6 /* PBXContainerItemProxy */ = {
+		AB0E6F741A4452D900539292 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = AB6A81171A0C646100D08E7F;
 			remoteInfo = WonderSDKResources;
 		};
-		AB5ACE281A1355B1009041E6 /* PBXContainerItemProxy */ = {
+		AB0E6F821A445B0F00539292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = AB6A81161A0C646100D08E7F;
+			remoteInfo = WonderSDKResources;
+		};
+		AB0E6F851A445C4B00539292 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 			proxyType = 1;
@@ -110,13 +119,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = AB8CB6CE1A0B5B4600EE91EE;
 			remoteInfo = WonderSDKSample;
-		};
-		ABBB0EFC1A1357E10010CB1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = AB6A81161A0C646100D08E7F;
-			remoteInfo = WonderSDKResources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -222,7 +224,7 @@
 		AB200C931A415E4D0072878B /* FLEXHierarchyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHierarchyTableViewController.m; sourceTree = "<group>"; };
 		AB200C941A415E4D0072878B /* FLEXImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXImagePreviewViewController.h; sourceTree = "<group>"; };
 		AB200C951A415E4D0072878B /* FLEXImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXImagePreviewViewController.m; sourceTree = "<group>"; };
-		AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WonderSDK.xcodeproj; path = ../../../framework/WonderSDK/WonderSDK.xcodeproj; sourceTree = "<group>"; };
+		AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WonderSDK.xcodeproj; path = ../../framework/WonderSDK/WonderSDK.xcodeproj; sourceTree = "<group>"; };
 		AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WonderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB8CB6D41A0B5B4600EE91EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -241,6 +243,9 @@
 		AB8CB6F71A0B5B4600EE91EE /* WonderSDKSampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderSDKSampleTests.m; sourceTree = "<group>"; };
 		ABC19DBA1A1B170200D94561 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		ABC19DBC1A1B186E00D94561 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		ABE554C81A43D7C100F27AE4 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		ABE554CC1A43D9EF00F27AE4 /* WonderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderViewController.h; sourceTree = "<group>"; };
+		ABE554CD1A43D9EF00F27AE4 /* WonderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WonderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABBB0EFB1A1356BF0010CB1E /* libWonderSDK.a in Frameworks */,
+				AB0E6F871A445C6A00539292 /* libWonderSDK.a in Frameworks */,
 				ABC19DBB1A1B170200D94561 /* Crashlytics.framework in Frameworks */,
 				AB8CB6D51A0B5B4600EE91EE /* CoreGraphics.framework in Frameworks */,
 				AB8CB6D71A0B5B4600EE91EE /* UIKit.framework in Frameworks */,
@@ -270,6 +275,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0E6F6A1A4452D900539292 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB0E6F711A4452D900539292 /* libWonderSDK.a */,
+				AB0E6F731A4452D900539292 /* WonderSDKTests.xctest */,
+				AB0E6F751A4452D900539292 /* WonderSDK.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AB200C291A415E4C0072878B /* FLEX */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,19 +449,10 @@
 			path = "View Hierarchy";
 			sourceTree = "<group>";
 		};
-		AB5ACE1C1A13558C009041E6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				AB5ACE231A13558C009041E6 /* libWonderSDK.a */,
-				AB5ACE251A13558C009041E6 /* WonderSDKTests.xctest */,
-				AB5ACE271A13558C009041E6 /* WonderSDK.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		AB8CB6C61A0B5B4600EE91EE = {
 			isa = PBXGroup;
 			children = (
+				AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */,
 				AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */,
 				AB8CB6F11A0B5B4600EE91EE /* WonderSDKSampleTests */,
 				AB8CB6D11A0B5B4600EE91EE /* Frameworks */,
@@ -479,9 +485,11 @@
 		AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */ = {
 			isa = PBXGroup;
 			children = (
-				AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */,
 				AB8CB6E11A0B5B4600EE91EE /* WonderAppDelegate.h */,
 				AB8CB6E21A0B5B4600EE91EE /* WonderAppDelegate.m */,
+				ABE554C81A43D7C100F27AE4 /* Storyboard.storyboard */,
+				ABE554CC1A43D9EF00F27AE4 /* WonderViewController.h */,
+				ABE554CD1A43D9EF00F27AE4 /* WonderViewController.m */,
 				AB200C291A415E4C0072878B /* FLEX */,
 				AB8CB6D91A0B5B4600EE91EE /* Supporting Files */,
 			);
@@ -534,8 +542,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				ABBB0EFD1A1357E10010CB1E /* PBXTargetDependency */,
-				AB5ACE291A1355B1009041E6 /* PBXTargetDependency */,
+				AB0E6F861A445C4B00539292 /* PBXTargetDependency */,
+				AB0E6F831A445B0F00539292 /* PBXTargetDependency */,
 			);
 			name = WonderSDKSample;
 			productName = WonderSDKSample;
@@ -590,7 +598,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = AB5ACE1C1A13558C009041E6 /* Products */;
+					ProductGroup = AB0E6F6A1A4452D900539292 /* Products */;
 					ProjectRef = AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */;
 				},
 			);
@@ -603,25 +611,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		AB5ACE231A13558C009041E6 /* libWonderSDK.a */ = {
+		AB0E6F711A4452D900539292 /* libWonderSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libWonderSDK.a;
-			remoteRef = AB5ACE221A13558C009041E6 /* PBXContainerItemProxy */;
+			remoteRef = AB0E6F701A4452D900539292 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AB5ACE251A13558C009041E6 /* WonderSDKTests.xctest */ = {
+		AB0E6F731A4452D900539292 /* WonderSDKTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = WonderSDKTests.xctest;
-			remoteRef = AB5ACE241A13558C009041E6 /* PBXContainerItemProxy */;
+			remoteRef = AB0E6F721A4452D900539292 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		AB5ACE271A13558C009041E6 /* WonderSDK.bundle */ = {
+		AB0E6F751A4452D900539292 /* WonderSDK.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = WonderSDK.bundle;
-			remoteRef = AB5ACE261A13558C009041E6 /* PBXContainerItemProxy */;
+			remoteRef = AB0E6F741A4452D900539292 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -631,9 +639,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0E6F841A445B1200539292 /* WonderSDK.bundle in Resources */,
 				AB8CB6DD1A0B5B4600EE91EE /* InfoPlist.strings in Resources */,
+				ABE554C91A43D7C100F27AE4 /* Storyboard.storyboard in Resources */,
 				AB8CB6E51A0B5B4600EE91EE /* Images.xcassets in Resources */,
-				ABBB0EFE1A1358040010CB1E /* WonderSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +719,7 @@
 				AB200C9E1A415E4D0072878B /* FLEXArgumentInputSwitchView.m in Sources */,
 				AB200CA11A415E4D0072878B /* FLEXArgumentInputViewFactory.m in Sources */,
 				AB200CC51A415E4D0072878B /* FLEXHierarchyTableViewCell.m in Sources */,
+				ABE554CE1A43D9EF00F27AE4 /* WonderViewController.m in Sources */,
 				AB200CBE1A415E4D0072878B /* FLEXSetExplorerViewController.m in Sources */,
 				AB200CAF1A415E4D0072878B /* FLEXFileBrowserTableViewController.m in Sources */,
 				AB200C971A415E4D0072878B /* FLEXArgumentInputFontsPickerView.m in Sources */,
@@ -749,20 +759,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AB5ACE291A1355B1009041E6 /* PBXTargetDependency */ = {
+		AB0E6F831A445B0F00539292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WonderSDKResources;
+			targetProxy = AB0E6F821A445B0F00539292 /* PBXContainerItemProxy */;
+		};
+		AB0E6F861A445C4B00539292 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = WonderSDK;
-			targetProxy = AB5ACE281A1355B1009041E6 /* PBXContainerItemProxy */;
+			targetProxy = AB0E6F851A445C4B00539292 /* PBXContainerItemProxy */;
 		};
 		AB8CB6F01A0B5B4600EE91EE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AB8CB6CE1A0B5B4600EE91EE /* WonderSDKSample */;
 			targetProxy = AB8CB6EF1A0B5B4600EE91EE /* PBXContainerItemProxy */;
-		};
-		ABBB0EFD1A1357E10010CB1E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = WonderSDKResources;
-			targetProxy = ABBB0EFC1A1357E10010CB1E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
