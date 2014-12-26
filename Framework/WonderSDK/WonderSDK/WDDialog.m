@@ -7,19 +7,15 @@
 //
 
 #import "WDDialog.h"
-#import "WDURLParser.h"
+
 #import "WDUserStore.h"
 #import "WDLoadingView.h"
 #import "WDConstants.h"
 #import "UIView+WDGeometryLayout.h"
-
 // Vendors
 #import "WebViewJavascriptBridge.h"
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-NSString * const loginURL = @"http://192.168.1.251:8008/jsp/login.jsp";
-NSString * const testServerURL = @"http://218.17.158.13:3337/wonderCenter/jsp/";
 
 static CGFloat kTransitionDuration = 0.3;
 
@@ -32,14 +28,13 @@ static CGFloat kTransitionDuration = 0.3;
 // is running on iOS 8 or later, UIKit handles all the rotation complexity and the origin is always
 // in the top-left and no rotation transform is necessary.
 static BOOL WDUseLegacyLayout(void) {
-    return (!WDUseLegacyLayout);
+    return (!IS_OS_8_OR_LATER);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface WDDialog () <UIWebViewDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
+@interface WDDialog () <UIAlertViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *webView;
-@property (strong, nonatomic) NSURL *loadingURL;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (assign, nonatomic) BOOL everShown;
 @property (assign, nonatomic) BOOL isViewInvisible;
@@ -59,8 +54,8 @@ static BOOL WDUseLegacyLayout(void) {
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+- (instancetype)init {
+    self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if (self) {
         _loadingURL = nil;
         _delegate = nil;
@@ -96,6 +91,16 @@ static BOOL WDUseLegacyLayout(void) {
 
 #pragma mark - Public
 
+- (instancetype)initWithURL:(NSString *)serverURL params:(NSMutableDictionary *)params isViewInvisible:(BOOL)isViewInvisible delegate:(id<WDDialogDelegate>)delegate {
+    self = [self init];
+    _serverURL = serverURL;
+    _params = params;
+    _delegate = delegate;
+    _isViewInvisible = isViewInvisible;
+    
+    return self;
+}
+
 - (void)show {
     [self load];
     
@@ -107,11 +112,11 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)load {
-    [self loadURL:loginURL];
+    [self loadURL:self.serverURL get:self.params];
 }
 
-- (void)loadURL:(NSString *)url {
-    self.loadingURL = [self generateURL:url params:nil];
+- (void)loadURL:(NSString *)url get:(NSDictionary *)getParams {
+    self.loadingURL = [self generateURL:url params:getParams];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.loadingURL];
     
     [self.webView loadRequest:request];
@@ -164,6 +169,27 @@ static BOOL WDUseLegacyLayout(void) {
         [self.delegate dialogDidNotCompleteWithUrl:url];
     }
     [self dismissWithSuccess:NO animated:YES];
+}
+
+- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString {
+    NSString *value;
+    NSRange start = [urlString rangeOfString:Param];
+    if (start.location != NSNotFound) {
+        // confirm that the parameter is not a partial name match
+        unichar c = '?';
+        if (start.location != 0) {
+            c = [urlString characterAtIndex:start.location - 1];
+        }
+        if (c == '?' || c == '&' || c == '#') {
+            NSRange end = [[urlString substringFromIndex:start.location + start.length] rangeOfString:@"&"];
+            NSUInteger offset = start.location + start.length;
+            value = end.location == NSNotFound ?
+                    [urlString substringFromIndex:offset] :
+                    [urlString substringWithRange:NSMakeRange(offset, end.location)];
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+    }
+    return value;
 }
 
 #pragma mark - Private
@@ -242,8 +268,8 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)verifyLoginWithUrl:(NSURL *)url {
     if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
-        NSString *username = [WDURLParser getValueForParameter:@"username=" fromUrlString:url.absoluteString];
-        NSString *password = [WDURLParser getValueForParameter:@"password=" fromUrlString:url.absoluteString];
+        NSString *username = [self getValueForParameter:@"username=" fromUrlString:url.absoluteString];
+        NSString *password = [self getValueForParameter:@"password=" fromUrlString:url.absoluteString];
         [[WDUserStore sharedStore] setCurrentUserWithUsername:username andPassword:password];
         if ([WDUserStore sharedStore].currentUser) {
             [self showLoading];
@@ -460,7 +486,7 @@ static BOOL WDUseLegacyLayout(void) {
     // 登录、注册返回的结果
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
         __weak WDDialog *weakSelf = self;
-        NSString *command = [WDURLParser getValueForParameter:@"command=" fromUrlString:url.absoluteString];
+        NSString *command = [self getValueForParameter:@"command=" fromUrlString:url.absoluteString];
         // 延时 2 秒
         double delayInSeconds = 2.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -470,8 +496,8 @@ static BOOL WDUseLegacyLayout(void) {
                 [weakSelf dialogDidSucceed:url];
             } else if ([command isEqualToString:@"login_return_fail"]){
                 //TODO: 登录失败
-                NSString *errorCode = [WDURLParser getValueForParameter:@"code=" fromUrlString:url.absoluteString];
-                NSString *errorString = [WDURLParser getValueForParameter:@"msg=" fromUrlString:url.absoluteString];
+                NSString *errorCode = [self getValueForParameter:@"code=" fromUrlString:url.absoluteString];
+                NSString *errorString = [self getValueForParameter:@"msg=" fromUrlString:url.absoluteString];
                 if (errorCode) {
                     NSDictionary *errorData = [NSDictionary dictionaryWithObject:errorString forKey:@"error_msg"];
                     NSError *error = [NSError errorWithDomain:@"wondersdkErrorDomain"
@@ -486,7 +512,6 @@ static BOOL WDUseLegacyLayout(void) {
     }
     return YES;
 }
-
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
 }

@@ -6,5 +6,8 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 
-#import "WonderSDK/WDDialog.h"
+#import "WonderSDK/Wonder.h"
+//#import "WDLoginDialog.h"
+//#import "WDDialog.h"

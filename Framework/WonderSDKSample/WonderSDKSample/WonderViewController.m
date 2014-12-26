@@ -11,7 +11,7 @@
 
 @interface WonderViewController () <WDDialogDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (strong, nonatomic) WDDialog *loginView;
+//@property (strong, nonatomic) WDDialog *loginView;
 @end
 
 @implementation WonderViewController
@@ -20,22 +20,28 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.loginButton];
-    
-    
 }
 
 - (IBAction)gameLogin:(UIButton *)sender {
-    self.loginView = [[WDDialog alloc] initWithFrame:self.view.frame];
-    self.loginView.delegate = self;
-    [self.loginView show];
+//    self.loginView = [[WDDialog alloc] initWithFrame:self.view.frame];
+//    self.loginView.delegate = self;
+//    [self.loginView show];
+    Wonder *wonder = [[Wonder alloc] init];
+    [wonder dialog:@"login" andParams:nil andDelegate:self];
 
 }
 
-- (void)dialogCompleteWithUrl:(NSURL *)url {
-    NSLog(@"Token:%@", url);
+//- (void)dialogCompleteWithUrl:(NSURL *)url {
+//    NSLog(@"Token:%@", url);
+//}
+//
+//- (void)dialogDidComplete:(WDDialog *)dialog {
+//    NSLog(@"%@", NSStringFromSelector(_cmd));
+//}
+
+- (void)WDDialogLogin:(NSString *)token params:(NSDictionary *)params {
+    NSLog(@"token:%@", token);
+    NSLog(@"params:%@", params);
 }
 
-- (void)dialogDidComplete:(WDDialog *)dialog {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-}
 @end

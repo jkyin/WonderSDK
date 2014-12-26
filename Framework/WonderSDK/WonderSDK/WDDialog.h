@@ -11,12 +11,26 @@
 
 @protocol WDDialogDelegate;
 
-@interface WDDialog : UIView
+@interface WDDialog : UIView <UIWebViewDelegate> {
+    NSString *_serverURL;
+    NSMutableDictionary *_params;
+}
+
+@property (strong, nonatomic) NSString *serverURL;
+@property (strong, nonatomic) NSURL *loadingURL;
+@property (strong, nonatomic) NSMutableDictionary *params;
 
 /**
  * The delegate.
  */
 @property (nonatomic, weak) id<WDDialogDelegate> delegate;
+
+- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString;
+
+- (instancetype)initWithURL:(NSString *)serverURL
+                     params:(NSMutableDictionary *)params
+            isViewInvisible:(BOOL)isViewInvisible
+                   delegate:(id<WDDialogDelegate>)delegate;
 
 /**
 * Displays the view with an animation.
@@ -35,8 +49,7 @@
 /**
 * Displays a URL in the dialog.
 */
-- (void)loadURL:(NSString *)url
-            get:(NSDictionary *)getParams;
+- (void)loadURL:(NSString *)url get:(NSDictionary *)getParams;
 
 /**
 * Hides the view and notifies delegates of success or cancellation.
@@ -74,6 +87,11 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+ *Your application should implement this delegate
+ */
 @protocol WDDialogDelegate <NSObject>
 
 @optional
