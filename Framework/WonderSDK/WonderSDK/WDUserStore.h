@@ -17,15 +17,12 @@ typedef void(^WDSaveAccountCompletionHandler)(BOOL success);
 @property (strong, nonatomic) WDUser *currentUser;
 
 + (instancetype)sharedStore;
-
 - (void)addUser:(WDUser *)user;
 - (void)removeUser:(NSString *)username;
 - (WDUser *)lastUser;
 - (NSMutableArray *)allUsers;
-
 - (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password;
 - (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler;
-
 - (NSString *)stringWithJsonData;
 
 @end

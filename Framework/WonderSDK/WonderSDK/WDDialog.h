@@ -7,6 +7,7 @@
 //
 
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @protocol WDDialogDelegate;
@@ -120,5 +121,6 @@
  * Called when dialog failed to load due to an error.
  */
 - (void)dialog:(WDDialog *)dialog didFailWithError:(NSError *)error;
+
 @end
 

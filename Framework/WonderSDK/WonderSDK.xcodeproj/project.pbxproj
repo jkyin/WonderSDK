@@ -23,7 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		AB0B72C81A4AEADB00E15976 /* WDLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0B72C61A4AEADB00E15976 /* WDLoginDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB0B72C81A4AEADB00E15976 /* WDLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0B72C61A4AEADB00E15976 /* WDLoginDialog.h */; };
 		AB0B72C91A4AEADB00E15976 /* WDLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0B72C71A4AEADB00E15976 /* WDLoginDialog.m */; };
 		AB0B72E31A4C025A00E15976 /* Wonder.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0B72E11A4C025A00E15976 /* Wonder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB0B72E41A4C025A00E15976 /* Wonder.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0B72E21A4C025A00E15976 /* Wonder.m */; };
@@ -57,20 +57,20 @@
 		AB77BB381A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BB371A36CFED00B454F7 /* WDLoadingViewBackground@3x~iphone.png */; };
 		AB77BB3A1A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = AB77BB391A36D03200B454F7 /* WDLoadingViewBackground@2x~iphone.png */; };
 		AB8CB5A31A0B57AC00EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */; };
-		AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; };
+		AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in Copy Files */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; };
 		AB8CB5B11A0B57AC00EE91EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */; };
 		AB8CB5B21A0B57AC00EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */; };
 		AB8CB5B41A0B57AC00EE91EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB5B31A0B57AC00EE91EE /* UIKit.framework */; };
 		AB8CB5B71A0B57AC00EE91EE /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB59F1A0B57AC00EE91EE /* libWonderSDK.a */; };
 		AB8CB5BD1A0B57AC00EE91EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB8CB5BB1A0B57AC00EE91EE /* InfoPlist.strings */; };
-		AB8CB5CC1A0B585A00EE91EE /* WonderSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; };
+		AB8CB5CC1A0B585A00EE91EE /* WonderSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB5A71A0B57AC00EE91EE /* WonderSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB8CB6BA1A0B59FE00EE91EE /* WDURLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB6451A0B59FD00EE91EE /* WDURLParser.h */; };
 		AB8CB6BB1A0B59FE00EE91EE /* WDURLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6461A0B59FD00EE91EE /* WDURLParser.m */; };
 		AB8CB6BC1A0B59FE00EE91EE /* WebViewJavascriptBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB6481A0B59FD00EE91EE /* WebViewJavascriptBridge.h */; };
 		AB8CB6BD1A0B59FE00EE91EE /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB64A1A0B59FD00EE91EE /* WebViewJavascriptBridge.m */; };
 		AB8CB6BE1A0B59FE00EE91EE /* WDLoadingView.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB64B1A0B59FD00EE91EE /* WDLoadingView.h */; };
 		AB8CB6BF1A0B59FE00EE91EE /* WDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB64C1A0B59FD00EE91EE /* WDLoadingView.m */; };
-		AB8CB6C01A0B59FE00EE91EE /* WDDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB64D1A0B59FD00EE91EE /* WDDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB8CB6C01A0B59FE00EE91EE /* WDDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB64D1A0B59FD00EE91EE /* WDDialog.h */; };
 		AB8CB6C11A0B59FE00EE91EE /* WDDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB64E1A0B59FD00EE91EE /* WDDialog.m */; };
 		AB8CB6C21A0B59FE00EE91EE /* WDUserStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */; };
 		AB8CB6C31A0B59FE00EE91EE /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */; };
@@ -79,8 +79,8 @@
 		ABC9A6931A4D12B5009D7D0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC9A6921A4D12B5009D7D0F /* UIKit.framework */; };
 		ABE97CBC1A3157B90027650B /* WDDotsProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */; };
 		ABE97CBD1A3157B90027650B /* WDDotsProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */; };
-		ABF145721A4818910064E712 /* WDLoginRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF145701A4818910064E712 /* WDLoginRequest.h */; };
-		ABF145731A4818910064E712 /* WDLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF145711A4818910064E712 /* WDLoginRequest.m */; };
+		ABF145721A4818910064E712 /* WDSession.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF145701A4818910064E712 /* WDSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ABF145731A4818910064E712 /* WDSession.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF145711A4818910064E712 /* WDSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,14 +108,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AB8CB59D1A0B57AB00EE91EE /* CopyFiles */ = {
+		AB8CB59D1A0B57AB00EE91EE /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in CopyFiles */,
+				AB8CB5A81A0B57AC00EE91EE /* WonderSDK.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -169,8 +170,8 @@
 		ABC9A6921A4D12B5009D7D0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDotsProgressIndicator.h; sourceTree = "<group>"; };
 		ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDotsProgressIndicator.m; sourceTree = "<group>"; };
-		ABF145701A4818910064E712 /* WDLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDLoginRequest.h; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginRequest.h; sourceTree = "<group>"; };
-		ABF145711A4818910064E712 /* WDLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDLoginRequest.m; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginRequest.m; sourceTree = "<group>"; };
+		ABF145701A4818910064E712 /* WDSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSession.h; sourceTree = "<group>"; };
+		ABF145711A4818910064E712 /* WDSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +310,8 @@
 				AB8CB64E1A0B59FD00EE91EE /* WDDialog.m */,
 				AB0B72C61A4AEADB00E15976 /* WDLoginDialog.h */,
 				AB0B72C71A4AEADB00E15976 /* WDLoginDialog.m */,
-				ABF145701A4818910064E712 /* WDLoginRequest.h */,
-				ABF145711A4818910064E712 /* WDLoginRequest.m */,
+				ABF145701A4818910064E712 /* WDSession.h */,
+				ABF145711A4818910064E712 /* WDSession.m */,
 				AB60240C1A402A180004274B /* WDConstants.h */,
 				AB8CB64F1A0B59FD00EE91EE /* WDUserStore.h */,
 				AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */,
@@ -403,7 +404,7 @@
 				AB0B72C81A4AEADB00E15976 /* WDLoginDialog.h in Headers */,
 				AB8CB5CC1A0B585A00EE91EE /* WonderSDK.h in Headers */,
 				AB60240A1A4003740004274B /* UIView+WDGeometryLayout.h in Headers */,
-				ABF145721A4818910064E712 /* WDLoginRequest.h in Headers */,
+				ABF145721A4818910064E712 /* WDSession.h in Headers */,
 				AB8CB6BC1A0B59FE00EE91EE /* WebViewJavascriptBridge.h in Headers */,
 				AB60240D1A402A2D0004274B /* WDConstants.h in Headers */,
 				AB8CB6C01A0B59FE00EE91EE /* WDDialog.h in Headers */,
@@ -440,7 +441,7 @@
 			buildPhases = (
 				AB8CB59B1A0B57AB00EE91EE /* Sources */,
 				AB8CB59C1A0B57AB00EE91EE /* Frameworks */,
-				AB8CB59D1A0B57AB00EE91EE /* CopyFiles */,
+				AB8CB59D1A0B57AB00EE91EE /* Copy Files */,
 				AB8CB5CB1A0B585600EE91EE /* Headers */,
 				AB6A810B1A0C5FB400D08E7F /* Build Framework */,
 			);
@@ -598,7 +599,7 @@
 				ABE97CBD1A3157B90027650B /* WDDotsProgressIndicator.m in Sources */,
 				AB8CB6C11A0B59FE00EE91EE /* WDDialog.m in Sources */,
 				AB8CB6BB1A0B59FE00EE91EE /* WDURLParser.m in Sources */,
-				ABF145731A4818910064E712 /* WDLoginRequest.m in Sources */,
+				ABF145731A4818910064E712 /* WDSession.m in Sources */,
 				AB8CB6C31A0B59FE00EE91EE /* WDUserStore.m in Sources */,
 				AB8CB6BD1A0B59FE00EE91EE /* WebViewJavascriptBridge.m in Sources */,
 				AB0B72C91A4AEADB00E15976 /* WDLoginDialog.m in Sources */,
@@ -724,6 +725,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -763,6 +765,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -783,17 +786,24 @@
 		AB8CB5C31A0B57AC00EE91EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)\"";
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = WonderSDK;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
@@ -801,17 +811,24 @@
 		AB8CB5C41A0B57AC00EE91EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)\"";
+				OTHER_LDFLAGS = "-Objc";
 				PRODUCT_NAME = WonderSDK;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME) ";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
@@ -819,13 +836,14 @@
 		AB8CB5C61A0B57AC00EE91EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
+				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -839,13 +857,14 @@
 		AB8CB5C71A0B57AC00EE91EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "WonderSDK/wonder-ios-sdk-Prefix.pch";
+				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				INFOPLIST_FILE = "WonderSDKTests/WonderSDKTests-Info.plist";
 				PRODUCT_NAME = WonderSDKTests;
 				WRAPPER_EXTENSION = xctest;

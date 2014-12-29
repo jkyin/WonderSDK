@@ -7,20 +7,10 @@
 //
 
 #import "WDUserStore.h"
+
 #import "WDUser.h"
 
 @implementation WDUserStore
-
-+ (instancetype)sharedStore {
-    static id sharedStore = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedStore = [[self alloc] initPrivate];
-    });
-    
-    return sharedStore;
-}
 
 #pragma mark - Lifecycle
 
@@ -47,6 +37,17 @@
 }
 
 #pragma mark - Pulibc method
+
++ (instancetype)sharedStore {
+    static id sharedStore = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedStore = [[self alloc] initPrivate];
+    });
+    
+    return sharedStore;
+}
 
 - (void)addUser:(WDUser *)user {
     [self removeTheSameUser:user];
@@ -110,7 +111,7 @@
     return base64EncodeString;
 }
 
-#pragma mark - Helper methods
+#pragma mark - Private
 
 - (void)removeTheSameUser:(WDUser *)user {
     [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
