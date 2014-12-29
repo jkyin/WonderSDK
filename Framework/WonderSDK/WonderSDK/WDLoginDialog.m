@@ -24,6 +24,11 @@
     return self;
 }
 
+- (void)dealloc {
+    
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
+}
+
 #pragma mark - WDDialog
 
 /**

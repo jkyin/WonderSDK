@@ -7,14 +7,19 @@
 //
 
 #import "WonderViewController.h"
+
 #import <WonderSDK/WonderSDK.h>
 
-@interface WonderViewController () <WDDialogDelegate>
+@interface WonderViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-//@property (strong, nonatomic) WDDialog *loginView;
+@property (strong, nonatomic) WDSession *session;
 @end
 
 @implementation WonderViewController
+
+- (void)dealloc {
+    NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,25 +28,11 @@
 }
 
 - (IBAction)gameLogin:(UIButton *)sender {
-//    self.loginView = [[WDDialog alloc] initWithFrame:self.view.frame];
-//    self.loginView.delegate = self;
-//    [self.loginView show];
-    Wonder *wonder = [[Wonder alloc] init];
-    [wonder dialog:@"login" andParams:nil andDelegate:self];
+    self.session = [[WDSession alloc] init];
+    [self.session openWithCompletionHandler:^(WDSession *session, NSError *error) {
+        NSLog(@"session.token: %@\nerror: %@", session.token, error);
+    }];
 
-}
-
-//- (void)dialogCompleteWithUrl:(NSURL *)url {
-//    NSLog(@"Token:%@", url);
-//}
-//
-//- (void)dialogDidComplete:(WDDialog *)dialog {
-//    NSLog(@"%@", NSStringFromSelector(_cmd));
-//}
-
-- (void)WDDialogLogin:(NSString *)token params:(NSDictionary *)params {
-    NSLog(@"token:%@", token);
-    NSLog(@"params:%@", params);
 }
 
 @end

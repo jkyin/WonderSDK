@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "WDLoginDialog.h"
+//#import "WDLoginDialog.h"
 
-@interface Wonder : NSObject <WDLoginDialogDelegate>
+@interface Wonder : NSObject
 
-- (void)dialog:(NSString *)action andParams:(NSMutableDictionary *)params andDelegate:(id<WDDialogDelegate>)delegate;
+//- (void)dialog:(NSString *)action andParams:(NSMutableDictionary *)params andDelegate:(id<WDDialogDelegate>)delegate;
 
 @end

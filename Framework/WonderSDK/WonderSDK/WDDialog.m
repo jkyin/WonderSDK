@@ -11,7 +11,6 @@
 #import "WDUserStore.h"
 #import "WDLoadingView.h"
 #import "WDConstants.h"
-#import "UIView+WDGeometryLayout.h"
 // Vendors
 #import "WebViewJavascriptBridge.h"
 
@@ -500,14 +499,14 @@ static BOOL WDUseLegacyLayout(void) {
                 NSString *errorString = [self getValueForParameter:@"msg=" fromUrlString:url.absoluteString];
                 if (errorCode) {
                     NSDictionary *errorData = [NSDictionary dictionaryWithObject:errorString forKey:@"error_msg"];
-                    NSError *error = [NSError errorWithDomain:@"wondersdkErrorDomain"
+                    NSError *error = [NSError errorWithDomain:@"WonderSdkErrorDomain"
                                                          code:[errorCode intValue]
                                                      userInfo:errorData];
                     [weakSelf dismissWithError:error animated:YES];
-            } else {
-                    [self dialogDidCancel:url];
+                } else {
+                    [weakSelf dialogDidCancel:url];
                 }
-        }
+            }
         });
     }
     return YES;

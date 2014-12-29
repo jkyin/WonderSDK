@@ -7,9 +7,9 @@
 //
 
 #import "WonderAppDelegate.h"
+
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import "FLEXManager.h"
 #import "WonderViewController.h"
 
 @interface WonderAppDelegate ()
@@ -20,8 +20,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    [[FLEXManager sharedManager] showExplorer];
-    
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     UIViewController *vc = [storyboard instantiateInitialViewController];
