@@ -16,7 +16,13 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//static CGFloat kBorderGray[4] = {0.3, 0.3, 0.3, 0.8};
+//static CGFloat kBorderBlack[4] = {0.3, 0.3, 0.3, 1};
+
 static CGFloat kTransitionDuration = 0.3;
+
+static CGFloat kPadding = 0;
+//static CGFloat kBorderWidth = 10;
 
 // This function determines if we want to use the legacy view layout in effect for iPhone OS 2.0
 // through iOS 7, where we, the developer, have to worry about device orientation when working with
@@ -38,6 +44,7 @@ static BOOL WDUseLegacyLayout(void) {
 @property (assign, nonatomic) BOOL everShown;
 @property (assign, nonatomic) BOOL isViewInvisible;
 @property (assign, nonatomic) BOOL showingKeyboard;
+@property (assign, nonatomic) UIInterfaceOrientation orientation;
 // Ensures that UI elements behind the dialog are disabled.
 @property(nonatomic, strong) UIView *modalBackgroundView;
 // 登录中
@@ -61,6 +68,11 @@ static BOOL WDUseLegacyLayout(void) {
         _isClickedSwitchButton = NO;
         _everShown = NO;
 
+        if (WDUseLegacyLayout()) {
+            CGRect frame = [UIScreen mainScreen].bounds;
+            frame.size = [self currentScreenSize];
+            self.frame = frame;
+        }
         self.backgroundColor = [UIColor clearColor];
         self.autoresizesSubviews = YES;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -90,7 +102,10 @@ static BOOL WDUseLegacyLayout(void) {
 
 #pragma mark - Public
 
-- (instancetype)initWithURL:(NSString *)serverURL params:(NSMutableDictionary *)params isViewInvisible:(BOOL)isViewInvisible delegate:(id<WDDialogDelegate>)delegate {
+- (instancetype)initWithURL:(NSString *)serverURL
+                     params:(NSMutableDictionary *)params
+            isViewInvisible:(BOOL)isViewInvisible
+                   delegate:(id<WDDialogDelegate>)delegate {
     self = [self init];
     _serverURL = serverURL;
     _params = params;
@@ -103,11 +118,8 @@ static BOOL WDUseLegacyLayout(void) {
 - (void)show {
     [self load];
     
-    if (!self.isViewInvisible) {
-        [self showSpinner];
-        [self showWebView];
-    }
-    
+    [self showSpinner];
+    [self showView];
 }
 
 - (void)load {
@@ -152,10 +164,7 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)dialogDidSucceed:(NSURL *)url {
-    if ([WDUserStore sharedStore].currentUser) {
-        [[WDUserStore sharedStore] addUser:[WDUserStore sharedStore].currentUser];
-    }
-
+    [self saveAccount];
     if ([self.delegate respondsToSelector:@selector(dialogCompleteWithUrl:)]) {
         [self.delegate dialogCompleteWithUrl:url];
     }
@@ -193,21 +202,75 @@ static BOOL WDUseLegacyLayout(void) {
 
 #pragma mark - Private
 
+//- (BOOL)shouldRotateToOrientation:(UIInterfaceOrientation)orientation {
+//    if (orientation == _orientation) {
+//        return NO;
+//    } else {
+//        return orientation == UIInterfaceOrientationPortrait
+//        || orientation == UIInterfaceOrientationPortraitUpsideDown
+//        || orientation == UIInterfaceOrientationLandscapeLeft
+//        || orientation == UIInterfaceOrientationLandscapeRight;
+//    }
+//}
+//
+//- (void)sizeToFitOrientation:(BOOL)transform {
+//    if (transform) {
+//        self.transform = CGAffineTransformIdentity;
+//    }
+//    
+//    CGRect frame = [UIScreen mainScreen].applicationFrame;
+//    CGPoint frameCenter = CGPointMake(frame.origin.x + ceil(frame.size.width/2),
+//                                 frame.origin.y + ceil(frame.size.height/2));
+//    
+//    CGFloat scaleFactor = 1.0f;
+//    if (IS_IPAD) {
+//        // On the iPad the dialog's dimensions should only be 60% of the screen's
+//        scaleFactor = 0.6f;
+//    }
+//    
+//    CGFloat width = floor(scaleFactor * frame.size.width) - kPadding * 2;
+//    CGFloat height = floor(scaleFactor * frame.size.height) - kPadding * 2;
+//    
+//    _orientation = [UIApplication sharedApplication].statusBarOrientation;
+//    if (UIInterfaceOrientationIsPortrait(_orientation) || !WDUseLegacyLayout()) {
+//        self.frame = CGRectMake(kPadding, kPadding, width, height);
+//    } else {
+//        self.frame = CGRectMake(kPadding, kPadding, height, width);
+//    }
+//    self.center = frameCenter;
+//    
+//    if (transform) {
+//        self.transform = [self transformForOrientation];
+//    }
+//}
+
 - (CGAffineTransform)transformForOrientation {
-    // iOS 8 simply adjusts the application frame to adapt to the current orientation and deprecated the concept of interface orientations
-    if (WDUseLegacyLayout()) {
-        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-            return CGAffineTransformMakeRotation(M_PI * 1.5);
-        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-            return CGAffineTransformMakeRotation(M_PI/2);
-        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-            return CGAffineTransformMakeRotation(-M_PI);
-        }
-    }
+    // iOS 8 直接改变 application frame 来适应当前方向，并且弃用了 interface orientations
+//    if (WDUseLegacyLayout()) {
+//        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+//        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+//            return CGAffineTransformMakeRotation(M_PI * 1.5);
+//        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+//            return CGAffineTransformMakeRotation(M_PI/2);
+//        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+//            return CGAffineTransformMakeRotation(-M_PI);
+//        }
+//    }
     
     return CGAffineTransformIdentity;
 }
+
+//- (void)updateWebOrientation {
+//    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+//    if (UIInterfaceOrientationIsLandscape(orientation)) {
+//        [_webView stringByEvaluatingJavaScriptFromString:
+//         @"document.body.setAttribute('orientation', 90);"];
+//    } else {
+//        [_webView stringByEvaluatingJavaScriptFromString:
+//         @"document.body.removeAttribute('orientation');"];
+//    }
+//}
+
 
 - (void)bounce1AnimationStopped {
     [UIView beginAnimations:nil context:nil];
@@ -238,6 +301,7 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)saveAccount {
+    [[WDUserStore sharedStore] addUser:[WDUserStore sharedStore].currentUser];
     [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
         NSLog(@"save succeed");
     }];
@@ -245,17 +309,32 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)addObservers {
     [self addObserver:self forKeyPath:@"textFieldHeight" options:NSKeyValueObservingOptionNew context:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(deviceOrientationDidChange:)
+//                                                 name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     // keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:@"UIKeyboardWillHideNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:@"UIKeyboardWillShowNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:@"UIKeyboardWillHideNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:@"UIKeyboardWillShowNotification" object:nil];
     // UIApplication notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:@"UIApplicationDidEnterBackgroundNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:@"UIApplicationWillTerminateNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveAccount) name:@"UIApplicationWillResignActiveNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveAccount)
+                                                 name:@"UIApplicationDidEnterBackgroundNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveAccount)
+                                                 name:@"UIApplicationWillTerminateNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(saveAccount)
+                                                 name:@"UIApplicationWillResignActiveNotification" object:nil];
 }
 
 - (void)removeObservers {
     [self removeObserver:self forKeyPath:@"textFieldHeight"];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//                                                    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillHideNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillShowNotification" object:nil];
@@ -315,8 +394,7 @@ static BOOL WDUseLegacyLayout(void) {
     if (!IS_OS_8_OR_LATER) {
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if (UIInterfaceOrientationIsLandscape(orientation)) {
-            CGSize currentScreenSize = CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));
-            return currentScreenSize;
+            return CGSizeMake(CGRectGetHeight([UIScreen mainScreen].bounds), CGRectGetWidth([UIScreen mainScreen].bounds));
         }
     }
     
@@ -357,12 +435,7 @@ static BOOL WDUseLegacyLayout(void) {
 #pragma mark - UIView
 
 - (void)setupWebView {
-    CGPoint center;
-    if (WDUseLegacyLayout()) {
-        center = CGPointMake(self.frameHeight / 2.0f, self.frameWidth / 2.0f);
-    } else {
-        center = CGPointMake(self.frameWidth / 2.0f, self.frameHeight / 2.0f);
-    }
+    CGPoint center = CGPointMake(self.frameWidth / 2.0f, self.frameHeight / 2.0f);
     
     /* webView 设置 */
     self.webView = IS_IPHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
@@ -419,7 +492,7 @@ static BOOL WDUseLegacyLayout(void) {
     [self addSubview:self.spinner];
 }
 
-- (void)showWebView {
+- (void)showView {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (window.windowLevel != UIWindowLevelNormal) {
         for(window in [UIApplication sharedApplication].windows) {
@@ -427,7 +500,13 @@ static BOOL WDUseLegacyLayout(void) {
                 break;
         }
     }
-    self.modalBackgroundView.frame = window.frame;
+    if (WDUseLegacyLayout()) {
+        CGRect frame = window.frame;
+        frame.size = [self currentScreenSize];
+        self.modalBackgroundView.frame = frame;
+    } else {
+        self.modalBackgroundView.frame = window.frame;
+    }
     [self.modalBackgroundView addSubview:self];
     [window addSubview:self.modalBackgroundView];
     
@@ -439,6 +518,9 @@ static BOOL WDUseLegacyLayout(void) {
     self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
     [UIView commitAnimations];
     
+    if (self.isViewInvisible) {
+        self.webView.hidden = YES;
+    }
     self.everShown = YES;
     [self dialogWillAppear];
     [self addObservers];
@@ -457,6 +539,7 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)showLoading {
+    self.webView.hidden = YES;
     CGPoint frameCenter = IS_OS_8_OR_LATER ? CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f)
     : CGPointMake(self.frame.size.height / 2.0f, self.frame.size.width / 2.0f);
     // loadingView setup
@@ -477,7 +560,6 @@ static BOOL WDUseLegacyLayout(void) {
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"%@", request.URL);
     NSURL *url = request.URL;
 
     [self verifyLoginWithUrl:url];
@@ -521,7 +603,7 @@ static BOOL WDUseLegacyLayout(void) {
         // in case of a stale cache, we will display the view in a moment
         // note that showing the view now would cause a visible white
         // flash in the common case where the cache is up to date
-        [self performSelector:@selector(showWebView) withObject:nil afterDelay:.05];
+//        [self performSelector:@selector(showWebView) withObject:nil afterDelay:.05];
         [self fillDialogForUrl:webView.request.URL];
     } else {
         [self hideSpinner];
@@ -578,6 +660,21 @@ static BOOL WDUseLegacyLayout(void) {
     }];
     
 }
+
+#pragma mark - UIDeviceOrientationDidChangeNotification
+
+//- (void)deviceOrientationDidChange:(void *)object {
+//    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+//    if ([self shouldRotateToOrientation:orientation]) {
+////        [self updateWebOrientation];
+//        
+//        CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:duration];
+//        [self sizeToFitOrientation:YES];
+//        [UIView commitAnimations];
+//    }
+//}
 
 #pragma mark - UIScrollViewDelegate
 

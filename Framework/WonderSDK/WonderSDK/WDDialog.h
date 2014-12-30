@@ -28,6 +28,8 @@
 
 - (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString;
 
+- (void)saveAccount;
+
 - (instancetype)initWithURL:(NSString *)serverURL
                      params:(NSMutableDictionary *)params
             isViewInvisible:(BOOL)isViewInvisible

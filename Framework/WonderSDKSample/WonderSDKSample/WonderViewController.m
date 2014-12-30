@@ -30,7 +30,7 @@
 - (IBAction)gameLogin:(UIButton *)sender {
     self.session = [[WDSession alloc] init];
     [self.session openWithCompletionHandler:^(WDSession *session, NSError *error) {
-        NSLog(@"session.token: %@\nerror: %@", session.token, error);
+        NSLog(@"session.token:%@  error:%@", session.token, error);
     }];
 
 }

@@ -9,6 +9,8 @@
 #import "WDLoginDialog.h"
 
 #import "WDDialog.h"
+#import "WDUserStore.h"
+#import "WDUtility.h"
 
 @implementation WDLoginDialog
 
@@ -35,6 +37,8 @@
  * Override WDDialog : to call when the webView Dialog did succeed
  */
 - (void)dialogDidSucceed:(NSURL *)url {
+    [self saveAccount];
+    
     NSString *urlString = url.absoluteString;
     NSString *token = [self getValueForParameter:@"token=" fromUrlString:urlString];
 
@@ -42,8 +46,7 @@
         [self dialogDidCancel:url];
         [self dismissWithSuccess:NO animated:YES];
     } else {
-//        NSDictionary *params = [FBUtility queryParamsDictionaryFromFBURL:url];
-        NSDictionary *params;
+        NSDictionary *params = [WDUtility queryParamsDictionaryFromWDURL:url];
         if ([self.loginDelegate respondsToSelector:@selector(WDDialogLogin:params:)]) {
             [self.loginDelegate WDDialogLogin:token params:params];
         }

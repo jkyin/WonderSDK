@@ -78,8 +78,11 @@
 - (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler {
     NSString *path = [self userArchivePath];
     BOOL success = [NSKeyedArchiver archiveRootObject:_allUsers toFile:path];
-    
-    completionHandler(success);
+    if (success) {
+        completionHandler(success);
+    } else {
+        completionHandler(nil);
+    }
 }
 
 - (NSString *)stringWithJsonData {
