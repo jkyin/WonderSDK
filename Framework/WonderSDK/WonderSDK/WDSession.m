@@ -9,13 +9,15 @@
 #import "WDSession.h"
 
 #import "WDUserStore.h"
-#import "WDLoginDialog.h"
+#import "WDDialog.h"
 
-#define WD_BASE_URL @"http://192.168.1.251:8008/jsp/"
+static NSString const *baseURL = @"http://192.168.1.251:8008/jsp/";
+static NSString const *autoLoginURL = @"http://192.168.1.251:8008/api/";
 
 static NSString *kLogin = @"login";
+static NSString *kUserLogin = @"userLogin";
 
-@interface WDSession () <WDLoginDialogDelegate, WDDialogDelegate>
+@interface WDSession () <WDDialogDelegate>
 @property (strong, nonatomic) WDDialog *wdDialog;
 @property (copy, nonatomic) WDSessionCompleteHandler loginHandler;
 @end
@@ -32,39 +34,45 @@ static NSString *kLogin = @"login";
 #pragma mark - Public
 
 - (void)openWithCompletionHandler:(WDSessionCompleteHandler)handler {
-    NSString *dialogURL;
-    if ([[WDUserStore sharedStore] lastUser]) {
-        //TODO:自动登录
-    } else {
-        //TODO:正常登录
-        dialogURL = [WD_BASE_URL stringByAppendingFormat:@"%@.jsp", kLogin];
-//        self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:nil isViewInvisible:NO delegate:self];
-        NSMutableDictionary *params;
-        self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:NO delegate:self];
-    }
-
-    [self.wdDialog show];
     if (handler) {
-       self.loginHandler = handler;
+        // Note blocks are not value comparable, so this can intentionally result in false positives; nonetheless, let's
+        // log it for easier identification/reporting in case developers do run into this edge case unexpectedly.
+        NSString *dialogURL;
+        WDUser *lastUser = [[WDUserStore sharedStore] lastUser];
+        if (lastUser) {
+            dialogURL = [autoLoginURL stringByAppendingFormat:@"%@", kUserLogin];
+            NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+            [params setObject:lastUser.passWord forKey:@"password"];
+            [params setObject:lastUser.userName forKey:@"username"];
+            self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:YES delegate:self];
+        } else {
+            dialogURL = [baseURL stringByAppendingFormat:@"%@.jsp", kLogin];
+            self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:nil isViewInvisible:NO delegate:self];
+        }
+
+        [self.wdDialog show];
+        if (handler) {
+           self.loginHandler = handler;
+        }
     }
 }
 
 #pragma mark - WDDialogDelegate
 
-- (void)WDDialogLogin:(NSString *)token params:(NSDictionary *)params {
-    NSError *error;
-    self.token = token;
-    self.loginHandler(self, error);
-}
-
-- (void)WDDialogNotLogin:(BOOL)cancelled {
+- (void)dialogCompleteWithUrl:(NSURL *)url {
+    NSString *urlString = url.absoluteString;
+    NSString *token = [self.wdDialog getValueForParameter:@"token=" fromUrlString:urlString];
     
+    if ((token == (NSString *)[NSNull null]) || (token.length == 0)) {
+        [self.wdDialog dialogDidCancel:url];
+    } else {
+        self.token = token;
+        self.loginHandler(self, nil);
+    }
 }
-
-#pragma mark - WDDialogDelegate
 
 - (void)dialog:(WDDialog *)dialog didFailWithError:(NSError *)error {
-    self.loginHandler(self, error);
+    self.loginHandler(nil, error);
 }
 
 @end

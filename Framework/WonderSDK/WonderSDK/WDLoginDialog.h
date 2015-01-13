@@ -7,7 +7,6 @@
 //
 
 #import "WDDialog.h"
-
 @protocol WDLoginDialogDelegate;
 
 /**

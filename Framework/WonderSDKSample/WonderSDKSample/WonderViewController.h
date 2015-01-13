@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface WonderViewController : UIViewController
+#import <WonderSDK/WonderSDK.h>
+@interface WonderViewController : UIViewController<MKMapViewDelegate>
 
 @end

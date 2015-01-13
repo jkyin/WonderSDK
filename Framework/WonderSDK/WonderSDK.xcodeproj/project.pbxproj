@@ -76,6 +76,8 @@
 		AB8CB6C31A0B59FE00EE91EE /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */; };
 		AB8CB6C41A0B59FE00EE91EE /* WDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = AB8CB6511A0B59FD00EE91EE /* WDUser.h */; };
 		AB8CB6C51A0B59FE00EE91EE /* WDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8CB6521A0B59FD00EE91EE /* WDUser.m */; };
+		ABAF4F351A52D2B2007CAE52 /* WDUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = ABAF4F331A52D2B2007CAE52 /* WDUtility.h */; };
+		ABAF4F361A52D2B2007CAE52 /* WDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAF4F341A52D2B2007CAE52 /* WDUtility.m */; };
 		ABC9A6931A4D12B5009D7D0F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC9A6921A4D12B5009D7D0F /* UIKit.framework */; };
 		ABE97CBC1A3157B90027650B /* WDDotsProgressIndicator.h in Headers */ = {isa = PBXBuildFile; fileRef = ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */; };
 		ABE97CBD1A3157B90027650B /* WDDotsProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */; };
@@ -122,6 +124,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04D89EEC1A64F2CC000F3D6D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		AB0B72C61A4AEADB00E15976 /* WDLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDLoginDialog.h; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginDialog.h; sourceTree = "<group>"; };
 		AB0B72C71A4AEADB00E15976 /* WDLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDLoginDialog.m; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginDialog.m; sourceTree = "<group>"; };
 		AB0B72E11A4C025A00E15976 /* Wonder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wonder.h; path = ../../../Framework/WonderSDK/WonderSDK/Wonder.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 		AB8CB6501A0B59FD00EE91EE /* WDUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDUserStore.m; path = ../../../framework/WonderSDK/WonderSDK/WDUserStore.m; sourceTree = "<group>"; };
 		AB8CB6511A0B59FD00EE91EE /* WDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDUser.h; path = ../../../framework/WonderSDK/WonderSDK/WDUser.h; sourceTree = "<group>"; };
 		AB8CB6521A0B59FD00EE91EE /* WDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDUser.m; path = ../../../framework/WonderSDK/WonderSDK/WDUser.m; sourceTree = "<group>"; };
+		ABAF4F331A52D2B2007CAE52 /* WDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDUtility.h; path = ../../../Framework/WonderSDK/WonderSDK/Core/WDUtility.h; sourceTree = "<group>"; };
+		ABAF4F341A52D2B2007CAE52 /* WDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDUtility.m; path = ../../../Framework/WonderSDK/WonderSDK/Core/WDUtility.m; sourceTree = "<group>"; };
 		ABC9A6921A4D12B5009D7D0F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABE97CBA1A3157B90027650B /* WDDotsProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDotsProgressIndicator.h; sourceTree = "<group>"; };
 		ABE97CBB1A3157B90027650B /* WDDotsProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDotsProgressIndicator.m; sourceTree = "<group>"; };
@@ -290,6 +295,7 @@
 		AB8CB5A11A0B57AC00EE91EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D89EEC1A64F2CC000F3D6D /* FacebookSDK.framework */,
 				ABC9A6921A4D12B5009D7D0F /* UIKit.framework */,
 				AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */,
 				AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */,
@@ -304,6 +310,7 @@
 				AB3C86181A270FB80062D6F5 /* Images */,
 				AB8CB5D31A0B59FD00EE91EE /* Vendors */,
 				ABE97CB91A31565F0027650B /* UI */,
+				ABAF4F371A52D2BA007CAE52 /* Core */,
 				AB0B72E11A4C025A00E15976 /* Wonder.h */,
 				AB0B72E21A4C025A00E15976 /* Wonder.m */,
 				AB8CB64D1A0B59FD00EE91EE /* WDDialog.h */,
@@ -378,6 +385,15 @@
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
 		};
+		ABAF4F371A52D2BA007CAE52 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ABAF4F331A52D2B2007CAE52 /* WDUtility.h */,
+				ABAF4F341A52D2B2007CAE52 /* WDUtility.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		ABE97CB91A31565F0027650B /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +425,7 @@
 				AB60240D1A402A2D0004274B /* WDConstants.h in Headers */,
 				AB8CB6C01A0B59FE00EE91EE /* WDDialog.h in Headers */,
 				AB8CB6BA1A0B59FE00EE91EE /* WDURLParser.h in Headers */,
+				ABAF4F351A52D2B2007CAE52 /* WDUtility.h in Headers */,
 				AB8CB6C41A0B59FE00EE91EE /* WDUser.h in Headers */,
 				ABE97CBC1A3157B90027650B /* WDDotsProgressIndicator.h in Headers */,
 				AB8CB6BE1A0B59FE00EE91EE /* WDLoadingView.h in Headers */,
@@ -605,6 +622,7 @@
 				AB0B72C91A4AEADB00E15976 /* WDLoginDialog.m in Sources */,
 				AB60240B1A4003740004274B /* UIView+WDGeometryLayout.m in Sources */,
 				AB8CB6BF1A0B59FE00EE91EE /* WDLoadingView.m in Sources */,
+				ABAF4F361A52D2B2007CAE52 /* WDUtility.m in Sources */,
 				AB8CB6C51A0B59FE00EE91EE /* WDUser.m in Sources */,
 				AB0B72E41A4C025A00E15976 /* Wonder.m in Sources */,
 			);
@@ -790,6 +808,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Jack/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -815,6 +838,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Jack/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

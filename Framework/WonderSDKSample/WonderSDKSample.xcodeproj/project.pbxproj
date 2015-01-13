@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04AB6EBB1A5FB32200F67772 /* Project-Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04AB6EB81A5FB32200F67772 /* Project-Debug.xcconfig */; };
+		04AB6EBC1A5FB32200F67772 /* Project-Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04AB6EB91A5FB32200F67772 /* Project-Release.xcconfig */; };
+		04AB6EBD1A5FB32200F67772 /* Project.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 04AB6EBA1A5FB32200F67772 /* Project.xcconfig */; };
 		AB0E6F841A445B1200539292 /* WonderSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AB0E6F751A4452D900539292 /* WonderSDK.bundle */; };
 		AB0E6F871A445C6A00539292 /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0E6F711A4452D900539292 /* libWonderSDK.a */; };
 		AB8CB6D31A0B5B4600EE91EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */; };
@@ -73,6 +76,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04AB6EB81A5FB32200F67772 /* Project-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Project-Debug.xcconfig"; sourceTree = "<group>"; };
+		04AB6EB91A5FB32200F67772 /* Project-Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Project-Release.xcconfig"; sourceTree = "<group>"; };
+		04AB6EBA1A5FB32200F67772 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WonderSDK.xcodeproj; path = ../../framework/WonderSDK/WonderSDK.xcodeproj; sourceTree = "<group>"; };
 		AB8CB6CF1A0B5B4600EE91EE /* WonderSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WonderSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB8CB6D21A0B5B4600EE91EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +130,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04AB6EB71A5FB32100F67772 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				04AB6EB81A5FB32200F67772 /* Project-Debug.xcconfig */,
+				04AB6EB91A5FB32200F67772 /* Project-Release.xcconfig */,
+				04AB6EBA1A5FB32200F67772 /* Project.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		AB0E6F6A1A4452D900539292 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				AB5ACE1B1A13558C009041E6 /* WonderSDK.xcodeproj */,
+				04AB6EB71A5FB32100F67772 /* Configurations */,
 				AB8CB6D81A0B5B4600EE91EE /* WonderSDKSample */,
 				AB8CB6F11A0B5B4600EE91EE /* WonderSDKSampleTests */,
 				AB8CB6D11A0B5B4600EE91EE /* Frameworks */,
@@ -325,6 +342,9 @@
 			files = (
 				AB0E6F841A445B1200539292 /* WonderSDK.bundle in Resources */,
 				AB8CB6DD1A0B5B4600EE91EE /* InfoPlist.strings in Resources */,
+				04AB6EBD1A5FB32200F67772 /* Project.xcconfig in Resources */,
+				04AB6EBC1A5FB32200F67772 /* Project-Release.xcconfig in Resources */,
+				04AB6EBB1A5FB32200F67772 /* Project-Debug.xcconfig in Resources */,
 				ABE554C91A43D7C100F27AE4 /* Storyboard.storyboard in Resources */,
 				AB8CB6E51A0B5B4600EE91EE /* Images.xcassets in Resources */,
 			);
@@ -432,10 +452,11 @@
 /* Begin XCBuildConfiguration section */
 		AB8CB6F91A0B5B4600EE91EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04AB6EB81A5FB32200F67772 /* Project-Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -448,7 +469,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -471,10 +492,11 @@
 		};
 		AB8CB6FA1A0B5B4600EE91EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04AB6EB91A5FB32200F67772 /* Project-Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -488,7 +510,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -504,65 +526,43 @@
 		};
 		AB8CB6FC1A0B5B4600EE91EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04AB6EB81A5FB32200F67772 /* Project-Debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
 				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(OTHER_LDFLAGS)",
-					"-ObjC",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		AB8CB6FD1A0B5B4600EE91EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04AB6EB91A5FB32200F67772 /* Project-Release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDKSample/WonderSDKSample-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 				);
 				INFOPLIST_FILE = "WonderSDKSample/WonderSDKSample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"$(OTHER_LDFLAGS)",
-					"-ObjC",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
