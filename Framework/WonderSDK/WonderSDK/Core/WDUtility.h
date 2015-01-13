@@ -14,7 +14,7 @@
 
 + (NSDictionary *)queryParamsDictionaryFromWDURL:(NSURL *)url;
 + (NSDictionary *)dictionaryByParsingURLQueryPart:(NSString *)encodedString;
-+ (NSString *)stringBySerializingQueryParameters:(NSDictionary *)queryParameters;
+//+ (NSString *)stringBySerializingQueryParameters:(NSDictionary *)queryParameters;
 + (NSString *)stringByURLDecodingString:(NSString *)escapedString;
 + (NSString *)stringByURLEncodingString:(NSString *)unescapedString;
 

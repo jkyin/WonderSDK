@@ -124,6 +124,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04D89EEC1A64F2CC000F3D6D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		AB0B72C61A4AEADB00E15976 /* WDLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDLoginDialog.h; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginDialog.h; sourceTree = "<group>"; };
 		AB0B72C71A4AEADB00E15976 /* WDLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WDLoginDialog.m; path = ../../../Framework/WonderSDK/WonderSDK/WDLoginDialog.m; sourceTree = "<group>"; };
 		AB0B72E11A4C025A00E15976 /* Wonder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wonder.h; path = ../../../Framework/WonderSDK/WonderSDK/Wonder.h; sourceTree = "<group>"; };
@@ -294,6 +295,7 @@
 		AB8CB5A11A0B57AC00EE91EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D89EEC1A64F2CC000F3D6D /* FacebookSDK.framework */,
 				ABC9A6921A4D12B5009D7D0F /* UIKit.framework */,
 				AB8CB5A21A0B57AC00EE91EE /* Foundation.framework */,
 				AB8CB5B01A0B57AC00EE91EE /* XCTest.framework */,
@@ -806,6 +808,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Jack/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -831,6 +838,11 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/WonderSDK.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Jack/Documents/FacebookSDK,
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WonderSDK/WonderSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

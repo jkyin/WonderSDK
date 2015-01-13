@@ -49,6 +49,7 @@ static BOOL WDUseLegacyLayout(void) {
 @property(nonatomic, strong) UIView *modalBackgroundView;
 // 登录中
 @property (strong, nonatomic) WDLoadingView *loadingView;
+@property (strong, nonatomic) UIButton *switchButton;
 @property (assign, nonatomic) BOOL isClickedSwitchButton;
 // 自适应键盘
 @property (assign, nonatomic) int textFieldHeight;
@@ -61,18 +62,13 @@ static BOOL WDUseLegacyLayout(void) {
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-    self = [super initWithFrame:[UIScreen mainScreen].bounds];
+    self = [super initWithFrame:CGRectZero];
     if (self) {
         _loadingURL = nil;
         _delegate = nil;
         _isClickedSwitchButton = NO;
         _everShown = NO;
 
-        if (WDUseLegacyLayout()) {
-            CGRect frame = [UIScreen mainScreen].bounds;
-            frame.size = [self currentScreenSize];
-            self.frame = frame;
-        }
         self.backgroundColor = [UIColor clearColor];
         self.autoresizesSubviews = YES;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -84,6 +80,7 @@ static BOOL WDUseLegacyLayout(void) {
         [self setupJavascriptBridge];
 
         _modalBackgroundView = [[UIView alloc] init];
+        
 #if DEBUG
         [WebViewJavascriptBridge enableLogging];
 #endif
@@ -94,7 +91,6 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    _webView.delegate = nil;
     _webView.scrollView.delegate = nil;
 
     NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
@@ -115,8 +111,33 @@ static BOOL WDUseLegacyLayout(void) {
     return self;
 }
 
+- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString {
+    NSString *value;
+    NSRange start = [urlString rangeOfString:Param];
+    if (start.location != NSNotFound) {
+        // confirm that the parameter is not a partial name match
+        unichar c = '?';
+        if (start.location != 0) {
+            c = [urlString characterAtIndex:start.location - 1];
+        }
+        if (c == '?' || c == '&' || c == '#') {
+            NSRange end = [[urlString substringFromIndex:start.location + start.length] rangeOfString:@"&"];
+            NSUInteger offset = start.location + start.length;
+            value = end.location == NSNotFound ?
+            [urlString substringFromIndex:offset] :
+            [urlString substringWithRange:NSMakeRange(offset, end.location)];
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+    }
+    return value;
+}
+
 - (void)show {
     [self load];
+    [self sizeToFitOrientation:NO];
+
+    CGFloat width = self.frame.size.width;
+    self.webView.frame = CGRectMake(0, 0, width, self.frame.size.height);
     
     [self showSpinner];
     [self showView];
@@ -179,88 +200,51 @@ static BOOL WDUseLegacyLayout(void) {
     [self dismissWithSuccess:NO animated:YES];
 }
 
-- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString {
-    NSString *value;
-    NSRange start = [urlString rangeOfString:Param];
-    if (start.location != NSNotFound) {
-        // confirm that the parameter is not a partial name match
-        unichar c = '?';
-        if (start.location != 0) {
-            c = [urlString characterAtIndex:start.location - 1];
-        }
-        if (c == '?' || c == '&' || c == '#') {
-            NSRange end = [[urlString substringFromIndex:start.location + start.length] rangeOfString:@"&"];
-            NSUInteger offset = start.location + start.length;
-            value = end.location == NSNotFound ?
-                    [urlString substringFromIndex:offset] :
-                    [urlString substringWithRange:NSMakeRange(offset, end.location)];
-            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        }
-    }
-    return value;
-}
-
 #pragma mark - Private
 
-//- (BOOL)shouldRotateToOrientation:(UIInterfaceOrientation)orientation {
-//    if (orientation == _orientation) {
-//        return NO;
-//    } else {
-//        return orientation == UIInterfaceOrientationPortrait
-//        || orientation == UIInterfaceOrientationPortraitUpsideDown
-//        || orientation == UIInterfaceOrientationLandscapeLeft
-//        || orientation == UIInterfaceOrientationLandscapeRight;
-//    }
-//}
-//
-//- (void)sizeToFitOrientation:(BOOL)transform {
-//    if (transform) {
-//        self.transform = CGAffineTransformIdentity;
-//    }
-//    
-//    CGRect frame = [UIScreen mainScreen].applicationFrame;
-//    CGPoint frameCenter = CGPointMake(frame.origin.x + ceil(frame.size.width/2),
-//                                 frame.origin.y + ceil(frame.size.height/2));
-//    
-//    CGFloat scaleFactor = 1.0f;
-//    if (IS_IPAD) {
-//        // On the iPad the dialog's dimensions should only be 60% of the screen's
-//        scaleFactor = 0.6f;
-//    }
-//    
-//    CGFloat width = floor(scaleFactor * frame.size.width) - kPadding * 2;
-//    CGFloat height = floor(scaleFactor * frame.size.height) - kPadding * 2;
-//    
-//    _orientation = [UIApplication sharedApplication].statusBarOrientation;
-//    if (UIInterfaceOrientationIsPortrait(_orientation) || !WDUseLegacyLayout()) {
-//        self.frame = CGRectMake(kPadding, kPadding, width, height);
-//    } else {
-//        self.frame = CGRectMake(kPadding, kPadding, height, width);
-//    }
-//    self.center = frameCenter;
-//    
-//    if (transform) {
-//        self.transform = [self transformForOrientation];
-//    }
-//}
+- (BOOL)shouldRotateToOrientation:(UIInterfaceOrientation)orientation {
+    return orientation == UIInterfaceOrientationLandscapeLeft ||
+    orientation == UIInterfaceOrientationLandscapeRight;
+}
+
+- (void)sizeToFitOrientation:(BOOL)transform {
+    if (transform) {
+        self.transform = CGAffineTransformIdentity;
+    }
+    
+    CGRect frame = [UIScreen mainScreen].bounds;
+    CGPoint frameCenter = CGPointMake(frame.origin.x + ceil(frame.size.width/2),
+                                      frame.origin.y + ceil(frame.size.height/2));
+    CGFloat width = floor(frame.size.width);
+    CGFloat height = floor(frame.size.height);
+    
+    if (!WDUseLegacyLayout()) {
+        self.frame = CGRectMake(kPadding, kPadding, width, height);
+    } else {
+        self.frame = CGRectMake(kPadding, kPadding, height, width);
+    }
+    self.center = frameCenter;
+    
+    if (transform) {
+        self.transform = [self transformForOrientation];
+    }
+}
 
 - (CGAffineTransform)transformForOrientation {
     // iOS 8 直接改变 application frame 来适应当前方向，并且弃用了 interface orientations
-//    if (WDUseLegacyLayout()) {
-//        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-//        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-//            return CGAffineTransformMakeRotation(M_PI * 1.5);
-//        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
-//            return CGAffineTransformMakeRotation(M_PI/2);
-//        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
-//            return CGAffineTransformMakeRotation(-M_PI);
-//        }
-//    }
+    if (WDUseLegacyLayout()) {
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            return CGAffineTransformMakeRotation(M_PI * 1.5);
+        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+            return CGAffineTransformMakeRotation(M_PI/2);
+        }
+    }
     
     return CGAffineTransformIdentity;
 }
 
-//- (void)updateWebOrientation {
+- (void)updateWebOrientation {
 //    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 //    if (UIInterfaceOrientationIsLandscape(orientation)) {
 //        [_webView stringByEvaluatingJavaScriptFromString:
@@ -269,7 +253,7 @@ static BOOL WDUseLegacyLayout(void) {
 //        [_webView stringByEvaluatingJavaScriptFromString:
 //         @"document.body.removeAttribute('orientation');"];
 //    }
-//}
+}
 
 
 - (void)bounce1AnimationStopped {
@@ -307,11 +291,20 @@ static BOOL WDUseLegacyLayout(void) {
     }];
 }
 
+- (void)switchAccount {
+    self.isClickedSwitchButton = YES;
+    [self.loadingView stopAnimating];
+    [self.loadingView removeFromSuperview];
+    
+    [self loadURL:@"http://192.168.1.251:8008/jsp/login.jsp" get:nil];
+    [self addSubview:self.webView];
+}
+
 - (void)addObservers {
     [self addObserver:self forKeyPath:@"textFieldHeight" options:NSKeyValueObservingOptionNew context:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(deviceOrientationDidChange:)
-//                                                 name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationDidChange:)
+                                                 name:@"UIApplicationDidChangeStatusBarOrientationNotification" object:nil];
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
@@ -333,8 +326,8 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)removeObservers {
     [self removeObserver:self forKeyPath:@"textFieldHeight"];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//                                                    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillHideNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillShowNotification" object:nil];
@@ -420,26 +413,24 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)postDismissCleanup {
     [self.loadingView stopAnimating];
-    [self removeObservers];
+    [self.switchButton removeFromSuperview];
     [self.modalBackgroundView removeFromSuperview];
     [self removeFromSuperview];
+    [self removeObservers];
     
     // this method call could cause a self-cleanup, and needs to really happen "last"
     // If the dialog has been closed, then we need to cancel the order to open it.
     // This happens in the case of a frictionless request, see webViewDidFinishLoad for details
     [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(showWebView)
+                                             selector:@selector(showView)
                                                object:nil];
 }
 
 #pragma mark - UIView
 
 - (void)setupWebView {
-    CGPoint center = CGPointMake(self.frameWidth / 2.0f, self.frameHeight / 2.0f);
-    
     /* webView 设置 */
     self.webView = IS_IPHONE ? [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 250)] : [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 768, 540)];
-    self.webView.center = center;
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.webView.scrollView.delegate = self;
     self.webView.scrollView.scrollEnabled = NO;
@@ -471,16 +462,16 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)setupSwitchButton {
-    UIButton *switchButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0 later
-    switchButton.frame = IS_IPHONE ? CGRectMake(15, 15, 100, 30) : CGRectMake(30, 30, 150, 60);
-    switchButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
-    switchButton.layer.masksToBounds = YES;
-    switchButton.layer.cornerRadius = 5;
-    switchButton.tintColor = [UIColor whiteColor];
-    switchButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [switchButton setTitle:@"切换帐号" forState:UIControlStateNormal];
-    [switchButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:switchButton];
+    self.switchButton = [UIButton buttonWithType:UIButtonTypeSystem]; // ios 7.0 later
+    self.switchButton.frame = IS_IPHONE ? CGRectMake(15, 15, 100, 30) : CGRectMake(30, 30, 150, 60);
+    self.switchButton.backgroundColor = [UIColor colorWithRed:0.278 green:0.519 blue:0.918 alpha:1.000];
+    self.switchButton.layer.masksToBounds = YES;
+    self.switchButton.layer.cornerRadius = 5;
+    self.switchButton.tintColor = [UIColor whiteColor];
+    self.switchButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [self.switchButton setTitle:@"切换帐号" forState:UIControlStateNormal];
+    [self.switchButton addTarget:self action:@selector(switchAccount) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.switchButton];
 }
 
 - (void)setupSpinner {
@@ -500,13 +491,8 @@ static BOOL WDUseLegacyLayout(void) {
                 break;
         }
     }
-    if (WDUseLegacyLayout()) {
-        CGRect frame = window.frame;
-        frame.size = [self currentScreenSize];
-        self.modalBackgroundView.frame = frame;
-    } else {
-        self.modalBackgroundView.frame = window.frame;
-    }
+
+    self.modalBackgroundView.frame = window.frame;
     [self.modalBackgroundView addSubview:self];
     [window addSubview:self.modalBackgroundView];
     
@@ -519,7 +505,8 @@ static BOOL WDUseLegacyLayout(void) {
     [UIView commitAnimations];
     
     if (self.isViewInvisible) {
-        self.webView.hidden = YES;
+//        self.webView.hidden = YES;
+        [self.webView removeFromSuperview];
     }
     self.everShown = YES;
     [self dialogWillAppear];
@@ -539,7 +526,8 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)showLoading {
-    self.webView.hidden = YES;
+//    self.webView.hidden = YES;
+    [self.webView removeFromSuperview];
     CGPoint frameCenter = IS_OS_8_OR_LATER ? CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f)
     : CGPointMake(self.frame.size.height / 2.0f, self.frame.size.width / 2.0f);
     // loadingView setup
@@ -547,14 +535,9 @@ static BOOL WDUseLegacyLayout(void) {
     self.loadingView.center = frameCenter;
     [self addSubview:self.loadingView];
     
-    [self setupSwitchButton];
-}
-
-- (void)switchAccount {
-    self.isClickedSwitchButton = YES;
-    [self.loadingView removeFromSuperview];
-    [self addSubview:self.webView];
-    //    [self wonderLoginWithUI];
+    if (!self.switchButton) {
+        [self setupSwitchButton];
+    }
 }
 
 #pragma mark - UIWebViewDelegate
@@ -580,7 +563,7 @@ static BOOL WDUseLegacyLayout(void) {
                 NSString *errorCode = [self getValueForParameter:@"code=" fromUrlString:url.absoluteString];
                 NSString *errorString = [self getValueForParameter:@"msg=" fromUrlString:url.absoluteString];
                 if (errorCode) {
-                    NSDictionary *errorData = [NSDictionary dictionaryWithObject:errorString forKey:@"error_msg"];
+                    NSDictionary *errorData = [NSDictionary dictionaryWithObject:errorString forKey:@"errorMessage"];
                     NSError *error = [NSError errorWithDomain:@"WonderSdkErrorDomain"
                                                          code:[errorCode intValue]
                                                      userInfo:errorData];
@@ -589,6 +572,8 @@ static BOOL WDUseLegacyLayout(void) {
                     [weakSelf dialogDidCancel:url];
                 }
             }
+            weakSelf.isClickedSwitchButton = NO;
+            [weakSelf.loadingView stopAnimating];
         });
     }
     return YES;
@@ -633,8 +618,9 @@ static BOOL WDUseLegacyLayout(void) {
         CGPoint webViewCenter = self.webView.center;
         webViewCenter.y +=  offset - 40;
         
+        __weak WDDialog *weakSelf = self;
         [UIView animateWithDuration:.25 animations:^{
-            self.webView.center = webViewCenter;
+            weakSelf.webView.center = webViewCenter;
         }];
     }
 }
@@ -646,7 +632,6 @@ static BOOL WDUseLegacyLayout(void) {
 
     CGRect keyboardFrame = [[notification userInfo][UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     _kbRect = [self convertRect:keyboardFrame fromView:self.window];
-//    CGRectGetMinY(self.webView.frame);
 }
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
@@ -655,26 +640,27 @@ static BOOL WDUseLegacyLayout(void) {
     CGPoint webViewCenter = self.webView.center;
     webViewCenter.y = [self currentScreenSize].height / 2.0f;
     
+    __weak WDDialog *weakSelf = self;
     [UIView animateWithDuration:.25 animations:^{
-        self.webView.center = webViewCenter;
+        weakSelf.webView.center = webViewCenter;
     }];
     
 }
 
-#pragma mark - UIDeviceOrientationDidChangeNotification
+#pragma mark - UIApplicationDidChangeStatusBarOrientationNotification
 
-//- (void)deviceOrientationDidChange:(void *)object {
-//    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-//    if ([self shouldRotateToOrientation:orientation]) {
-////        [self updateWebOrientation];
-//        
-//        CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
-//        [UIView beginAnimations:nil context:nil];
-//        [UIView setAnimationDuration:duration];
-//        [self sizeToFitOrientation:YES];
-//        [UIView commitAnimations];
-//    }
-//}
+- (void)deviceOrientationDidChange:(NSNotification *)notification {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if ([self shouldRotateToOrientation:orientation]) {
+        [self updateWebOrientation];
+        
+        __weak WDDialog *weakSelf = self;
+        NSTimeInterval duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
+        [UIView animateWithDuration:duration animations:^{
+            [weakSelf sizeToFitOrientation:YES];
+        }];
+    }
+}
 
 #pragma mark - UIScrollViewDelegate
 

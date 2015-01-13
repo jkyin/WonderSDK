@@ -81,7 +81,7 @@
     if (success) {
         completionHandler(success);
     } else {
-        completionHandler(nil);
+        completionHandler(NO);
     }
 }
 

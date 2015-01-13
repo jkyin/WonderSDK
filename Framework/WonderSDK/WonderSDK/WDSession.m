@@ -9,7 +9,7 @@
 #import "WDSession.h"
 
 #import "WDUserStore.h"
-#import "WDLoginDialog.h"
+#import "WDDialog.h"
 
 static NSString const *baseURL = @"http://192.168.1.251:8008/jsp/";
 static NSString const *autoLoginURL = @"http://192.168.1.251:8008/api/";
@@ -17,7 +17,7 @@ static NSString const *autoLoginURL = @"http://192.168.1.251:8008/api/";
 static NSString *kLogin = @"login";
 static NSString *kUserLogin = @"userLogin";
 
-@interface WDSession () <WDLoginDialogDelegate, WDDialogDelegate>
+@interface WDSession () <WDDialogDelegate>
 @property (strong, nonatomic) WDDialog *wdDialog;
 @property (copy, nonatomic) WDSessionCompleteHandler loginHandler;
 @end
@@ -40,16 +40,14 @@ static NSString *kUserLogin = @"userLogin";
         NSString *dialogURL;
         WDUser *lastUser = [[WDUserStore sharedStore] lastUser];
         if (lastUser) {
-            //TODO:自动登录
             dialogURL = [autoLoginURL stringByAppendingFormat:@"%@", kUserLogin];
             NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
             [params setObject:lastUser.passWord forKey:@"password"];
             [params setObject:lastUser.userName forKey:@"username"];
             self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:YES delegate:self];
         } else {
-            //TODO:正常登录
             dialogURL = [baseURL stringByAppendingFormat:@"%@.jsp", kLogin];
-            self.wdDialog = [[WDLoginDialog alloc] initWithURL:dialogURL loginParams:nil delegate:self];
+            self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:nil isViewInvisible:NO delegate:self];
         }
 
         [self.wdDialog show];
@@ -59,24 +57,13 @@ static NSString *kUserLogin = @"userLogin";
     }
 }
 
-#pragma mark - WDLoginDialogDelegate
-
-- (void)WDDialogLogin:(NSString *)token params:(NSDictionary *)params {
-    self.token = token;
-    self.loginHandler(self, nil);
-}
-
-- (void)WDDialogNotLogin:(BOOL)cancelled {
-    
-}
-
 #pragma mark - WDDialogDelegate
 
 - (void)dialogCompleteWithUrl:(NSURL *)url {
     NSString *urlString = url.absoluteString;
     NSString *token = [self.wdDialog getValueForParameter:@"token=" fromUrlString:urlString];
     
-    if ((token == (NSString *) [NSNull null]) || (token.length == 0)) {
+    if ((token == (NSString *)[NSNull null]) || (token.length == 0)) {
         [self.wdDialog dialogDidCancel:url];
     } else {
         self.token = token;

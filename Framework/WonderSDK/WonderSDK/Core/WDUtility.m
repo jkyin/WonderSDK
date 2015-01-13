@@ -66,12 +66,12 @@
 }
 
 + (NSString *)stringByURLEncodingString:(NSString *)unescapedString {
-    NSString *result = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(
+    NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                            kCFAllocatorDefault,
                                                                            (CFStringRef)unescapedString,
                                                                            NULL, // characters to leave unescaped
                                                                            (CFStringRef)@":!*();@/&?#[]+$,='%’\"",
-                                                                           kCFStringEncodingUTF8);
+                                                                           kCFStringEncodingUTF8));
     return result;
 }
 

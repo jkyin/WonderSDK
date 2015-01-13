@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 Yin Xiaoyu. All rights reserved.
 //
 
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
@@ -36,9 +35,9 @@
                    delegate:(id<WDDialogDelegate>)delegate;
 
 /**
-* Displays the view with an animation.
+* 显示视图。
 *
-* The view will be added to the top of the current key window.
+* 这个视图会加入当前的 key window。
 */
 - (void)show;
 
