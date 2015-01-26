@@ -218,10 +218,6 @@ static BOOL WDUseLegacyLayout(void) {
         } else if (orientation == UIInterfaceOrientationLandscapeRight) {
             return CGAffineTransformMakeRotation(M_PI/2.0f);
         }
-//    } else {
-//        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-//            return CGAffineTransformMakeRotation(-M_PI);
-//        }
     }
     
     return CGAffineTransformIdentity;
@@ -285,16 +281,6 @@ static BOOL WDUseLegacyLayout(void) {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:@"UIKeyboardWillShowNotification" object:nil];
-    // UIApplication notifications
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(saveAccount)
-//                                                 name:@"UIApplicationDidEnterBackgroundNotification" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(saveAccount)
-//                                                 name:@"UIApplicationWillTerminateNotification" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(saveAccount)
-//                                                 name:@"UIApplicationWillResignActiveNotification" object:nil];
 }
 
 - (void)removeObservers {
@@ -304,10 +290,6 @@ static BOOL WDUseLegacyLayout(void) {
     // keyboard notifications
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillHideNotification" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillShowNotification" object:nil];
-    // UIApplication notifications
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationDidEnterBackgroundNotification" object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationWillTerminateNotification" object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIApplicationWillResignActiveNotification" object:nil];
 }
 
 - (void)verifyLoginWithUrl:(NSURL *)url {
@@ -452,6 +434,7 @@ static BOOL WDUseLegacyLayout(void) {
     [self addSubview:self.spinner];
 }
 
+// pop-up 显示 dialog
 - (void)showView {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     if (window.windowLevel != UIWindowLevelNormal) {
@@ -462,13 +445,13 @@ static BOOL WDUseLegacyLayout(void) {
     }
     [window addSubview:self];
     
-//    self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:kTransitionDuration/1.5];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
-//    self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
-//    [UIView commitAnimations];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration/1.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(bounce1AnimationStopped)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 1.1, 1.1);
+    [UIView commitAnimations];
     
     if (self.isViewInvisible) {
         [self.webView removeFromSuperview];
@@ -476,6 +459,22 @@ static BOOL WDUseLegacyLayout(void) {
     self.everShown = YES;
     [self dialogWillAppear];
     [self addObservers];
+}
+
+- (void)bounce1AnimationStopped {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration/2];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
+    self.transform = CGAffineTransformScale([self transformForOrientation], 0.9, 0.9);
+    [UIView commitAnimations];
+}
+
+- (void)bounce2AnimationStopped {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:kTransitionDuration/2];
+    self.transform = [self transformForOrientation];
+    [UIView commitAnimations];
 }
 
 // Show a spinner during the loading time for the dialog. This is designed to show
