@@ -10,8 +10,7 @@
 #import <WonderSDK/WonderSDK.h>
 
 @interface ViewController ()
-@property (strong, nonatomic) WDSession *session;
-
+@property (strong, nonatomic) WDSession *wdSession;
 @end
 
 @implementation ViewController
@@ -27,9 +26,10 @@
 }
 
 - (IBAction)Login:(id)sender {
-    self.session = [[WDSession alloc] init];
-    [self.session openWithCompletionHandler:^(WDSession *m, NSError *error) {
-        NSLog(@"token:%@  error:%@", m.token, error.userInfo[@"errorMessage"]);
+    self.wdSession = [[WDSession alloc] init];
+    [self.wdSession openWithCompletionHandler:^(WDSession *session, NSError *error) {
+        NSLog(@"token:%@ username: %@ error:%@", session.token, session.username, error.userInfo[@"errorMessage"]);
     }];
 }
+
 @end

@@ -14,8 +14,6 @@
 
 #pragma mark - Lifecycle
 
-// If a programmer calls [[WDUserStore alloc] init], let him
-// know the error of his ways
 - (instancetype)init {
     @throw [NSException exceptionWithName:@"Singleton"
                                    reason:@"Use +[WDUserStore sharedStore]"

@@ -16,22 +16,12 @@
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//static CGFloat kBorderGray[4] = {0.3, 0.3, 0.3, 0.8};
-//static CGFloat kBorderBlack[4] = {0.3, 0.3, 0.3, 1};
-
 static CGFloat kTransitionDuration = 0.3;
 
-static CGFloat kPadding = 0;
-//static CGFloat kBorderWidth = 10;
-
-// This function determines if we want to use the legacy view layout in effect for iPhone OS 2.0
-// through iOS 7, where we, the developer, have to worry about device orientation when working with
-// views outside of the window's root view controller and apply the correct rotation transform and/
-// or swap a view's width and height values. If the application was linked with UIKit on iOS 7 or
-// earlier or the application is running on iOS 7 or earlier then we need to use the legacy layout
-// code. Otherwise if the application was linked with UIKit on iOS 8 or later and the application
-// is running on iOS 8 or later, UIKit handles all the rotation complexity and the origin is always
-// in the top-left and no rotation transform is necessary.
+// 此函数决定是否我们想要为了 iPhone OS 2.0 到 iOS 7 系统而使用传统的视图布局方式，当处理窗口根视图外部的视图时，
+// 开发者必须考虑设备方向并应用正确的旋转转换并交换视图宽高的值。如果应用运行在 iOS 7 上或之前的系统，那么我们需要
+// 使用传统布局代码。否则如果应用运行在 iOS 8 或之后的系统，UIKit 会处理所有复杂的旋转并且原点总是处于左上并且不需要
+// 设置旋转变换。
 static BOOL WDUseLegacyLayout(void) {
     return (!IS_OS_8_OR_LATER);
 }
@@ -43,9 +33,8 @@ static BOOL WDUseLegacyLayout(void) {
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (assign, nonatomic) BOOL everShown;
 @property (assign, nonatomic) BOOL isViewInvisible;
-//@property (assign, nonatomic) BOOL showingKeyboard;
 @property (assign, nonatomic) UIInterfaceOrientation orientation;
-// 登录中
+// 登录过程
 @property (strong, nonatomic) WDLoadingView *loadingView;
 @property (strong, nonatomic) UIButton *switchButton;
 @property (assign, nonatomic) BOOL isClickedSwitchButton;
@@ -94,16 +83,13 @@ static BOOL WDUseLegacyLayout(void) {
 
 #pragma mark - Public
 
-- (instancetype)initWithURL:(NSString *)serverURL
-                     params:(NSMutableDictionary *)params
-            isViewInvisible:(BOOL)isViewInvisible
-                   delegate:(id<WDDialogDelegate>)delegate {
+- (instancetype)initWithURL:(NSString *)serverURL params:(NSMutableDictionary *)params isViewInvisible:(BOOL)isViewInvisible delegate:(id<WDDialogDelegate>)delegate {
     self = [self init];
     _serverURL = serverURL;
     _params = params;
     _delegate = delegate;
     _isViewInvisible = isViewInvisible;
-    
+
     return self;
 }
 
@@ -257,6 +243,11 @@ static BOOL WDUseLegacyLayout(void) {
     self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:self.webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([data isKindOfClass:[NSString class]]) {
             [[WDUserStore sharedStore] removeUser:data];
+            [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
+                if (success) {
+                    NSLog(@"delete succeed");
+                }
+            }];
         } else if ([data isKindOfClass:[NSNumber class]]) {
             self.textFieldHeight = [(NSNumber *)data intValue];
         }
@@ -266,7 +257,9 @@ static BOOL WDUseLegacyLayout(void) {
 - (void)saveAccount {
     [[WDUserStore sharedStore] addUser:[WDUserStore sharedStore].currentUser];
     [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
-        NSLog(@"save succeed");
+        if (success) {
+            NSLog(@"save succeed");
+        }
     }];
 }
 
@@ -277,6 +270,7 @@ static BOOL WDUseLegacyLayout(void) {
     
     [self loadURL:@"http://192.168.1.251:8008/jsp/login.jsp" get:nil];
     [self addSubview:self.webView];
+    [self.switchButton removeFromSuperview];
 }
 
 - (void)addObservers {
@@ -506,7 +500,9 @@ static BOOL WDUseLegacyLayout(void) {
     self.loadingView.center = frameCenter;
     [self addSubview:self.loadingView];
     
-    if (!self.switchButton) {
+    if (self.switchButton && !self.switchButton.superview) {
+        [self addSubview:self.switchButton];
+    } else {
         [self setupSwitchButton];
     }
 }
@@ -520,15 +516,14 @@ static BOOL WDUseLegacyLayout(void) {
 
     // 登录、注册返回的结果
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
-        __weak WDDialog *weakSelf = self;
         NSString *command = [self getValueForParameter:@"command=" fromUrlString:url.absoluteString];
         // 延时 2 秒
         double delayInSeconds = 2.0;
         dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(time, dispatch_get_main_queue(), ^{
-            if ([command isEqualToString:@"login_return_success"] && !weakSelf.isClickedSwitchButton) {
+            if ([command isEqualToString:@"login_return_success"] && !self.isClickedSwitchButton) {
                 //TODO: 登录成功
-                [weakSelf dialogDidSucceed:url];
+                [self dialogDidSucceed:url];
             } else if ([command isEqualToString:@"login_return_fail"]){
                 //TODO: 登录失败
                 NSString *errorCode = [self getValueForParameter:@"code=" fromUrlString:url.absoluteString];
@@ -538,13 +533,13 @@ static BOOL WDUseLegacyLayout(void) {
                     NSError *error = [NSError errorWithDomain:@"WonderSdkErrorDomain"
                                                          code:[errorCode intValue]
                                                      userInfo:errorData];
-                    [weakSelf dismissWithError:error animated:YES];
+                    [self dismissWithError:error animated:YES];
                 } else {
-                    [weakSelf dialogDidCancel:url];
+                    [self dialogDidCancel:url];
                 }
             }
-            weakSelf.isClickedSwitchButton = NO;
-            [weakSelf.loadingView stopAnimating];
+            self.isClickedSwitchButton = NO;
+            [self.loadingView stopAnimating];
         });
     }
     return YES;
@@ -589,9 +584,8 @@ static BOOL WDUseLegacyLayout(void) {
         CGPoint webViewCenter = self.webView.center;
         webViewCenter.y +=  offset - 40;
         
-        __weak WDDialog *weakSelf = self;
         [UIView animateWithDuration:.25 animations:^{
-            weakSelf.webView.center = webViewCenter;
+            self.webView.center = webViewCenter;
         }];
     }
 }
@@ -611,9 +605,8 @@ static BOOL WDUseLegacyLayout(void) {
     CGPoint webViewCenter = self.webView.center;
     webViewCenter.y = [self currentScreenSize].height / 2.0f;
     
-    __weak WDDialog *weakSelf = self;
     [UIView animateWithDuration:.25 animations:^{
-        weakSelf.webView.center = webViewCenter;
+        self.webView.center = webViewCenter;
     }];
     
 }

@@ -20,6 +20,9 @@ static NSString *kUserLogin = @"userLogin";
 @interface WDSession () <WDDialogDelegate>
 @property (strong, nonatomic) WDDialog *wdDialog;
 @property (copy, nonatomic) WDSessionCompleteHandler loginHandler;
+
+@property (nonatomic, copy, readwrite) NSString *token;
+@property (nonatomic, copy, readwrite) NSString *username;
 @end
 
 @implementation WDSession
@@ -31,12 +34,14 @@ static NSString *kUserLogin = @"userLogin";
     NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
 }
 
+- (NSString *)username {
+    return [WDUserStore sharedStore].currentUser.userName;
+}
+
 #pragma mark - Public
 
 - (void)openWithCompletionHandler:(WDSessionCompleteHandler)handler {
     if (handler) {
-        // Note blocks are not value comparable, so this can intentionally result in false positives; nonetheless, let's
-        // log it for easier identification/reporting in case developers do run into this edge case unexpectedly.
         NSString *dialogURL;
         WDUser *lastUser = [[WDUserStore sharedStore] lastUser];
         if (lastUser) {
@@ -44,6 +49,7 @@ static NSString *kUserLogin = @"userLogin";
             NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
             params[@"password"] = lastUser.passWord;
             params[@"username"] = lastUser.userName;
+            
             self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:YES delegate:self];
         } else {
             dialogURL = [baseURL stringByAppendingFormat:@"%@.jsp", kLogin];
@@ -64,7 +70,7 @@ static NSString *kUserLogin = @"userLogin";
     if ((token == (NSString *)[NSNull null]) || (token.length == 0)) {
         [self.wdDialog dialogDidCancel:url];
     } else {
-        __weak WDSession *weakSelf = self;
+        WDSession * __weak weakSelf = self;
         self.token = token;
         self.loginHandler(weakSelf, nil);
     }
@@ -75,3 +81,7 @@ static NSString *kUserLogin = @"userLogin";
 }
 
 @end
+
+#if !__has_feature(objc_arc)
+#error WonderSDK is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
+#endif

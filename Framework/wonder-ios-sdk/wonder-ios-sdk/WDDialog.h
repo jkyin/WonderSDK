@@ -42,48 +42,46 @@
 - (void)show;
 
 /**
-* Displays the first page of the dialog.
-*
-* Do not ever call this directly.  It is intended to be overriden by subclasses.
+* 显示对话框的第一个页面。
 */
 - (void)load;
 
 /**
-* Displays a URL in the dialog.
+* 加载带参数的 URL。
 */
 - (void)loadURL:(NSString *)url get:(NSDictionary *)getParams;
 
 /**
-* Hides the view and notifies delegates of success or cancellation.
+* 隐藏视图并通知成功或取消委托。
 */
 - (void)dismissWithSuccess:(BOOL)success animated:(BOOL)animated;
 
 /**
-* Hides the view and notifies delegates of an error.
+* 隐藏视图并通知错误委托。
 */
 - (void)dismissWithError:(NSError *)error animated:(BOOL)animated;
 
 /**
-* Subclasses may override to perform actions just prior to showing the dialog.
+* 视图将要出现。
 */
 - (void)dialogWillAppear;
 
 /**
-* Subclasses may override to perform actions just after the dialog is hidden.
+* 视图将要隐藏。
 */
 - (void)dialogWillDisappear;
 
 /**
-* Subclasses should override to process data returned from the server in a 'fbconnect' url.
+* 处理从 URL 返回的数据。
 *
-* Implementations must call dismissWithSuccess:YES at some point to hide the dialog.
+* 实现必须调用 dismissWithSuccess:YES 方法来在某一时刻隐藏视图。
 */
 - (void)dialogDidSucceed:(NSURL *)url;
 
 /**
-* Subclasses should override to process data returned from the server in a 'fbconnect' url.
+* 处理从 URL 返回的数据。
 *
-* Implementations must call dismissWithSuccess:YES at some point to hide the dialog.
+* 实现必须调用 dismissWithSuccess:YES 方法来在某一时刻隐藏视图。
 */
 - (void)dialogDidCancel:(NSURL *)url;
 
@@ -91,35 +89,32 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
- *Your application should implement this delegate
- */
 @protocol WDDialogDelegate <NSObject>
 
 @optional
 
 /**
- * Called when the dialog succeeds and is about to be dismissed.
+ * 当对话已成功并且即将小时的时候被调用。
  */
 - (void)dialogDidComplete:(WDDialog *)dialog;
 
 /**
- * Called when the dialog succeeds with a returning url.
+ * 当对话已成功时被调用，伴随一个 URL。
  */
 - (void)dialogCompleteWithUrl:(NSURL *)url;
 
 /**
- * Called when the dialog get canceled by the user.
+ * 当对话被用户取消的时候被调用，伴随一个 URL。
  */
 - (void)dialogDidNotCompleteWithUrl:(NSURL *)url;
 
 /**
- * Called when the dialog is cancelled and is about to be dismissed.
+ * 当对话已取消并即将消失时被调用。
  */
 - (void)dialogDidNotComplete:(WDDialog *)dialog;
 
 /**
- * Called when dialog failed to load due to an error.
+ * 当对话由于一个错误而加载失败时被调用。
  */
 - (void)dialog:(WDDialog *)dialog didFailWithError:(NSError *)error;
 

@@ -48,8 +48,8 @@
 - (void)startAnimating {
     [self adjustBounds];
     self.isAnimating = YES;
-    __weak WDDotsProgressIndicator *weakSelf = self;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:weakSelf.interval target:weakSelf selector:@selector(appendDot:) userInfo:nil repeats:YES];
+    WDDotsProgressIndicator * __weak weakSelf = self;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:self.interval target:weakSelf selector:@selector(appendDot:) userInfo:nil repeats:YES];
 }
 
 - (void)stopAnimating {
