@@ -1,0 +1,824 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		048A89961A66930600B7059D /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 048A89971A66930600B7059D /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				048A899A1A66932500B7059D /* MultiPlatform Build */,
+			);
+			dependencies = (
+				048A899C1A6694A100B7059D /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		048A893C1A668F6600B7059D /* libWonderSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 048A89301A668F6500B7059D /* libWonderSDK.a */; };
+		048A897B1A668FB200B7059D /* WDUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A894C1A668FB200B7059D /* WDUtility.m */; };
+		048A897C1A668FB200B7059D /* UIView+WDGeometryLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89601A668FB200B7059D /* UIView+WDGeometryLayout.m */; };
+		048A897D1A668FB200B7059D /* WDDotsProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89621A668FB200B7059D /* WDDotsProgressIndicator.m */; };
+		048A897E1A668FB200B7059D /* WDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89641A668FB200B7059D /* WDLoadingView.m */; };
+		048A897F1A668FB200B7059D /* WDURLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89681A668FB200B7059D /* WDURLParser.m */; };
+		048A89801A668FB200B7059D /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A896C1A668FB200B7059D /* WebViewJavascriptBridge.m */; };
+		048A89811A668FB200B7059D /* WDDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A896F1A668FB200B7059D /* WDDialog.m */; };
+		048A89821A668FB200B7059D /* WDLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89711A668FB200B7059D /* WDLoginDialog.m */; };
+		048A89831A668FB200B7059D /* WDSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89731A668FB200B7059D /* WDSession.m */; };
+		048A89841A668FB200B7059D /* WDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89751A668FB200B7059D /* WDUser.m */; };
+		048A89851A668FB200B7059D /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89771A668FB200B7059D /* WDUserStore.m */; };
+		048A89861A668FB200B7059D /* Wonder.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89791A668FB200B7059D /* Wonder.m */; };
+		048A89881A6690A600B7059D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048A89871A6690A600B7059D /* UIKit.framework */; };
+		048A898A1A6690B800B7059D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048A89891A6690B800B7059D /* Foundation.framework */; };
+		048A898D1A66921600B7059D /* WDConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A896D1A668FB200B7059D /* WDConstants.h */; };
+		048A898E1A66921B00B7059D /* WDDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A896E1A668FB200B7059D /* WDDialog.h */; };
+		048A898F1A66922300B7059D /* WDLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89701A668FB200B7059D /* WDLoginDialog.h */; };
+		048A89901A66922600B7059D /* WDSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89721A668FB200B7059D /* WDSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		048A89911A66922800B7059D /* WDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89741A668FB200B7059D /* WDUser.h */; };
+		048A89921A66922B00B7059D /* WDUserStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89761A668FB200B7059D /* WDUserStore.h */; };
+		048A89931A66922F00B7059D /* Wonder.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89781A668FB200B7059D /* Wonder.h */; };
+		048A89941A66923600B7059D /* WonderSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A897A1A668FB200B7059D /* WonderSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		048A89B41A67639400B7059D /* WDLoadingViewBackground@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89521A668FB200B7059D /* WDLoadingViewBackground@2x~ipad.png */; };
+		048A89B51A67639400B7059D /* WDLoadingViewBackground@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89531A668FB200B7059D /* WDLoadingViewBackground@2x~iphone.png */; };
+		048A89B61A67639400B7059D /* WDLoadingViewBackground@3x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89541A668FB200B7059D /* WDLoadingViewBackground@3x~iphone.png */; };
+		048A89B71A67639400B7059D /* WDLoadingViewBackground~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89551A668FB200B7059D /* WDLoadingViewBackground~ipad.png */; };
+		048A89B81A67639400B7059D /* WDLoadingViewBackground~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89561A668FB200B7059D /* WDLoadingViewBackground~iphone.png */; };
+		048A89B91A67639E00B7059D /* WDLoginBackground_1024w@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89581A668FB200B7059D /* WDLoginBackground_1024w@2x~ipad.png */; };
+		048A89BA1A67639E00B7059D /* WDLoginBackground_1024w~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89591A668FB200B7059D /* WDLoginBackground_1024w~ipad.png */; };
+		048A89BB1A67639E00B7059D /* WDLoginBackground_480w@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A895A1A668FB200B7059D /* WDLoginBackground_480w@2x~iphone.png */; };
+		048A89BC1A67639E00B7059D /* WDLoginBackground_480w~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A895B1A668FB200B7059D /* WDLoginBackground_480w~iphone.png */; };
+		048A89BD1A67639E00B7059D /* WDLoginBackground_568w@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A895C1A668FB200B7059D /* WDLoginBackground_568w@2x~iphone.png */; };
+		048A89BE1A67639E00B7059D /* WDLoginBackground_568w~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A895D1A668FB200B7059D /* WDLoginBackground_568w~iphone.png */; };
+		048A89BF1A6763B300B7059D /* WebViewJavascriptBridge.js.txt in Resources */ = {isa = PBXBuildFile; fileRef = 048A896B1A668FB200B7059D /* WebViewJavascriptBridge.js.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		048A893D1A668F6600B7059D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 048A89281A668F6500B7059D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 048A892F1A668F6500B7059D;
+			remoteInfo = "wonder-ios-sdk";
+		};
+		048A899B1A6694A100B7059D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 048A89281A668F6500B7059D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 048A892F1A668F6500B7059D;
+			remoteInfo = "wonder-ios-sdk";
+		};
+		048A89B01A6761D100B7059D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 048A89281A668F6500B7059D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 048A89A61A675B2900B7059D;
+			remoteInfo = WDDialogResources;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		048A892E1A668F6500B7059D /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		048A89301A668F6500B7059D /* libWonderSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libWonderSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		048A893B1A668F6600B7059D /* WonderSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		048A89411A668F6600B7059D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		048A894B1A668FB200B7059D /* WDUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUtility.h; sourceTree = "<group>"; };
+		048A894C1A668FB200B7059D /* WDUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUtility.m; sourceTree = "<group>"; };
+		048A894F1A668FB200B7059D /* WDAccount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WDAccount.png; sourceTree = "<group>"; };
+		048A89501A668FB200B7059D /* WDAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDAccount@2x.png"; sourceTree = "<group>"; };
+		048A89521A668FB200B7059D /* WDLoadingViewBackground@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@2x~ipad.png"; sourceTree = "<group>"; };
+		048A89531A668FB200B7059D /* WDLoadingViewBackground@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@2x~iphone.png"; sourceTree = "<group>"; };
+		048A89541A668FB200B7059D /* WDLoadingViewBackground@3x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground@3x~iphone.png"; sourceTree = "<group>"; };
+		048A89551A668FB200B7059D /* WDLoadingViewBackground~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground~ipad.png"; sourceTree = "<group>"; };
+		048A89561A668FB200B7059D /* WDLoadingViewBackground~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoadingViewBackground~iphone.png"; sourceTree = "<group>"; };
+		048A89581A668FB200B7059D /* WDLoginBackground_1024w@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_1024w@2x~ipad.png"; sourceTree = "<group>"; };
+		048A89591A668FB200B7059D /* WDLoginBackground_1024w~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_1024w~ipad.png"; sourceTree = "<group>"; };
+		048A895A1A668FB200B7059D /* WDLoginBackground_480w@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_480w@2x~iphone.png"; sourceTree = "<group>"; };
+		048A895B1A668FB200B7059D /* WDLoginBackground_480w~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_480w~iphone.png"; sourceTree = "<group>"; };
+		048A895C1A668FB200B7059D /* WDLoginBackground_568w@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_568w@2x~iphone.png"; sourceTree = "<group>"; };
+		048A895D1A668FB200B7059D /* WDLoginBackground_568w~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WDLoginBackground_568w~iphone.png"; sourceTree = "<group>"; };
+		048A895F1A668FB200B7059D /* UIView+WDGeometryLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WDGeometryLayout.h"; sourceTree = "<group>"; };
+		048A89601A668FB200B7059D /* UIView+WDGeometryLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WDGeometryLayout.m"; sourceTree = "<group>"; };
+		048A89611A668FB200B7059D /* WDDotsProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDotsProgressIndicator.h; sourceTree = "<group>"; };
+		048A89621A668FB200B7059D /* WDDotsProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDotsProgressIndicator.m; sourceTree = "<group>"; };
+		048A89631A668FB200B7059D /* WDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoadingView.h; sourceTree = "<group>"; };
+		048A89641A668FB200B7059D /* WDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoadingView.m; sourceTree = "<group>"; };
+		048A89671A668FB200B7059D /* WDURLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDURLParser.h; sourceTree = "<group>"; };
+		048A89681A668FB200B7059D /* WDURLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDURLParser.m; sourceTree = "<group>"; };
+		048A896A1A668FB200B7059D /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		048A896B1A668FB200B7059D /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
+		048A896C1A668FB200B7059D /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		048A896D1A668FB200B7059D /* WDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDConstants.h; sourceTree = "<group>"; };
+		048A896E1A668FB200B7059D /* WDDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDialog.h; sourceTree = "<group>"; };
+		048A896F1A668FB200B7059D /* WDDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDialog.m; sourceTree = "<group>"; };
+		048A89701A668FB200B7059D /* WDLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoginDialog.h; sourceTree = "<group>"; };
+		048A89711A668FB200B7059D /* WDLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoginDialog.m; sourceTree = "<group>"; };
+		048A89721A668FB200B7059D /* WDSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSession.h; sourceTree = "<group>"; };
+		048A89731A668FB200B7059D /* WDSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSession.m; sourceTree = "<group>"; };
+		048A89741A668FB200B7059D /* WDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUser.h; sourceTree = "<group>"; };
+		048A89751A668FB200B7059D /* WDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUser.m; sourceTree = "<group>"; };
+		048A89761A668FB200B7059D /* WDUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUserStore.h; sourceTree = "<group>"; };
+		048A89771A668FB200B7059D /* WDUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUserStore.m; sourceTree = "<group>"; };
+		048A89781A668FB200B7059D /* Wonder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonder.h; sourceTree = "<group>"; };
+		048A89791A668FB200B7059D /* Wonder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wonder.m; sourceTree = "<group>"; };
+		048A897A1A668FB200B7059D /* WonderSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderSDK.h; sourceTree = "<group>"; };
+		048A89871A6690A600B7059D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		048A89891A6690B800B7059D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		048A89A71A675B2900B7059D /* WDDialogResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WDDialogResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		048A89AA1A675B2900B7059D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		048A892D1A668F6500B7059D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				048A898A1A6690B800B7059D /* Foundation.framework in Frameworks */,
+				048A89881A6690A600B7059D /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		048A89381A668F6600B7059D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				048A893C1A668F6600B7059D /* libWonderSDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		048A89A41A675B2900B7059D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		048A89271A668F6500B7059D = {
+			isa = PBXGroup;
+			children = (
+				048A89321A668F6500B7059D /* wonder-ios-sdk */,
+				048A898B1A6690DB00B7059D /* Framework */,
+				048A893F1A668F6600B7059D /* WonderSDKTests */,
+				048A89A81A675B2900B7059D /* WDDialogResources */,
+				048A89311A668F6500B7059D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		048A89311A668F6500B7059D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				048A89301A668F6500B7059D /* libWonderSDK.a */,
+				048A893B1A668F6600B7059D /* WonderSDKTests.xctest */,
+				048A89A71A675B2900B7059D /* WDDialogResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		048A89321A668F6500B7059D /* wonder-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				048A894A1A668FB200B7059D /* Core */,
+				048A894D1A668FB200B7059D /* image */,
+				048A895E1A668FB200B7059D /* UI */,
+				048A89651A668FB200B7059D /* Vendors */,
+				048A896D1A668FB200B7059D /* WDConstants.h */,
+				048A896E1A668FB200B7059D /* WDDialog.h */,
+				048A896F1A668FB200B7059D /* WDDialog.m */,
+				048A89701A668FB200B7059D /* WDLoginDialog.h */,
+				048A89711A668FB200B7059D /* WDLoginDialog.m */,
+				048A89721A668FB200B7059D /* WDSession.h */,
+				048A89731A668FB200B7059D /* WDSession.m */,
+				048A89741A668FB200B7059D /* WDUser.h */,
+				048A89751A668FB200B7059D /* WDUser.m */,
+				048A89761A668FB200B7059D /* WDUserStore.h */,
+				048A89771A668FB200B7059D /* WDUserStore.m */,
+				048A89781A668FB200B7059D /* Wonder.h */,
+				048A89791A668FB200B7059D /* Wonder.m */,
+				048A897A1A668FB200B7059D /* WonderSDK.h */,
+			);
+			path = "wonder-ios-sdk";
+			sourceTree = "<group>";
+		};
+		048A893F1A668F6600B7059D /* WonderSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				048A89401A668F6600B7059D /* Supporting Files */,
+			);
+			name = WonderSDKTests;
+			path = "wonder-ios-sdkTests";
+			sourceTree = "<group>";
+		};
+		048A89401A668F6600B7059D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				048A89411A668F6600B7059D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		048A894A1A668FB200B7059D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				048A894B1A668FB200B7059D /* WDUtility.h */,
+				048A894C1A668FB200B7059D /* WDUtility.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		048A894D1A668FB200B7059D /* image */ = {
+			isa = PBXGroup;
+			children = (
+				048A894E1A668FB200B7059D /* WDAccount */,
+				048A89511A668FB200B7059D /* WDLoadingView */,
+				048A89571A668FB200B7059D /* WDLoginBackground */,
+			);
+			name = image;
+			path = imageResources;
+			sourceTree = "<group>";
+		};
+		048A894E1A668FB200B7059D /* WDAccount */ = {
+			isa = PBXGroup;
+			children = (
+				048A894F1A668FB200B7059D /* WDAccount.png */,
+				048A89501A668FB200B7059D /* WDAccount@2x.png */,
+			);
+			path = WDAccount;
+			sourceTree = "<group>";
+		};
+		048A89511A668FB200B7059D /* WDLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				048A89521A668FB200B7059D /* WDLoadingViewBackground@2x~ipad.png */,
+				048A89531A668FB200B7059D /* WDLoadingViewBackground@2x~iphone.png */,
+				048A89541A668FB200B7059D /* WDLoadingViewBackground@3x~iphone.png */,
+				048A89551A668FB200B7059D /* WDLoadingViewBackground~ipad.png */,
+				048A89561A668FB200B7059D /* WDLoadingViewBackground~iphone.png */,
+			);
+			path = WDLoadingView;
+			sourceTree = "<group>";
+		};
+		048A89571A668FB200B7059D /* WDLoginBackground */ = {
+			isa = PBXGroup;
+			children = (
+				048A89581A668FB200B7059D /* WDLoginBackground_1024w@2x~ipad.png */,
+				048A89591A668FB200B7059D /* WDLoginBackground_1024w~ipad.png */,
+				048A895A1A668FB200B7059D /* WDLoginBackground_480w@2x~iphone.png */,
+				048A895B1A668FB200B7059D /* WDLoginBackground_480w~iphone.png */,
+				048A895C1A668FB200B7059D /* WDLoginBackground_568w@2x~iphone.png */,
+				048A895D1A668FB200B7059D /* WDLoginBackground_568w~iphone.png */,
+			);
+			path = WDLoginBackground;
+			sourceTree = "<group>";
+		};
+		048A895E1A668FB200B7059D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				048A895F1A668FB200B7059D /* UIView+WDGeometryLayout.h */,
+				048A89601A668FB200B7059D /* UIView+WDGeometryLayout.m */,
+				048A89611A668FB200B7059D /* WDDotsProgressIndicator.h */,
+				048A89621A668FB200B7059D /* WDDotsProgressIndicator.m */,
+				048A89631A668FB200B7059D /* WDLoadingView.h */,
+				048A89641A668FB200B7059D /* WDLoadingView.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		048A89651A668FB200B7059D /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				048A89661A668FB200B7059D /* WDURLParser */,
+				048A89691A668FB200B7059D /* WebViewJavascriptBridge */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		048A89661A668FB200B7059D /* WDURLParser */ = {
+			isa = PBXGroup;
+			children = (
+				048A89671A668FB200B7059D /* WDURLParser.h */,
+				048A89681A668FB200B7059D /* WDURLParser.m */,
+			);
+			path = WDURLParser;
+			sourceTree = "<group>";
+		};
+		048A89691A668FB200B7059D /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				048A896A1A668FB200B7059D /* WebViewJavascriptBridge.h */,
+				048A896B1A668FB200B7059D /* WebViewJavascriptBridge.js.txt */,
+				048A896C1A668FB200B7059D /* WebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
+		048A898B1A6690DB00B7059D /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				048A89891A6690B800B7059D /* Foundation.framework */,
+				048A89871A6690A600B7059D /* UIKit.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		048A89A81A675B2900B7059D /* WDDialogResources */ = {
+			isa = PBXGroup;
+			children = (
+				048A89A91A675B2900B7059D /* Supporting Files */,
+			);
+			path = WDDialogResources;
+			sourceTree = "<group>";
+		};
+		048A89A91A675B2900B7059D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				048A89AA1A675B2900B7059D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		048A898C1A66920900B7059D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				048A89921A66922B00B7059D /* WDUserStore.h in Headers */,
+				048A89931A66922F00B7059D /* Wonder.h in Headers */,
+				048A89941A66923600B7059D /* WonderSDK.h in Headers */,
+				048A89901A66922600B7059D /* WDSession.h in Headers */,
+				048A898D1A66921600B7059D /* WDConstants.h in Headers */,
+				048A898F1A66922300B7059D /* WDLoginDialog.h in Headers */,
+				048A898E1A66921B00B7059D /* WDDialog.h in Headers */,
+				048A89911A66922800B7059D /* WDUser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		048A892F1A668F6500B7059D /* WonderSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 048A89441A668F6600B7059D /* Build configuration list for PBXNativeTarget "WonderSDK" */;
+			buildPhases = (
+				048A892C1A668F6500B7059D /* Sources */,
+				048A892D1A668F6500B7059D /* Frameworks */,
+				048A892E1A668F6500B7059D /* Copy Files */,
+				048A898C1A66920900B7059D /* Headers */,
+				048A89951A66928100B7059D /* Build Framework */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				048A89B11A6761D100B7059D /* PBXTargetDependency */,
+			);
+			name = WonderSDK;
+			productName = "wonder-ios-sdk";
+			productReference = 048A89301A668F6500B7059D /* libWonderSDK.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		048A893A1A668F6600B7059D /* WonderSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 048A89471A668F6600B7059D /* Build configuration list for PBXNativeTarget "WonderSDKTests" */;
+			buildPhases = (
+				048A89371A668F6600B7059D /* Sources */,
+				048A89381A668F6600B7059D /* Frameworks */,
+				048A89391A668F6600B7059D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				048A893E1A668F6600B7059D /* PBXTargetDependency */,
+			);
+			name = WonderSDKTests;
+			productName = "wonder-ios-sdkTests";
+			productReference = 048A893B1A668F6600B7059D /* WonderSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		048A89A61A675B2900B7059D /* WDDialogResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 048A89AD1A675B2900B7059D /* Build configuration list for PBXNativeTarget "WDDialogResources" */;
+			buildPhases = (
+				048A89A31A675B2900B7059D /* Sources */,
+				048A89A41A675B2900B7059D /* Frameworks */,
+				048A89A51A675B2900B7059D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WDDialogResources;
+			productName = WDDialogResources;
+			productReference = 048A89A71A675B2900B7059D /* WDDialogResources.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		048A89281A668F6500B7059D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jack Yin";
+				TargetAttributes = {
+					048A892F1A668F6500B7059D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					048A893A1A668F6600B7059D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					048A89961A66930600B7059D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					048A89A61A675B2900B7059D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 048A892B1A668F6500B7059D /* Build configuration list for PBXProject "WonderSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 048A89271A668F6500B7059D;
+			productRefGroup = 048A89311A668F6500B7059D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				048A892F1A668F6500B7059D /* WonderSDK */,
+				048A893A1A668F6600B7059D /* WonderSDKTests */,
+				048A89961A66930600B7059D /* Framework */,
+				048A89A61A675B2900B7059D /* WDDialogResources */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		048A89391A668F6600B7059D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		048A89A51A675B2900B7059D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				048A89B71A67639400B7059D /* WDLoadingViewBackground~ipad.png in Resources */,
+				048A89B61A67639400B7059D /* WDLoadingViewBackground@3x~iphone.png in Resources */,
+				048A89BB1A67639E00B7059D /* WDLoginBackground_480w@2x~iphone.png in Resources */,
+				048A89BF1A6763B300B7059D /* WebViewJavascriptBridge.js.txt in Resources */,
+				048A89BC1A67639E00B7059D /* WDLoginBackground_480w~iphone.png in Resources */,
+				048A89B81A67639400B7059D /* WDLoadingViewBackground~iphone.png in Resources */,
+				048A89BD1A67639E00B7059D /* WDLoginBackground_568w@2x~iphone.png in Resources */,
+				048A89BA1A67639E00B7059D /* WDLoginBackground_1024w~ipad.png in Resources */,
+				048A89B91A67639E00B7059D /* WDLoginBackground_1024w@2x~ipad.png in Resources */,
+				048A89B41A67639400B7059D /* WDLoadingViewBackground@2x~ipad.png in Resources */,
+				048A89BE1A67639E00B7059D /* WDLoginBackground_568w~iphone.png in Resources */,
+				048A89B51A67639400B7059D /* WDLoadingViewBackground@2x~iphone.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		048A89951A66928100B7059D /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework\"\n\n# Create the path to the real Headers die\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Resources\"\n\n# Create the required symlinks\n/bin/ln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\n/bin/ln -sfh Versions/Current/Resources \"${FRAMEWORK_LOCN}/Resources\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \\\n\"${FRAMEWORK_LOCN}/${PRODUCT_NAME}\"\n\n# Copy the public headers into the framework\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n/bin/cp -a \"${TARGET_BUILD_DIR}/WDDialogResources.bundle\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Resources\"";
+		};
+		048A899A1A66932500B7059D /* MultiPlatform Build */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "MultiPlatform Build";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nWD_FRAMEWORK_NAME=${PROJECT_NAME}\nWD_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nWD_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${WD_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nWD_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nWD_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$WD_SDK_PLATFORM\" == \"iphoneos\" ]; then\nWD_OTHER_PLATFORM=iphonesimulator\nelse\nWD_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$WD_SDK_PLATFORM$ ]]; then\nWD_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${WD_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${WD_OTHER_PLATFORM}${WD_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$WD_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${WD_INPUT_STATIC_LIB}\" \\\n\"${WD_OTHER_BUILT_PRODUCTS_DIR}/${WD_INPUT_STATIC_LIB}\" \\\n\"${WD_FRAMEWORK_LOCATION}/Versions/A/${WD_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${WD_FRAMEWORK_LOCATION}/Versions/A/${WD_FRAMEWORK_NAME}\" \\\n\"${WD_OTHER_BUILT_PRODUCTS_DIR}/${WD_FRAMEWORK_NAME}.framework/Versions/A/${WD_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${WD_FRAMEWORK_LOCATION}\" \"${PROJECT_PATH}${WD_FRAMEWORK_NAME}.framework\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		048A892C1A668F6500B7059D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				048A89841A668FB200B7059D /* WDUser.m in Sources */,
+				048A89811A668FB200B7059D /* WDDialog.m in Sources */,
+				048A89821A668FB200B7059D /* WDLoginDialog.m in Sources */,
+				048A89851A668FB200B7059D /* WDUserStore.m in Sources */,
+				048A897C1A668FB200B7059D /* UIView+WDGeometryLayout.m in Sources */,
+				048A897B1A668FB200B7059D /* WDUtility.m in Sources */,
+				048A89831A668FB200B7059D /* WDSession.m in Sources */,
+				048A897F1A668FB200B7059D /* WDURLParser.m in Sources */,
+				048A897D1A668FB200B7059D /* WDDotsProgressIndicator.m in Sources */,
+				048A89801A668FB200B7059D /* WebViewJavascriptBridge.m in Sources */,
+				048A89861A668FB200B7059D /* Wonder.m in Sources */,
+				048A897E1A668FB200B7059D /* WDLoadingView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		048A89371A668F6600B7059D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		048A89A31A675B2900B7059D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		048A893E1A668F6600B7059D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 048A892F1A668F6500B7059D /* WonderSDK */;
+			targetProxy = 048A893D1A668F6600B7059D /* PBXContainerItemProxy */;
+		};
+		048A899C1A6694A100B7059D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 048A892F1A668F6500B7059D /* WonderSDK */;
+			targetProxy = 048A899B1A6694A100B7059D /* PBXContainerItemProxy */;
+		};
+		048A89B11A6761D100B7059D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 048A89A61A675B2900B7059D /* WDDialogResources */;
+			targetProxy = 048A89B01A6761D100B7059D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		048A89421A668F6600B7059D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 晓宇 尹 (Z2VCYT3NFK)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "d873ddf5-b6ca-4f9c-a7a3-11250c0b594c";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		048A89431A668F6600B7059D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 晓宇 尹 (Z2VCYT3NFK)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PROVISIONING_PROFILE = "d873ddf5-b6ca-4f9c-a7a3-11250c0b594c";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		048A89451A668F6600B7059D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = WonderSDK;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		048A89461A668F6600B7059D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = WonderSDK;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(PROJECT_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		048A89481A668F6600B7059D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "wonder-ios-sdkTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = WonderSDKTests;
+			};
+			name = Debug;
+		};
+		048A89491A668F6600B7059D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "wonder-ios-sdkTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = WonderSDKTests;
+			};
+			name = Release;
+		};
+		048A89981A66930600B7059D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		048A89991A66930600B7059D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		048A89AB1A675B2900B7059D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WDDialogResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		048A89AC1A675B2900B7059D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = WDDialogResources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		048A892B1A668F6500B7059D /* Build configuration list for PBXProject "WonderSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048A89421A668F6600B7059D /* Debug */,
+				048A89431A668F6600B7059D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		048A89441A668F6600B7059D /* Build configuration list for PBXNativeTarget "WonderSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048A89451A668F6600B7059D /* Debug */,
+				048A89461A668F6600B7059D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		048A89471A668F6600B7059D /* Build configuration list for PBXNativeTarget "WonderSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048A89481A668F6600B7059D /* Debug */,
+				048A89491A668F6600B7059D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		048A89971A66930600B7059D /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048A89981A66930600B7059D /* Debug */,
+				048A89991A66930600B7059D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		048A89AD1A675B2900B7059D /* Build configuration list for PBXNativeTarget "WDDialogResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				048A89AB1A675B2900B7059D /* Debug */,
+				048A89AC1A675B2900B7059D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 048A89281A668F6500B7059D /* Project object */;
+}
