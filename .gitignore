@@ -17,3 +17,5 @@ DerivedData
 *.xcuserstate
 Pods/
 Framework/WonderSDKSample/.idea
+Framework/wonder-ios-sdk/WonderSDK.framework
+Framework/wonder-ios-sdk/WonderSDK.framework.zip
