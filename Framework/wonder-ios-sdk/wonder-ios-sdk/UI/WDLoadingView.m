@@ -30,7 +30,7 @@ static const CGFloat WDLoadingViewLabelPadding = 58;
         UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"WDDialogResources.bundle/WDLoadingViewBackground"]];
         [self addSubview:backgroundImage];
         
-        /* _wonderLabel 设置 */
+        // _wonderLabel 设置
         UILabel *wonderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         wonderLabel.backgroundColor = [UIColor clearColor];
         wonderLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:25];
