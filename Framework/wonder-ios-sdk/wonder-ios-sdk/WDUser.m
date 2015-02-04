@@ -10,8 +10,8 @@
 
 @interface WDUser ()
 
-@property (strong, readwrite, nonatomic) NSString *userName;
-@property (strong, readwrite, nonatomic) NSString *passWord;
+@property (nonatomic, strong, readwrite) NSString *username;
+@property (nonatomic, strong, readwrite) NSString *password;
 
 @end
 
@@ -36,8 +36,8 @@
 - (instancetype)initWithUsername:(NSString *)username password:(NSString *)password {
     self = [super init];
     if (self) {
-        _userName = username;
-        _passWord = password;
+        _username = username;
+        _password = password;
     }
     
     return self;
@@ -46,19 +46,19 @@
 #pragma mark - Custom Accesser
 
 - (NSString *)userName {
-    if (!_userName) {
-        _userName = [[NSString alloc] init];
+    if (!_username) {
+        _username = [[NSString alloc] init];
     }
     
-    return _userName;
+    return _username;
 }
 
 - (NSString *)passWord {
-    if (!_passWord) {
-        _passWord = [[NSString alloc] init];
+    if (!_password) {
+        _password = [[NSString alloc] init];
     }
     
-    return _passWord;
+    return _password;
 }
 
 #pragma mark - NSCoding protocol
@@ -66,16 +66,16 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        [self setUserName:[aDecoder decodeObjectForKey:@"userName"]];
-        [self setPassWord:[aDecoder decodeObjectForKey:@"passWord"]];
+        [self setUsername:[aDecoder decodeObjectForKey:@"username"]];
+        [self setPassword:[aDecoder decodeObjectForKey:@"password"]];
     }
     
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_userName forKey:@"userName"];
-    [aCoder encodeObject:_passWord forKey:@"passWord"];
+    [aCoder encodeObject:self.username forKey:@"username"];
+    [aCoder encodeObject:self.password forKey:@"password"];
 }
 
 @end

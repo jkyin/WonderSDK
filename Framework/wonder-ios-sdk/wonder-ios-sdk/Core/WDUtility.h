@@ -10,6 +10,12 @@
 
 @interface WDUtility : NSObject
 
+#pragma mark - URLs Builder
+
++ (NSString *)dialogBaseURL;
++ (NSString *)dialogLoginURL;
++ (NSString *)dialogUserLoginURL;
+
 #pragma mark - URLs Params Encode / Decode
 
 + (NSDictionary *)queryParamsDictionaryFromWDURL:(NSURL *)url;

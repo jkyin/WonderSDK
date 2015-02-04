@@ -16,16 +16,16 @@
     NSMutableDictionary *_params;
 }
 
-@property (strong, nonatomic) NSString *serverURL;
-@property (strong, nonatomic) NSURL *loadingURL;
-@property (strong, nonatomic) NSMutableDictionary *params;
+@property (nonatomic, strong) NSString *serverURL;
+@property (nonatomic, strong) NSURL *loadingURL;
+@property (nonatomic, strong) NSMutableDictionary *params;
 
 /**
  * The delegate.
  */
 @property (nonatomic, weak) id<WDDialogDelegate> delegate;
 
-- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString;
+- (NSString *)valueForParameter:(NSString *)Param fromURLString:(NSString *)urlString;
 
 - (void)saveAccount;
 
@@ -49,7 +49,7 @@
 /**
 * 加载带参数的 URL。
 */
-- (void)loadURL:(NSString *)url get:(NSDictionary *)getParams;
+- (void)loadURL:(NSString *)url withParams:(NSDictionary *)params;
 
 /**
 * 隐藏视图并通知成功或取消委托。

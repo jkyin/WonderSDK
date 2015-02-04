@@ -34,7 +34,7 @@ static const CGFloat WDLoadingViewLabelPadding = 58;
         UILabel *wonderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         wonderLabel.backgroundColor = [UIColor clearColor];
         wonderLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:25];
-        wonderLabel.text = [NSString stringWithFormat:@"%@", [WDUserStore sharedStore].currentUser.userName];
+        wonderLabel.text = [NSString stringWithFormat:@"%@", [WDUserStore sharedStore].currentUser.username];
         wonderLabel.numberOfLines = 0;
         wonderLabel.textAlignment = NSTextAlignmentCenter;
         // 调整 UILabel 大小来适配文本内容
@@ -62,11 +62,14 @@ static const CGFloat WDLoadingViewLabelPadding = 58;
         self.dotsProgressIndicator.backgroundColor = [UIColor clearColor];
         self.dotsProgressIndicator.center = CGPointMake(CGRectGetMidX(self.frame), (CGRectGetHeight(self.frame) - WDLoadingViewLabelPadding));
         self.dotsProgressIndicator.font = [UIFont fontWithName:@"STHeitiTC-Light" size:20];
-        [self.dotsProgressIndicator startAnimating];
         [self addSubview:self.dotsProgressIndicator];
     }
     
     return self;
+}
+
+- (void)startAnimating {
+    [self.dotsProgressIndicator startAnimating];
 }
 
 - (void)stopAnimating {

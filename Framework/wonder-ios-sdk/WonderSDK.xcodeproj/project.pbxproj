@@ -30,20 +30,16 @@
 		048A897F1A668FB200B7059D /* WDURLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89681A668FB200B7059D /* WDURLParser.m */; };
 		048A89801A668FB200B7059D /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A896C1A668FB200B7059D /* WebViewJavascriptBridge.m */; };
 		048A89811A668FB200B7059D /* WDDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A896F1A668FB200B7059D /* WDDialog.m */; };
-		048A89821A668FB200B7059D /* WDLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89711A668FB200B7059D /* WDLoginDialog.m */; };
 		048A89831A668FB200B7059D /* WDSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89731A668FB200B7059D /* WDSession.m */; };
 		048A89841A668FB200B7059D /* WDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89751A668FB200B7059D /* WDUser.m */; };
 		048A89851A668FB200B7059D /* WDUserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89771A668FB200B7059D /* WDUserStore.m */; };
-		048A89861A668FB200B7059D /* Wonder.m in Sources */ = {isa = PBXBuildFile; fileRef = 048A89791A668FB200B7059D /* Wonder.m */; };
 		048A89881A6690A600B7059D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048A89871A6690A600B7059D /* UIKit.framework */; };
 		048A898A1A6690B800B7059D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 048A89891A6690B800B7059D /* Foundation.framework */; };
-		048A898D1A66921600B7059D /* WDConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A896D1A668FB200B7059D /* WDConstants.h */; };
+		048A898D1A66921600B7059D /* WDMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A896D1A668FB200B7059D /* WDMacros.h */; };
 		048A898E1A66921B00B7059D /* WDDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A896E1A668FB200B7059D /* WDDialog.h */; };
-		048A898F1A66922300B7059D /* WDLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89701A668FB200B7059D /* WDLoginDialog.h */; };
 		048A89901A66922600B7059D /* WDSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89721A668FB200B7059D /* WDSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		048A89911A66922800B7059D /* WDUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89741A668FB200B7059D /* WDUser.h */; };
 		048A89921A66922B00B7059D /* WDUserStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89761A668FB200B7059D /* WDUserStore.h */; };
-		048A89931A66922F00B7059D /* Wonder.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A89781A668FB200B7059D /* Wonder.h */; };
 		048A89941A66923600B7059D /* WonderSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 048A897A1A668FB200B7059D /* WonderSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		048A89B41A67639400B7059D /* WDLoadingViewBackground@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89521A668FB200B7059D /* WDLoadingViewBackground@2x~ipad.png */; };
 		048A89B51A67639400B7059D /* WDLoadingViewBackground@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 048A89531A668FB200B7059D /* WDLoadingViewBackground@2x~iphone.png */; };
@@ -128,19 +124,15 @@
 		048A896A1A668FB200B7059D /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
 		048A896B1A668FB200B7059D /* WebViewJavascriptBridge.js.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WebViewJavascriptBridge.js.txt; sourceTree = "<group>"; };
 		048A896C1A668FB200B7059D /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
-		048A896D1A668FB200B7059D /* WDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDConstants.h; sourceTree = "<group>"; };
+		048A896D1A668FB200B7059D /* WDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDMacros.h; sourceTree = "<group>"; };
 		048A896E1A668FB200B7059D /* WDDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDDialog.h; sourceTree = "<group>"; };
 		048A896F1A668FB200B7059D /* WDDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDDialog.m; sourceTree = "<group>"; };
-		048A89701A668FB200B7059D /* WDLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLoginDialog.h; sourceTree = "<group>"; };
-		048A89711A668FB200B7059D /* WDLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLoginDialog.m; sourceTree = "<group>"; };
 		048A89721A668FB200B7059D /* WDSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSession.h; sourceTree = "<group>"; };
 		048A89731A668FB200B7059D /* WDSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSession.m; sourceTree = "<group>"; };
 		048A89741A668FB200B7059D /* WDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUser.h; sourceTree = "<group>"; };
 		048A89751A668FB200B7059D /* WDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUser.m; sourceTree = "<group>"; };
 		048A89761A668FB200B7059D /* WDUserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUserStore.h; sourceTree = "<group>"; };
 		048A89771A668FB200B7059D /* WDUserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUserStore.m; sourceTree = "<group>"; };
-		048A89781A668FB200B7059D /* Wonder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wonder.h; sourceTree = "<group>"; };
-		048A89791A668FB200B7059D /* Wonder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wonder.m; sourceTree = "<group>"; };
 		048A897A1A668FB200B7059D /* WonderSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WonderSDK.h; sourceTree = "<group>"; };
 		048A89871A6690A600B7059D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		048A89891A6690B800B7059D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -204,19 +196,15 @@
 				048A894D1A668FB200B7059D /* image */,
 				048A895E1A668FB200B7059D /* UI */,
 				048A89651A668FB200B7059D /* Vendors */,
-				048A896D1A668FB200B7059D /* WDConstants.h */,
+				048A896D1A668FB200B7059D /* WDMacros.h */,
 				048A896E1A668FB200B7059D /* WDDialog.h */,
 				048A896F1A668FB200B7059D /* WDDialog.m */,
-				048A89701A668FB200B7059D /* WDLoginDialog.h */,
-				048A89711A668FB200B7059D /* WDLoginDialog.m */,
 				048A89721A668FB200B7059D /* WDSession.h */,
 				048A89731A668FB200B7059D /* WDSession.m */,
 				048A89741A668FB200B7059D /* WDUser.h */,
 				048A89751A668FB200B7059D /* WDUser.m */,
 				048A89761A668FB200B7059D /* WDUserStore.h */,
 				048A89771A668FB200B7059D /* WDUserStore.m */,
-				048A89781A668FB200B7059D /* Wonder.h */,
-				048A89791A668FB200B7059D /* Wonder.m */,
 				048A897A1A668FB200B7059D /* WonderSDK.h */,
 			);
 			path = "wonder-ios-sdk";
@@ -367,11 +355,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				048A89921A66922B00B7059D /* WDUserStore.h in Headers */,
-				048A89931A66922F00B7059D /* Wonder.h in Headers */,
 				048A89941A66923600B7059D /* WonderSDK.h in Headers */,
 				048A89901A66922600B7059D /* WDSession.h in Headers */,
-				048A898D1A66921600B7059D /* WDConstants.h in Headers */,
-				048A898F1A66922300B7059D /* WDLoginDialog.h in Headers */,
+				048A898D1A66921600B7059D /* WDMacros.h in Headers */,
 				048A898E1A66921B00B7059D /* WDDialog.h in Headers */,
 				048A89911A66922800B7059D /* WDUser.h in Headers */,
 			);
@@ -547,7 +533,6 @@
 			files = (
 				048A89841A668FB200B7059D /* WDUser.m in Sources */,
 				048A89811A668FB200B7059D /* WDDialog.m in Sources */,
-				048A89821A668FB200B7059D /* WDLoginDialog.m in Sources */,
 				048A89851A668FB200B7059D /* WDUserStore.m in Sources */,
 				048A897C1A668FB200B7059D /* UIView+WDGeometryLayout.m in Sources */,
 				048A897B1A668FB200B7059D /* WDUtility.m in Sources */,
@@ -555,7 +540,6 @@
 				048A897F1A668FB200B7059D /* WDURLParser.m in Sources */,
 				048A897D1A668FB200B7059D /* WDDotsProgressIndicator.m in Sources */,
 				048A89801A668FB200B7059D /* WebViewJavascriptBridge.m in Sources */,
-				048A89861A668FB200B7059D /* Wonder.m in Sources */,
 				048A897E1A668FB200B7059D /* WDLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

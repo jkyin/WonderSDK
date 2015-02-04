@@ -7,20 +7,13 @@
 //
 
 #import "WDSession.h"
-
 #import "WDUserStore.h"
 #import "WDDialog.h"
-
-static NSString const *baseURL = @"http://192.168.1.251:8008/jsp/";
-static NSString const *autoLoginURL = @"http://192.168.1.251:8008/api/";
-
-static NSString *kLogin = @"login";
-static NSString *kUserLogin = @"userLogin";
+#import "WDUtility.h"
 
 @interface WDSession () <WDDialogDelegate>
-@property (strong, nonatomic) WDDialog *wdDialog;
-@property (copy, nonatomic) WDSessionCompleteHandler loginHandler;
-
+@property (nonatomic, strong) WDDialog *dialog;
+@property (nonatomic, copy) WDSessionCompleteHandler loginHandler;
 @property (nonatomic, copy, readwrite) NSString *token;
 @property (nonatomic, copy, readwrite) NSString *username;
 @end
@@ -29,13 +22,13 @@ static NSString *kUserLogin = @"userLogin";
 
 - (void)dealloc {
     _loginHandler = nil;
-    _wdDialog.delegate = nil;
+    _dialog.delegate = nil;
     
     NSLog(@"%@ dealloc!", NSStringFromClass([self class]));
 }
 
 - (NSString *)username {
-    return [WDUserStore sharedStore].currentUser.userName;
+    return [WDUserStore sharedStore].currentUser.username;
 }
 
 #pragma mark - Public
@@ -45,18 +38,18 @@ static NSString *kUserLogin = @"userLogin";
         NSString *dialogURL;
         WDUser *lastUser = [[WDUserStore sharedStore] lastUser];
         if (lastUser) {
-            dialogURL = [autoLoginURL stringByAppendingFormat:@"%@", kUserLogin];
+            dialogURL = [WDUtility dialogUserLoginURL];
             NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-            params[@"password"] = lastUser.passWord;
-            params[@"username"] = lastUser.userName;
+            params[@"password"] = lastUser.password;
+            params[@"username"] = lastUser.username;
             
-            self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:YES delegate:self];
+            self.dialog = [[WDDialog alloc] initWithURL:dialogURL params:params isViewInvisible:YES delegate:self];
         } else {
-            dialogURL = [baseURL stringByAppendingFormat:@"%@.jsp", kLogin];
-            self.wdDialog = [[WDDialog alloc] initWithURL:dialogURL params:nil isViewInvisible:NO delegate:self];
+            dialogURL = [WDUtility dialogLoginURL];
+            self.dialog = [[WDDialog alloc] initWithURL:dialogURL params:nil isViewInvisible:NO delegate:self];
         }
 
-        [self.wdDialog show];
+        [self.dialog show];
         self.loginHandler = handler;
     }
 }
@@ -65,10 +58,10 @@ static NSString *kUserLogin = @"userLogin";
 
 - (void)dialogCompleteWithUrl:(NSURL *)url {
     NSString *urlString = url.absoluteString;
-    NSString *token = [self.wdDialog getValueForParameter:@"token=" fromUrlString:urlString];
+    NSString *token = [self.dialog valueForParameter:@"token=" fromURLString:urlString];
     
     if ((token == (NSString *)[NSNull null]) || (token.length == 0)) {
-        [self.wdDialog dialogDidCancel:url];
+        [self.dialog dialogDidCancel:url];
     } else {
         WDSession * __weak weakSelf = self;
         self.token = token;

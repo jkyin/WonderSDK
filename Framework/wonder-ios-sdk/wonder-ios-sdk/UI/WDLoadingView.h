@@ -10,6 +10,7 @@
 #import "WDDotsProgressIndicator.h"
 
 @interface WDLoadingView : UIView
+- (void)startAnimating;
 - (void)stopAnimating;
 @end
  

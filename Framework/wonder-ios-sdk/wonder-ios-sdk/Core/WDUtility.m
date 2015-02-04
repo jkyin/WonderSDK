@@ -8,15 +8,28 @@
 
 #import "WDUtility.h"
 
+static NSString * const kLogin = @"jsp/login.jsp";
+static NSString * const kUserLogin = @"api/userLogin";
+
 @implementation WDUtility
+
+#pragma mark - URLs Builder
+
++ (NSString *)dialogBaseURL {
+    return @"http://218.17.158.13:3337/wonderCenter/";
+}
+
++ (NSString *)dialogLoginURL {
+    return [[self dialogBaseURL] stringByAppendingString:kLogin];
+}
+
++ (NSString *)dialogUserLoginURL {
+    return [[self dialogBaseURL] stringByAppendingString:kUserLogin];
+}
 
 #pragma mark - URLs Params Encode / Decode
 
 + (NSDictionary *)queryParamsDictionaryFromWDURL:(NSURL *)url {
-    // version 3.2.3 of the Facebook app encodes the parameters in the query but
-    // version 3.3 and above encode the parameters in the fragment;
-    // merge them together with fragment taking priority.
-    
     NSMutableDictionary *result = [NSMutableDictionary dictionary];
     if ([url query]) {
         [result addEntriesFromDictionary:[self dictionaryByParsingURLQueryPart:[url query]]];
@@ -59,7 +72,7 @@
     return result;
 }
 
-// the reverse of url encoding
+// URL 解码
 + (NSString *)stringByURLDecodingString:(NSString *)escapedString {
     return [[escapedString stringByReplacingOccurrencesOfString:@"+" withString:@" "]
             stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
