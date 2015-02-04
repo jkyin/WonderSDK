@@ -18,10 +18,6 @@ typedef void(^WDSessionCompleteHandler)(WDSession *session, NSError *error);
 @property (nonatomic, copy, readonly) NSString *username;
 
 /*!
- @methodgroup Instance methods
- */
-
-/*!
  @method
  
  @abstract 打开 Wonder 登录会话.

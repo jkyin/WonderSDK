@@ -9,20 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "WDUser.h"
 
-typedef void(^WDSaveAccountCompletionHandler)(BOOL success);
+typedef void(^WDUserStoreSynchronizeCompletionHandler)(BOOL success);
 
 @interface WDUserStore : NSObject
 
-@property (strong, nonatomic) NSMutableArray *allUsers;
-@property (strong, nonatomic) WDUser *currentUser;
+@property (nonatomic, copy) NSMutableArray *allUsers;
+@property (nonatomic, strong) WDUser *currentUser;
 
 + (instancetype)sharedStore;
 - (void)addUser:(WDUser *)user;
 - (void)removeUser:(NSString *)username;
+// 最后一次登录的用户
 - (WDUser *)lastUser;
-- (NSMutableArray *)allUsers;
 - (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password;
-- (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler;
 - (NSString *)stringWithJsonData;
+
+- (void)synchronizeWithCompletionHandler:(WDUserStoreSynchronizeCompletionHandler)handler;
 
 @end

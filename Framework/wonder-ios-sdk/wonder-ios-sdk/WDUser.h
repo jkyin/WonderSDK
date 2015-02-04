@@ -10,8 +10,8 @@
 
 @interface WDUser : NSObject <NSCoding>
 
-@property (strong, readonly, nonatomic) NSString *userName;
-@property (strong, readonly, nonatomic) NSString *passWord;
+@property (nonatomic, strong, readonly) NSString *username;
+@property (nonatomic, strong, readonly) NSString *password;
 
 - (instancetype)init __attribute__((unavailable("Please do not initialize WDUser directly. Use initWithUsername:password: instead.")));
 - (instancetype)initWithUsername:(NSString *)username password:(NSString *)password;

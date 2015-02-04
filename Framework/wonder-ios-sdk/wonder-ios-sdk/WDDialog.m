@@ -7,10 +7,10 @@
 //
 
 #import "WDDialog.h"
-
 #import "WDUserStore.h"
 #import "WDLoadingView.h"
-#import "WDConstants.h"
+#import "WDMacros.h"
+#import "WDUtility.h"
 // Vendors
 #import "WebViewJavascriptBridge.h"
 
@@ -29,27 +29,27 @@ static BOOL WDUseLegacyLayout(void) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface WDDialog () <UIAlertViewDelegate, UIScrollViewDelegate>
-@property (strong, nonatomic) UIWebView *webView;
-@property (strong, nonatomic) UIActivityIndicatorView *spinner;
-@property (assign, nonatomic) BOOL everShown;
-@property (assign, nonatomic) BOOL isViewInvisible;
-@property (assign, nonatomic) UIInterfaceOrientation orientation;
+@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UIActivityIndicatorView *spinner;
+@property (nonatomic, assign) BOOL everShown;
+@property (nonatomic, assign) BOOL isViewInvisible;
+@property (nonatomic, assign) UIInterfaceOrientation orientation;
 // 登录过程
-@property (strong, nonatomic) WDLoadingView *loadingView;
-@property (strong, nonatomic) UIButton *switchButton;
-@property (assign, nonatomic) BOOL isClickedSwitchButton;
+@property (nonatomic, strong) WDLoadingView *loadingView;
+@property (nonatomic, strong) UIButton *switchButton;
+@property (nonatomic, assign) BOOL isClickedSwitchButton;
 // 自适应键盘
-@property (assign, nonatomic) int textFieldHeight;
-@property (assign, nonatomic) CGRect kbRect;
-@property (strong, nonatomic) WebViewJavascriptBridge *javascriptBridge;
+@property (nonatomic, assign) int textFieldHeight;
+@property (nonatomic, assign) CGRect kbRect;
+@property (nonatomic, strong) WebViewJavascriptBridge *javascriptBridge;
 @end
 
 @implementation WDDialog
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
-    self = [super initWithFrame:CGRectZero];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         _loadingURL = nil;
         _delegate = nil;
@@ -84,34 +84,15 @@ static BOOL WDUseLegacyLayout(void) {
 #pragma mark - Public
 
 - (instancetype)initWithURL:(NSString *)serverURL params:(NSMutableDictionary *)params isViewInvisible:(BOOL)isViewInvisible delegate:(id<WDDialogDelegate>)delegate {
-    self = [self init];
-    _serverURL = serverURL;
-    _params = params;
-    _delegate = delegate;
-    _isViewInvisible = isViewInvisible;
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        _serverURL = serverURL;
+        _params = params;
+        _delegate = delegate;
+        _isViewInvisible = isViewInvisible;
+    }
 
     return self;
-}
-
-- (NSString *)getValueForParameter:(NSString *)Param fromUrlString:(NSString *)urlString {
-    NSString *value;
-    NSRange start = [urlString rangeOfString:Param];
-    if (start.location != NSNotFound) {
-        // confirm that the parameter is not a partial name match
-        unichar c = '?';
-        if (start.location != 0) {
-            c = [urlString characterAtIndex:start.location - 1];
-        }
-        if (c == '?' || c == '&' || c == '#') {
-            NSRange end = [[urlString substringFromIndex:start.location + start.length] rangeOfString:@"&"];
-            NSUInteger offset = start.location + start.length;
-            value = end.location == NSNotFound ?
-            [urlString substringFromIndex:offset] :
-            [urlString substringWithRange:NSMakeRange(offset, end.location)];
-            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        }
-    }
-    return value;
 }
 
 - (void)show {
@@ -122,11 +103,11 @@ static BOOL WDUseLegacyLayout(void) {
 }
 
 - (void)load {
-    [self loadURL:self.serverURL get:self.params];
+    [self loadURL:self.serverURL withParams:self.params];
 }
 
-- (void)loadURL:(NSString *)url get:(NSDictionary *)getParams {
-    self.loadingURL = [self generateURL:url params:getParams];
+- (void)loadURL:(NSString *)url withParams:(NSDictionary *)params {
+    self.loadingURL = [self URL:url withParams:params];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.loadingURL];
     
     [self.webView loadRequest:request];
@@ -176,6 +157,27 @@ static BOOL WDUseLegacyLayout(void) {
         [self.delegate dialogDidNotCompleteWithUrl:url];
     }
     [self dismissWithSuccess:NO animated:YES];
+}
+
+- (NSString *)valueForParameter:(NSString *)Param fromURLString:(NSString *)urlString {
+    NSString *value;
+    NSRange start = [urlString rangeOfString:Param];
+    if (start.location != NSNotFound) {
+        // confirm that the parameter is not a partial name match
+        unichar c = '?';
+        if (start.location != 0) {
+            c = [urlString characterAtIndex:start.location - 1];
+        }
+        if (c == '?' || c == '&' || c == '#') {
+            NSRange end = [[urlString substringFromIndex:start.location + start.length] rangeOfString:@"&"];
+            NSUInteger offset = start.location + start.length;
+            value = end.location == NSNotFound ?
+            [urlString substringFromIndex:offset] :
+            [urlString substringWithRange:NSMakeRange(offset, end.location)];
+            value = [value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        }
+    }
+    return value;
 }
 
 #pragma mark - Private
@@ -239,7 +241,7 @@ static BOOL WDUseLegacyLayout(void) {
     self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:self.webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
         if ([data isKindOfClass:[NSString class]]) {
             [[WDUserStore sharedStore] removeUser:data];
-            [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
+            [[WDUserStore sharedStore] synchronizeWithCompletionHandler:^(BOOL success) {
                 if (success) {
                     NSLog(@"delete succeed");
                 }
@@ -252,7 +254,7 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (void)saveAccount {
     [[WDUserStore sharedStore] addUser:[WDUserStore sharedStore].currentUser];
-    [[WDUserStore sharedStore] saveAccountChangesWithCompletionHandler:^(BOOL success) {
+    [[WDUserStore sharedStore] synchronizeWithCompletionHandler:^(BOOL success) {
         if (success) {
             NSLog(@"save succeed");
         }
@@ -264,9 +266,15 @@ static BOOL WDUseLegacyLayout(void) {
     [self.loadingView stopAnimating];
     [self.loadingView removeFromSuperview];
     
-    [self loadURL:@"http://192.168.1.251:8008/jsp/login.jsp" get:nil];
+    [self loadURL:[WDUtility dialogLoginURL] withParams:nil];
     [self addSubview:self.webView];
     [self.switchButton removeFromSuperview];
+
+
+}
+
+- (void)didSwitchAccount {
+    self.isClickedSwitchButton = NO;
 }
 
 - (void)addObservers {
@@ -292,18 +300,15 @@ static BOOL WDUseLegacyLayout(void) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIKeyboardWillShowNotification" object:nil];
 }
 
-- (void)verifyLoginWithUrl:(NSURL *)url {
-    if ([@[@"userLogin", @"normalRegister"] containsObject:url.lastPathComponent]) {
-        NSString *username = [self getValueForParameter:@"username=" fromUrlString:url.absoluteString];
-        NSString *password = [self getValueForParameter:@"password=" fromUrlString:url.absoluteString];
+- (void)setCurrentUserFromURL:(NSURL *)url {
+    if ([url.lastPathComponent  isEqualToString:@"userLogin"]) {
+        NSString *username = [self valueForParameter:@"username=" fromURLString:url.absoluteString];
+        NSString *password = [self valueForParameter:@"password=" fromURLString:url.absoluteString];
         [[WDUserStore sharedStore] setCurrentUserWithUsername:username andPassword:password];
-        if ([WDUserStore sharedStore].currentUser) {
-            [self showLoading];
-        }
     }
 }
 
-- (void)fillDialogForUrl:(NSURL *)url {
+- (void)fillAccountForURL:(NSURL *)url {
     NSString *lastPathComponent = url.lastPathComponent;
     if ([lastPathComponent isEqualToString: @"login.jsp"]) {
         NSString *jsFunction = [NSString stringWithFormat:@"addBox(\"%@\")", [[WDUserStore sharedStore] stringWithJsonData]];
@@ -312,20 +317,19 @@ static BOOL WDUseLegacyLayout(void) {
     
     if ([lastPathComponent isEqualToString:@"bindEmail.jsp"]) {
         if ([[WDUserStore sharedStore] lastUser]) {
-            NSString *jsUserName = [NSString stringWithFormat:@"document.getElementById('nmid').value = '%@'", [[WDUserStore sharedStore] lastUser].userName];
-            NSString *jsPassWord = [NSString stringWithFormat:@"document.getElementById('pwdid').value = '%@'", [[WDUserStore sharedStore] lastUser].passWord];
-            [self.webView stringByEvaluatingJavaScriptFromString:jsUserName];
-            [self.webView stringByEvaluatingJavaScriptFromString:jsPassWord];
+            NSString *jsUsername = [NSString stringWithFormat:@"document.getElementById('nmid').value = '%@'", [[WDUserStore sharedStore] lastUser].username];
+            NSString *jsPassword = [NSString stringWithFormat:@"document.getElementById('pwdid').value = '%@'", [[WDUserStore sharedStore] lastUser].password];
+            [self.webView stringByEvaluatingJavaScriptFromString:jsUsername];
+            [self.webView stringByEvaluatingJavaScriptFromString:jsPassword];
         }
     }
 }
 
-- (NSURL *)generateURL:(NSString *)baseURL params:(NSDictionary *)params {
+- (NSURL *)URL:(NSString *)baseURL withParams:(NSDictionary *)params {
     if (params) {
         NSMutableArray *pairs = [NSMutableArray array];
         for (NSString *key in params.keyEnumerator) {
             NSString *value = params[key];
-            //            NSString *escaped_value = [FBUtility stringByURLEncodingString:value];
             [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, value]];
         }
         
@@ -477,8 +481,6 @@ static BOOL WDUseLegacyLayout(void) {
     [UIView commitAnimations];
 }
 
-// Show a spinner during the loading time for the dialog. This is designed to show
-// on top of the webview but before the contents have loaded.
 - (void)showSpinner {
     [self.spinner sizeToFit];
     [self.spinner startAnimating];
@@ -489,20 +491,29 @@ static BOOL WDUseLegacyLayout(void) {
     [self.spinner stopAnimating];
 }
 
-- (void)showLoading {
-//    self.webView.hidden = YES;
-    [self.webView removeFromSuperview];
-    CGPoint frameCenter = IS_OS_8_OR_LATER ? CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f)
-    : CGPointMake(self.frame.size.height / 2.0f, self.frame.size.width / 2.0f);
-    // loadingView setup
-    self.loadingView = IS_IPHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
-    self.loadingView.center = frameCenter;
-    [self addSubview:self.loadingView];
-    
-    if (self.switchButton && !self.switchButton.superview) {
-        [self addSubview:self.switchButton];
-    } else {
-        [self setupSwitchButton];
+- (void)showLoadingProgress {
+    if ([WDUserStore sharedStore].currentUser) {
+        [self.webView removeFromSuperview];
+        
+        CGPoint frameCenter;
+        if (IS_OS_8_OR_LATER) {
+            frameCenter = CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f);
+        } else {
+            frameCenter = CGPointMake(self.frame.size.height / 2.0f, self.frame.size.width / 2.0f);
+        }
+        
+        // loadingView setup
+        self.loadingView = IS_IPHONE ? [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 300, 150)]: [[WDLoadingView alloc] initWithFrame:CGRectMake(0, 0, 400, 200)];
+        self.loadingView.center = frameCenter;
+        [self addSubview:self.loadingView];
+        
+        if (self.switchButton && !self.switchButton.superview) {
+            [self addSubview:self.switchButton];
+        } else {
+            [self setupSwitchButton];
+        }
+        
+        [self.loadingView startAnimating];
     }
 }
 
@@ -510,37 +521,56 @@ static BOOL WDUseLegacyLayout(void) {
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *url = request.URL;
-
-    [self verifyLoginWithUrl:url];
+    NSLog(@"%@", url);
+    
+    [self setCurrentUserFromURL:url];
 
     // 登录、注册返回的结果
     if ([@[@"loginRedirect", @"tipsRedirect", @"registerRedirect"] containsObject:url.lastPathComponent]) {
-        NSString *command = [self getValueForParameter:@"command=" fromUrlString:url.absoluteString];
-        // 延时 2 秒
-        double delayInSeconds = 2.0;
-        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(time, dispatch_get_main_queue(), ^{
-            if ([command isEqualToString:@"login_return_success"] && !self.isClickedSwitchButton) {
-                //TODO: 登录成功
-                [self dialogDidSucceed:url];
-            } else if ([command isEqualToString:@"login_return_fail"]){
-                //TODO: 登录失败
-                NSString *errorCode = [self getValueForParameter:@"code=" fromUrlString:url.absoluteString];
-                NSString *errorString = [self getValueForParameter:@"msg=" fromUrlString:url.absoluteString];
-                if (errorCode) {
-                    NSDictionary *errorData = @{@"errorMessage" : errorString};
-                    NSError *error = [NSError errorWithDomain:@"WonderSdkErrorDomain"
-                                                         code:[errorCode intValue]
-                                                     userInfo:errorData];
-                    [self dismissWithError:error animated:YES];
-                } else {
-                    [self dialogDidCancel:url];
+        NSString *command = [self valueForParameter:@"command=" fromURLString:url.absoluteString];
+//        // 延时 2 秒
+//        double delayInSeconds = 2.0;
+//        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//        dispatch_after(time, dispatch_get_main_queue(), ^{
+//            if ([command isEqualToString:@"login_return_success"] && !self.isClickedSwitchButton) {
+//                [self dialogDidSucceed:url];
+//            } else if ([command isEqualToString:@"login_return_fail"]){
+//                NSString *errorCode = [self valueForParameter:@"code=" fromURLString:url.absoluteString];
+//                NSString *errorString = [self valueForParameter:@"msg=" fromURLString:url.absoluteString];
+//                if (errorCode) {
+//                    NSDictionary *errorData = @{@"errorMessage" : errorString};
+//                    NSError *error = [NSError errorWithDomain:@"WonderSdkErrorDomain" code:[errorCode intValue] userInfo:errorData];
+//                    [self dismissWithError:error animated:YES];
+//                } else {
+//                    [self dialogDidCancel:url];
+//                }
+//            }
+//            
+//            if (self.isClickedSwitchButton) {
+//                [self didSwitchAccount];
+//            }
+//        });
+        
+        if ([command isEqualToString:@"login_return_success"]) {
+            [self showLoadingProgress];
+            // 延时 2 秒再处理结果，
+            // 给用户「切换帐号」提供时间。
+            double delayInSeconds = 2.0;
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(time, dispatch_get_main_queue(), ^{
+                // 如果用户点击了「切换帐号」，
+                // 那么就不处理结果。
+                if (!self.isClickedSwitchButton) {
+                    [self dialogDidSucceed:url];
                 }
-            }
-            self.isClickedSwitchButton = NO;
-            [self.loadingView stopAnimating];
-        });
+                NSLog(@"block: %d", self.isClickedSwitchButton);
+                self.isClickedSwitchButton = NO;
+            });
+        } else if ([command isEqualToString:@"login_return_fail"]) {
+            //TODO: login failed
+        }
     }
+    
     return YES;
 }
 
@@ -554,7 +584,7 @@ static BOOL WDUseLegacyLayout(void) {
         // note that showing the view now would cause a visible white
         // flash in the common case where the cache is up to date
 //        [self performSelector:@selector(showWebView) withObject:nil afterDelay:.05];
-        [self fillDialogForUrl:webView.request.URL];
+        [self fillAccountForURL:webView.request.URL];
     } else {
         [self hideSpinner];
     }
@@ -576,7 +606,7 @@ static BOOL WDUseLegacyLayout(void) {
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqual:@"textFieldHeight"]) {
+    if ([keyPath isEqualToString:@"textFieldHeight"]) {
         CGFloat distanceTextFieldToTop = CGRectGetMinY(self.webView.frame) + self.textFieldHeight + 30;
         CGFloat offset = ([self currentScreenSize].height - CGRectGetHeight(_kbRect)) - distanceTextFieldToTop;
         NSLog(@"offset:%f", offset);

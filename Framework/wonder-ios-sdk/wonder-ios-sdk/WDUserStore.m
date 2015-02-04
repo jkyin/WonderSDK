@@ -48,24 +48,23 @@
 }
 
 - (void)addUser:(WDUser *)user {
-    [self removeTheSameUser:user];
-    [_allUsers addObject:user];
+    // 首先删除重复的用户，
+    // 再添加用户。
+    [self removeUser:user.username];
+    [self.allUsers addObject:user];
 }
 
 - (void)removeUser:(NSString *)username {
-    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
-        if ([username isEqualToString:obj.userName]) {
-            [_allUsers removeObject:obj];
+    WDUserStore * __weak weakSelf = self;
+    [self.allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
+        if ([obj.username isEqualToString:username]) {
+            [weakSelf.allUsers removeObject:obj];
         }
     }];
 }
 
-- (NSMutableArray *)allUsers {
-    return _allUsers;
-}
-
 - (WDUser *)lastUser {
-    return [[self allUsers] lastObject];
+    return self.allUsers.lastObject;
 }
 
 - (void)setCurrentUserWithUsername:(NSString *)username andPassword:(NSString *)password {
@@ -73,26 +72,26 @@
     self.currentUser = user;
 }
 
-- (void)saveAccountChangesWithCompletionHandler:(WDSaveAccountCompletionHandler)completionHandler {
+- (void)synchronizeWithCompletionHandler:(WDUserStoreSynchronizeCompletionHandler)handler {
     NSString *path = [self userArchivePath];
-    BOOL success = [NSKeyedArchiver archiveRootObject:_allUsers toFile:path];
+    BOOL success = [NSKeyedArchiver archiveRootObject:self.allUsers toFile:path];
     if (success) {
-        completionHandler(success);
+        handler(success);
     } else {
-        completionHandler(NO);
+        handler(NO);
     }
 }
 
 - (NSString *)stringWithJsonData {
-    __block NSMutableArray *userNameArray = [[NSMutableArray alloc] init];
-    __block NSMutableArray *passWordArray = [[NSMutableArray alloc] init];
-    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
-        [userNameArray addObject:obj.userName];
-        [passWordArray addObject:obj.passWord];
+    __block NSMutableArray *usernameArray = [[NSMutableArray alloc] init];
+    __block NSMutableArray *passwordArray = [[NSMutableArray alloc] init];
+    [self.allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
+        [usernameArray addObject:obj.username];
+        [passwordArray addObject:obj.password];
     }];
     
-    NSDictionary *userDictionary = @{@"username" : userNameArray,
-                                     @"password" : passWordArray
+    NSDictionary *userDictionary = @{@"username" : usernameArray,
+                                     @"password" : passwordArray
                                      };
     NSError *error;
     NSData *json = [NSJSONSerialization dataWithJSONObject:userDictionary options:NSJSONWritingPrettyPrinted error:&error];
@@ -113,14 +112,6 @@
 }
 
 #pragma mark - Private
-
-- (void)removeTheSameUser:(WDUser *)user {
-    [_allUsers enumerateObjectsUsingBlock:^(WDUser *obj, NSUInteger idx, BOOL *stop) {
-        if ([user.userName isEqualToString:obj.userName]) {
-            [_allUsers removeObject:obj];
-        }
-    }];
-}
 
 // Document 路径
 - (NSString *)userArchivePath {
